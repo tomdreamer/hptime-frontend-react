@@ -3,13 +3,13 @@ import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ReactMapGL from "react-map-gl";
-
+import "./SingleMap.scss";
 class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       viewport: {
-        width: "36%",
+        width: "75%",
         height: window.innerHeight - 56,
         latitude: 48.85341,
         longitude: 2.3488,
