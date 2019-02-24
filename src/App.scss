@@ -140,5 +140,6 @@ $modal-transition: transform 0.3s ease-out !default;
 /* * * * * * * * * * * * * */
 
 .App {
-  margin-top: $spacer * 4;
+  // Dynamic padding according to navbar height
+  margin-top: $nav-link-height + $nav-link-padding-y * 2;
 }

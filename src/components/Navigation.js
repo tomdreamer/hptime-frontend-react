@@ -21,6 +21,9 @@ class Navigation extends Component {
               <LinkContainer to="/template">
                 <Nav.Link>Theme Components</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/map">
+                <Nav.Link>Map Component</Nav.Link>
+              </LinkContainer>
             </Nav>
             <Form inline>
               <FormControl
