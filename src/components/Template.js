@@ -1,6 +1,5 @@
 // See and copy pasta available components
 import React, { Component } from "react";
-import "./App.scss";
 //import Button from "react-bootstrap/Button";
 
 class Template extends Component {

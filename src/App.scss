@@ -9,11 +9,11 @@ https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 /* * * * * * * * * * * * * */
 
 // Google font import
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
 // Font family
-$font-family-sans-serif: "Roboto", Arial, sans-serif !default;
-$headings-font-family: "Roboto", Arial, sans-serif !default;
+$font-family-sans-serif: "Open Sans", Arial, sans-serif !default;
+$headings-font-family: "Open Sans", Arial, sans-serif !default;
 
 // Font size and color
 $font-size-base: 1rem !default; // equals `16px`
@@ -22,6 +22,7 @@ $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
+$headings-font-weight: 700 !default;
 
 // Color system
 $white: #fff !default;
@@ -108,10 +109,18 @@ $jumbotron-padding: 2rem !default;
 $jumbotron-color: null !default;
 $jumbotron-bg: $gray-200 !default;
 
-// Alerts
-$alert-bg-level: -10 !default;
-$alert-border-level: -9 !default;
-$alert-color-level: 6 !default;
+// Alerts colors (- 10 to 10)
+$alert-bg-level: -9 !default;
+$alert-border-level: -7 !default;
+$alert-color-level: 2 !default;
+
+// Alerts style
+$alert-padding-y: 0.75rem !default;
+$alert-padding-x: 1.25rem !default;
+$alert-margin-bottom: 1rem !default;
+$alert-border-radius: $border-radius-sm !default;
+$alert-link-font-weight: $font-weight-bold !default;
+$alert-border-width: $border-width !default;
 
 // Modal
 $modal-backdrop-bg: $black !default;
@@ -129,3 +138,7 @@ $modal-transition: transform 0.3s ease-out !default;
 /* * * * * * * * * * * * * */
 /*  GLOBAL THEME STYLING   */
 /* * * * * * * * * * * * * */
+
+.App {
+  margin-top: $spacer * 4;
+}
