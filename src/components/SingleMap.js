@@ -16,9 +16,12 @@ class SingleMap extends Component {
         bearing: -17.6
       }
     };
+    this._onViewportChange = this._onViewportChange.bind(this);
   }
 
-  _onViewportChange = viewport => this.setState({ viewport });
+  _onViewportChange(viewport) {
+    this.setState({ viewport });
+  }
 
   render() {
     const { viewport } = this.state;
