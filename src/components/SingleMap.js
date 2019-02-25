@@ -78,11 +78,11 @@ class SingleMap extends Component {
           <ReactMapGL
             {...viewport}
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
             width="100%"
             height={window.innerHeight - 56}
             // got solution here https://github.com/uber/react-map-gl/issues/604#issuecomment-462398674
             // needs some refactoring to adjust to navbar height with js or importing corresponding sass variable
-
             onViewportChange={this._onViewportChange}
           />
         </Col>
