@@ -3,7 +3,11 @@ import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./SingleMap.scss";
-import ReactMapGL from "react-map-gl";
+import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
+import CityPin from "./CityPin";
+import CityInfo from "./CityInfo";
+import MAPDATA from "../mapDummyData.json";
+
 class SingleMap extends Component {
   constructor(props) {
     super(props);
@@ -14,13 +18,46 @@ class SingleMap extends Component {
         zoom: 9.5,
         pitch: 45,
         bearing: -17.6
-      }
+      },
+      popupInfo: null
     };
     this._onViewportChange = this._onViewportChange.bind(this);
   }
 
+  // update map on window size
   _onViewportChange(viewport) {
     this.setState({ viewport });
+  }
+
+  _renderCityMarker = (city, index) => {
+    return (
+      <Marker
+        key={`marker-${index}`}
+        longitude={city.longitude}
+        latitude={city.latitude}
+      >
+        <CityPin size={20} onClick={() => this.setState({ popupInfo: city })} />
+      </Marker>
+    );
+  };
+
+  _renderPopup() {
+    const { popupInfo } = this.state;
+
+    return (
+      popupInfo && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={popupInfo.longitude}
+          latitude={popupInfo.latitude}
+          closeOnClick={false}
+          onClose={() => this.setState({ popupInfo: null })}
+        >
+          <CityInfo info={popupInfo} />
+        </Popup>
+      )
+    );
   }
 
   render() {
@@ -33,52 +70,94 @@ class SingleMap extends Component {
           md={{ span: 3, order: 1 }}
           id="map-filter"
         >
-          <h1 className="display-3">Filter column</h1>
-          <h4 className="display-6 text-muted">Map on right receive props..</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            rhoncus efficitur nunc nec dictum. Vivamus varius gravida
-            ullamcorper. Curabitur id pharetra odio. Integer molestie est ut
-            laoreet vulputate. Pellentesque vehicula sodales enim. Phasellus ut
-            finibus sapien. Ut porttitor eros a dictum congue. Suspendisse quis
-            mi tristique, convallis dui nec, condimentum tellus. Nulla sit amet
-            facilisis lectus. Nam gravida sem id nisl accumsan, a sodales neque
-            ullamcorper. Nulla dictum ac nunc ut ultricies. Donec auctor, eros
-            vitae lobortis condimentum, justo est vehicula odio, a pharetra est
-            mauris ut velit. Nullam viverra, ex non tristique iaculis, arcu
-            mauris semper sem, at auctor orci mi sit amet sem. Donec nec
-            pharetra tellus, at feugiat mi. Nunc mattis mi in enim semper, ac
-            accumsan dolor hendrerit. Maecenas sit amet elementum nisi, sit amet
-            pharetra neque. Suspendisse a turpis et velit cursus mollis tempor
-            in mi. Praesent vitae enim suscipit, tincidunt magna porttitor,
-            aliquet nisl. Suspendisse dapibus risus eget mauris varius, at
-            pharetra odio fringilla. Maecenas scelerisque eros ac augue mattis
-            mattis. Vestibulum fermentum sollicitudin accumsan. Pellentesque et
-            euismod nibh, varius blandit mi. Nunc a nibh risus. Aliquam
-            tincidunt, odio nec porttitor maximus, nibh est blandit mi, quis
-            aliquet tellus libero vitae nibh. Suspendisse potenti. Sed mattis
-            eget nisl ullamcorper egestas. Praesent nibh lorem, aliquam nec
-            tortor et, ornare sodales erat. Nam ut cursus ante. Phasellus
-            accumsan sollicitudin posuere. Vestibulum lacinia enim at sapien
-            commodo, ac lobortis tortor placerat. Proin placerat fermentum velit
-            et mollis. Praesent hendrerit, nunc quis bibendum dictum, lectus
-            nibh posuere risus, elementum lacinia nunc nulla quis urna. Vivamus
-            in iaculis ligula. Phasellus ac ex ut justo feugiat euismod vitae id
-            velit. Vestibulum tristique in felis vel volutpat. Vestibulum
-            gravida tristique sem eu consequat. Praesent suscipit eros sit amet
-            dapibus viverra. Etiam posuere felis et ligula imperdiet tincidunt.
-            Quisque euismod ligula nisl, maximus porta mi sollicitudin aliquam.
-            Vestibulum a arcu sollicitudin, consectetur justo sed, placerat
-            orci. Sed viverra orci nec velit pulvinar accumsan quis non metus.
-            Maecenas gravida purus ac laoreet porttitor. Nullam sed placerat
-            elit, tristique porttitor quam. Pellentesque enim ligula, faucibus
-            ac rutrum vitae, tristique in dolor. Vestibulum sit amet consectetur
-            nunc.
-          </p>
+          <div id="accordion">
+            <div className="card border-bottom-0">
+              <div className="card-header" id="headingOne">
+                <h5 className="mb-0">
+                  <button
+                    className="btn btn-link"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Filter #1
+                  </button>
+                </h5>
+              </div>
+
+              <div
+                id="collapseOne"
+                className="collapse show"
+                aria-labelledby="headingOne"
+                data-parent="#accordion"
+              >
+                <div className="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch.
+                </div>
+              </div>
+            </div>
+            <div className="card border-bottom-0">
+              <div className="card-header" id="headingTwo">
+                <h5 className="mb-0">
+                  <button
+                    className="btn btn-link collapsed"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Filter #2
+                  </button>
+                </h5>
+              </div>
+              <div
+                id="collapseTwo"
+                className="collapse"
+                aria-labelledby="headingTwo"
+                data-parent="#accordion"
+              >
+                <div className="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                  non cupidatat skateboard dolor brunch. Food truck quinoa
+                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor.
+                </div>
+              </div>
+            </div>
+            <div className="card border-bottom-0">
+              <div className="card-header" id="headingThree">
+                <h5 className="mb-0">
+                  <button
+                    className="btn btn-link collapsed"
+                    data-toggle="collapse"
+                    data-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Filter #3
+                  </button>
+                </h5>
+              </div>
+              <div
+                id="collapseThree"
+                className="collapse"
+                aria-labelledby="headingThree"
+                data-parent="#accordion"
+              >
+                <div className="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid.
+                </div>
+              </div>
+            </div>
+          </div>
         </Col>
         <Col sm={{ span: 12, order: 1 }} md={{ span: 9, order: 2 }}>
           {/* // REFACTOR INSIDE A COMPONENT */}
-          <ReactMapGL
+          <MapGL
             {...viewport}
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
@@ -87,6 +166,7 @@ class SingleMap extends Component {
             // got solution here https://github.com/uber/react-map-gl/issues/604#issuecomment-462398674
             // needs some refactoring to adjust to navbar height with js or importing corresponding sass variable
             onViewportChange={this._onViewportChange}
+            {...MAPDATA.map(this._renderCityMarker)}
           />
         </Col>
       </Row>
