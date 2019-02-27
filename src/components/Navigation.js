@@ -13,13 +13,13 @@ class Navigation extends Component {
       <Container>
         <Navbar bg="light" variant="light" expand="sm" fixed="top">
           <LinkContainer to="/">
-            <Navbar.Brand>AppName</Navbar.Brand>
+            <Navbar.Brand>MedDirect</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <LinkContainer to="/template">
-                <Nav.Link>Theme Components</Nav.Link>
+              <LinkContainer to="/IDK">
+                <Nav.Link>Link Here</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/map">
                 <Nav.Link>Map Component</Nav.Link>

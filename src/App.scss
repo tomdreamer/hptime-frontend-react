@@ -1,3 +1,13 @@
+a.button {
+  text-decoration: none;
+  background-color: #cc0000;
+  border: 1px solid #660000;
+  border-radius: 5px;
+  color: #fff;
+  margin-right: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
 /*
 NONAME PROJECT THEME 0.1 
 Bootstrap SASS variables list available here :
@@ -42,6 +52,7 @@ $secondary: #3e75bf !default;
 $success: #01dd73 !default;
 $info: #214866 !default;
 $warning: #ff9d2c !default;
+
 $danger: #df2821 !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
@@ -54,7 +65,7 @@ $text-muted: $gray-600 !default;
 
 // Theme options
 $enable-rounded: true !default;
-$enable-shadows: false !default;
+$enable-shadows: true !default;
 $enable-gradients: false !default;
 $enable-transitions: true !default;
 
