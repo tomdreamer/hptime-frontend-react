@@ -24,6 +24,9 @@ class Navigation extends Component {
               <LinkContainer to="/map">
                 <Nav.Link>Map Component</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/geolocation">
+                <Nav.Link>Geoloc</Nav.Link>
+              </LinkContainer>
             </Nav>
             <Form inline>
               <FormControl
