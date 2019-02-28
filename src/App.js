@@ -14,6 +14,7 @@ import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Container from "react-bootstrap/Container";
 import "mapbox-gl/dist/mapbox-gl.css";
+import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
 
 require("dotenv").config();
 
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/map" component={MapWrapper} />
             <Route path="/results" component={Results} />
             <Route path="/form" component={FormFill} />
+            <Route path="/geolocation" component={GeolocationCoodinates} />
 
             <Route path="/404" component={NotFound} />
           </Switch>
