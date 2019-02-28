@@ -26,14 +26,18 @@ class App extends Component {
             <Navigation />
           </header>
 
-        </header>
-        <Switch>
-          
-          
-          <Route path="/map" component={SingleMap} />
-          <Route path="/results" component={Results} />
-        </Switch>
-        <footer className="fixed-bottom">App footer</footer>
+          <Switch>
+            <Route path="/" exact component={IsEmergency} />
+            <Route path="/map" component={MapWrapper} />
+            <Route path="/results" component={Results} />
+            <Route path="/form" component={FormFill} />
+
+            <Route path="/404" component={NotFound} />
+          </Switch>
+          <footer className="fixed-bottom">
+            <SpeedDial />
+          </footer>
+        </Container>
       </div>
     );
   }
