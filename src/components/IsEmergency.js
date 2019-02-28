@@ -10,20 +10,20 @@ class IsEmergency extends PureComponent {
       <section className="IsEmergency">
         <Row className="justify-content-md-center">
           <Col md="8">
-            {" "}
-            En case d'urgance vitale, contactez immdéiatement le SAMU (15) ou
-            rendez vous aux urgences les plus proches.
-            <br />
-            <br />
-            Les temps d'attete affiches sont des estimations et ne concernent
-            que les patients de gravite moyenne (urgances relative) ou faible
-            (simples consultations aux urgances).
-            <br />
-            <br />
-            Les urgances vitals sont prises en charges immédiatement
-            <br />
-            <br />
-            <Button variant="info">Accepter et Continuer</Button>
+            <div class="shadow p-3 mb-5 bg-white rounded" role="alert">
+              <h4 class="alert-heading">!Attention!</h4>
+              <p>
+                Est-ce une urgence vitale?
+                <br />
+                <br />
+                <a className="btn" href="tel:+3315">
+                  Yes
+                </a>{" "}
+                <a className="btn" href="/form">
+                  No
+                </a>
+              </p>
+            </div>
           </Col>
         </Row>
       </section>
