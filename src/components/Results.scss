@@ -1,0 +1,34 @@
+.table  .cel {
+    text-align: center;
+    vertical-align: middle;
+ }
+
+.title1Col{
+    padding-left: 32px !important;
+    
+}
+tr {
+    width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+    }
+    
+    table{
+     height:300px;              // <-- Select the height of the table
+     display: -moz-groupbox;    // Firefox Bad Effect
+    }
+    tbody{
+      overflow-y: scroll;      
+      height: 400px;            //  <-- Select the height of the body
+      width: 100%;
+      position: absolute;
+    }
+.ResultMap{
+    margin:10px;
+}
+.table td {
+    padding: 0.0rem;
+}
+// .FCol{
+//     width: 200px;
+// }
