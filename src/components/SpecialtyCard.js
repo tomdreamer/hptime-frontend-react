@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+// import Modal from "react-bootstrap/Modal";
 
 class SpecialtyCard extends Component {
   state = {};
@@ -10,7 +10,7 @@ class SpecialtyCard extends Component {
         <div className="row">
           <div className="container d-flex">
             <div className="col-md-4">
-              <img src={this.props.picture} />
+              <img alt="picture" src={this.props.picture} />
             </div>
 
             <div className="col-md-8">

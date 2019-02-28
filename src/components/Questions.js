@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserQuestions from "./UserQuestions";
+// import UserQuestions from "./UserQuestions";
 import PathologyQuestions from "./PathologyQuestions";
 import AdultQuestion from "./AdultQuestion";
 import StepWizard from "react-step-wizard";
