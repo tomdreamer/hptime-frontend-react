@@ -40,6 +40,7 @@ class SingleMap extends Component {
     );
   };
   render() {
+    console.log(this.props.patientGender);
     const { viewport } = this.state;
     return (
       <MapGL
