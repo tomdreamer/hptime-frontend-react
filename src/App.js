@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Template from "./components/Template";
 import SingleMap from "./components/SingleMap";
+import Questions from "./components/Questions";
 require("dotenv").config();
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/template" component={Template} />
           <Route path="/map" component={SingleMap} />
+          <Route path="/questions" component={Questions} />
         </Switch>
         <footer className="fixed-bottom">App footer</footer>
       </div>
