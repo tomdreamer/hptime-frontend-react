@@ -1,12 +1,17 @@
+//Main
 import React, { Component } from "react";
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Switch, Route, NavLink } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import Home from "./components/Home";
-import Template from "./components/Template";
 import SingleMap from "./components/SingleMap";
 import Results from "./components/Results";
+import IsEmergency from "./components/IsEmergency";
+import SpeedDial from "./components/SpeedDial";
+//Css/styling
+import "./App.scss";
+import "mapbox-gl/dist/mapbox-gl.css";
+import Container from "react-bootstrap/Container";
 require("dotenv").config();
 
 class App extends Component {

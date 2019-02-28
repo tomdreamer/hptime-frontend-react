@@ -3,7 +3,12 @@ import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./SingleMap.scss";
-import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
+import MapGL, {
+  Marker,
+  Popup
+
+  // NavigationControl
+} from "react-map-gl";
 import CityPin from "./CityPin";
 import CityInfo from "./CityInfo";
 import MAPDATA from "../mapDummyData.json";
