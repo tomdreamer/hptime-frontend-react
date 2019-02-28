@@ -9,18 +9,19 @@ import FormFill from "./components/FormFill.js";
 import Results from "./components/Results.js";
 import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
-
 //Css/styling
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Container from "react-bootstrap/Container";
+import "mapbox-gl/dist/mapbox-gl.css";
+
 require("dotenv").config();
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Container fluid>
+        <Container>
           <header>
             <Navigation />
           </header>
