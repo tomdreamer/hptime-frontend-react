@@ -3,10 +3,17 @@ import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./SingleMap.scss";
-import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
+import structuresAlternatives from '../structuresAlternatives.json'
+import MapGL, {
+  Marker,
+  Popup
+
+  // NavigationControl
+} from "react-map-gl";
 import CityPin from "./CityPin";
 import CityInfo from "./CityInfo";
 import MAPDATA from "../mapDummyData.json";
+import Collapse from 'react-bootstrap/Collapse'
 
 class SingleMap extends Component {
   constructor(props) {
@@ -19,7 +26,9 @@ class SingleMap extends Component {
         pitch: 45,
         bearing: -17.6
       },
-      popupInfo: null
+      popupInfo: null,
+      strAlternatives: structuresAlternatives.slice(0, 5),
+      open: true,
     };
     this._onViewportChange = this._onViewportChange.bind(this);
   }
@@ -53,6 +62,7 @@ class SingleMap extends Component {
           latitude={popupInfo.latitude}
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
+          
         >
           <CityInfo info={popupInfo} />
         </Popup>
@@ -62,7 +72,8 @@ class SingleMap extends Component {
 
   render() {
     const { viewport } = this.state;
-
+    const {strAlternatives} = this.state
+    const { open } = this.state;
     return (
       <Row className="no-gutters">
         <Col
@@ -75,83 +86,65 @@ class SingleMap extends Component {
               <div className="card-header" id="headingOne">
                 <h5 className="mb-0">
                   <button
-                    className="btn btn-link"
-                    data-toggle="collapse"
-                    data-target="#collapseOne"
-                    aria-expanded="true"
-                    aria-controls="collapseOne"
+                    className="btn btn-primary btn-lg btn-block"
+                    onClick={() => this.setState({ open: !open })}
+                    aria-controls="example-collapse-text"
+                    aria-expanded={open}
                   >
-                    Filter #1
+                    {open ? (
+                      <p class="clollapsBtnText">VOIR MAP</p>
+                      ) : (
+                      <p class="clollapsBtnText">VOIR PROPOSITIONS</p>
+                      )}
                   </button>
                 </h5>
               </div>
-
+              <Collapse in={this.state.open} className="collapse show dimension">
               <div
-                id="collapseOne"
-                className="collapse show"
+                
+                
                 aria-labelledby="headingOne"
                 data-parent="#accordion"
               >
-                <div className="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                  non cupidatat skateboard dolor brunch.
-                </div>
+                <table class="table scrolling">
+                  <thead class="thead-light">
+                      <tr>
+                      <th class="title1Col" scope="col" >Tri/Pertinence</th>
+                      <th class="text-center colDeux" scope="col" >Sur RDV</th>
+                      <th class="text-center colDeux" scope="col" >Temps total</th>
+                      </tr>
+                  </thead>
+                  <tbody >
+                    {strAlternatives.map((oneStructure)=>{
+                      return (
+                          <tr>
+                          <td >
+                              <ul class="list-group list-group-flush resultTb FCol">
+                                  <li class="list-group-item namePolice">Nom: {oneStructure.Nom}</li>
+                                  <li class="list-group-item typePolice">Type: {oneStructure.typeDeStructure}</li>
+                              </ul>
+                          </td>
+                          <td class="cel  colDeux">
+                          {oneStructure.AppelPrealable ? (
+                              <span class="badge badge-success badge-pill">Oui</span>
+                          ):(
+                              <span class="badge badge-danger badge-pill">Non</span>
+                          )}
+                          </td>
+                          <td class="cel colDeux">
+                          <ul class="list-group list-unstyled resultTb">
+                              <li class="list-list-unstyled"><span class="badge badge-primary">30</span></li>
+                              <li class="list-list-unstyled">min</li>
+                          </ul>
+                          </td>
+                          </tr>
+                          )}
+                        )}
+                  </tbody>
+              </table>
               </div>
-            </div>
-            <div className="card border-bottom-0">
-              <div className="card-header" id="headingTwo">
-                <h5 className="mb-0">
-                  <button
-                    className="btn btn-link collapsed"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo"
-                  >
-                    Filter #2
-                  </button>
-                </h5>
-              </div>
-              <div
-                id="collapseTwo"
-                className="collapse"
-                aria-labelledby="headingTwo"
-                data-parent="#accordion"
-              >
-                <div className="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                  non cupidatat skateboard dolor brunch. Food truck quinoa
-                  nesciunt laborum eiusmod. Brunch 3 wolf moon tempor.
-                </div>
-              </div>
-            </div>
-            <div className="card border-bottom-0">
-              <div className="card-header" id="headingThree">
-                <h5 className="mb-0">
-                  <button
-                    className="btn btn-link collapsed"
-                    data-toggle="collapse"
-                    data-target="#collapseThree"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    Filter #3
-                  </button>
-                </h5>
-              </div>
-              <div
-                id="collapseThree"
-                className="collapse"
-                aria-labelledby="headingThree"
-                data-parent="#accordion"
-              >
-                <div className="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid.
-                </div>
-              </div>
+            
+            </Collapse>
             </div>
           </div>
         </Col>
@@ -159,7 +152,7 @@ class SingleMap extends Component {
           {/* // REFACTOR INSIDE A COMPONENT */}
           <MapGL
             {...viewport}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapboxApiAccessToken="pk.eyJ1IjoicHJvamVjdDNpcm9uaGFjayIsImEiOiJjanNpdzA4aXcxemloNDRueDBkaXlkZDh0In0.bbNCzs-0njORLSHu9bXeDQ"
             mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
             width="100%"
             height={window.innerHeight - 56}
