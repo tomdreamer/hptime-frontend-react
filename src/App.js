@@ -18,6 +18,21 @@ import "mapbox-gl/dist/mapbox-gl.css";
 require("dotenv").config();
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      patientGender: "",
+      neededSpecialist: "",
+      patientAdult: true,
+      patientLocalization: ""
+    };
+  }
+
+  updatePatient(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    // console.log(event.target);
+  }
   render() {
     return (
       <div className="App">
@@ -30,7 +45,16 @@ class App extends Component {
             <Route path="/" exact component={IsEmergency} />
             <Route path="/map" component={MapWrapper} />
             <Route path="/results" component={Results} />
-            <Route path="/form" component={Questions} />
+            <Route
+              path="/form"
+              render={() => {
+                return (
+                  <Questions
+                    updatePatient={event => this.updatePatient(event)}
+                  />
+                );
+              }}
+            />
 
             <Route path="/404" component={NotFound} />
           </Switch>

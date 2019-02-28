@@ -5,32 +5,16 @@ import AdultQuestion from "./AdultQuestion";
 import StepWizard from "react-step-wizard";
 
 class Questions extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      patientGender: "",
-      neededSpecialist: "",
-      patientAdult: true,
-      patientLocalization: ""
-    };
-  }
-
-  updatePatient(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-    // console.log(event.target);
-  }
-
   render() {
     return (
       <StepWizard>
-        {/* <div> */}
-        <AdultQuestion updatePatient={event => this.updatePatient(event)} />
+        <AdultQuestion
+          updatePatient={event => this.props.updatePatient(event)}
+        />
 
         <PathologyQuestions
-          updatePatient={event => this.updatePatient(event)}
+          updatePatient={event => this.props.updatePatient(event)}
         />
-        {/* </div> */}
       </StepWizard>
     );
   }
