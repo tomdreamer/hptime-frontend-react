@@ -10,6 +10,7 @@ class SpecialtyCard extends Component {
 
   clickHandler(event) {
     this.props.updatePatient(event);
+    this.props.nextStep();
   }
   render() {
     const { open } = this.state;
