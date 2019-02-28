@@ -2,10 +2,14 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 //Components
-import Navigation from "./components/Navigation";
-import SingleMap from "./components/SingleMap";
-import IsEmergency from "./components/IsEmergency";
-import SpeedDial from "./components/SpeedDial";
+import Navigation from "./components/Navigation.js";
+import IsEmergency from "./components/IsEmergency.js";
+import SpeedDial from "./components/SpeedDial.js";
+import FormFill from "./components/FormFill.js";
+import Results from "./components/Results.js";
+import MapWrapper from "./components/MapWrapper.js";
+import NotFound from "./components/NotFound.js";
+
 //Css/styling
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -22,8 +26,11 @@ class App extends Component {
           </header>
 
           <Switch>
-            <Route path="/map" component={SingleMap} />
             <Route path="/" exact component={IsEmergency} />
+            <Route path="/map" component={MapWrapper} />
+            <Route path="/form" component={FormFill} />
+            <Route path="/results" component={Results} />
+            <Route path="/404" component={NotFound} />
           </Switch>
           <footer className="fixed-bottom">
             <SpeedDial />
