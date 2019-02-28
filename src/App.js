@@ -24,8 +24,8 @@ class App extends Component {
 
         </header>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/template" component={Template} />
+          
+          
           <Route path="/map" component={SingleMap} />
           <Route path="/results" component={Results} />
         </Switch>

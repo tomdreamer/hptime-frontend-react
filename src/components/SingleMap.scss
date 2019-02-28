@@ -2,3 +2,58 @@
   max-height: 90vh;
   overflow: scroll;
 }
+.dimension {
+  height: 300px;
+}
+.title1Col{
+  padding-left: 1px !important;
+  vertical-align: middle !important;
+}
+.table  .cel {
+  text-align: center;
+  vertical-align: middle;
+}
+tr {
+  width: 100%;
+  display: inline-table;
+  // table-layout: fixed;
+  }
+  
+table{
+   height:20px;              // <-- Select the height of the table
+   display: -moz-groupbox; // Firefox Bad Effect
+   font-size: 15px; 
+     
+  }
+  tbody{
+    overflow-y: scroll;      
+    height: 230px;            //  <-- Select the height of the body
+    width: 100%;
+    position: absolute;
+  }
+.ResultMap{
+  margin:10px;
+}
+.table td {
+  padding: 0.0rem;
+}
+.list-group-item {
+  
+  padding: 0.3rem 0.25rem;}
+.colDeux{
+  width: 80px !important;
+}
+.colFirst{
+  vertical-align: middle;
+}
+table > tbody > tr > td{
+  border-bottom:1px solid rgb(50, 228, 50);
+}
+.clollapsBtnText {
+  margin: 0;}
+.namePolice{
+  font-size: 20px;
+}
+.typePolice{
+  font-size: 13px;
+}
