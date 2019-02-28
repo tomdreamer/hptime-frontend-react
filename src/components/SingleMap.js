@@ -71,6 +71,7 @@ class SingleMap extends Component {
   }
 
   render() {
+    console.log(this.props.patientGender);
     const { viewport } = this.state;
     const {strAlternatives} = this.state
     const { open } = this.state;
