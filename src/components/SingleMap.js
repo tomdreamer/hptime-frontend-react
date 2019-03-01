@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker";
-import { getStructureList } from "../api.js";
+
 import { Popup } from "react-map-gl";
+import PopUp from "./PopUp";
 
 class SingleMap extends Component {
   constructor(props) {
@@ -18,27 +19,13 @@ class SingleMap extends Component {
         bearing: -17.6
       },
       popupInfo: null,
-      structureArray:[],
-      newstructureArray:[]
+      
 
     };
     this._onViewportChange = this._onViewportChange.bind(this);
   }
 
-  componentDidMount() {
-    // get data from our Express API (localhost:299)
-    getStructureList().then(response => {
-      console.log("Structure list", response.data);
-      const { neededSpecialist, patientType } = this.props;
-      const structureArray = response.data;
-      const newstructureArray = structureArray.filter(el =>
-        el.availablePoles.some(pole => pole.pathology === neededSpecialist && pole.patientType === patientType))
-
-      console.log({ structureArray, newstructureArray })
-      this.setState({ structureArray, newstructureArray });
-
-    });
-  }
+  
 
   // update map on window size
   _onViewportChange(viewport) {
@@ -49,21 +36,28 @@ class SingleMap extends Component {
     return (
       <Marker
         key={`marker-${index}`}
-        longitude={place.longitude}
-        latitude={place.latitude}
+        longitude={this.state.longitude}
+        latitude={this.state.latitude}
       >
-        <MapMarker
-          size={20}
-          //onClick={() => this.setState({popupInfo: city})}
-        />
+        {/* <MapMarker onClick={() => this.setState({ popupInfo: city })} /> */}
       </Marker>
     );
   };
+
+  _renderPopUp = (place, index) => {
+    return (
+      this.state.popupInfo && (
+        <PopUp
+          key={`PopUp-${index}`}
+          longitude={this.state.longitude}
+          latitude={this.state.latitude}
+        />
+      )
+    );
+  };
+
   render() {
-    const {neededSpecialist} = this.props
-    console.log(this.props);
-    
-    const {structureArray} =this.state;
+  
     const { viewport } = this.state;
     
     
@@ -76,21 +70,16 @@ class SingleMap extends Component {
         height={window.innerHeight - 56}
         onViewportChange={this._onViewportChange}
       >
-        <Marker longitude={2.294481} latitude={48.858372}>
+        {/* MapMarker Below */}
+        <Marker latitude={48.858372} longitude={2.294481}>
           <MapMarker
             size={20}
             //onClick={() => this.setState({popupInfo: city})}
           />
         </Marker>
-        <Popup
-          latitude={48.858372}
-          longitude={2.294481}
-          closeButton={true}
-          closeOnClick={true}
-          anchor="top"
-        >
-          <div>You are here</div>
-        </Popup>
+
+        {/* PopUp Below */}
+        <PopUp />
       </MapGL>
     );
   }

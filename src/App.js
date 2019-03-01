@@ -49,7 +49,7 @@ class App extends Component {
             <Route path="/" exact component={IsEmergency} />
             <Route path="/map" render={() => {
                 return (
-                  <SingleMap
+                  <MapWrapper
                   neededSpecialist={neededSpecialist}
                   patientType={patientAdult}
                   />
