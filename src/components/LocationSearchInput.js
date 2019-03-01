@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import "./LocationSearchInput.scss";
@@ -14,6 +15,7 @@ class LocationSearchInput extends React.Component {
         latitude: null,
         longitude: null
       },
+      inputValue: "",
       isLoadingCoordinates: false
     };
 
@@ -26,6 +28,7 @@ class LocationSearchInput extends React.Component {
 
   // load Google API for autocompletion on mount
   componentDidMount() {
+    // monitor form and change result on event
     this.autocomplete = new google.maps.places.Autocomplete(
       this.autocompleteInput.current,
       { types: ["geocode"] }
@@ -76,6 +79,12 @@ class LocationSearchInput extends React.Component {
                 longitude: position.coords.longitude
               }
             });
+
+            // reverse geocode
+            this.reverseGeocode(
+              position.coords.latitude,
+              position.coords.longitude
+            );
           },
           error => {
             this.setState({
@@ -94,6 +103,31 @@ class LocationSearchInput extends React.Component {
     this.setState({ isLoadingCoordinates: !currentValue });
   }
 
+  // convert coordinates to address
+  reverseGeocode(latitude, longitude) {
+    let params = {
+      key: process.env.REACT_APP_GOOGLE_MAPS_JS,
+      latlng: `${latitude},${longitude}`
+    };
+
+    // do google maps js API query
+    return axios
+      .get(
+        `https://maps.googleapis.com/maps/api/geocode/json?key=${
+          params.key
+        }&latlng=${params.latlng}`
+      )
+      .then(response => {
+        // get the result into the form so user has a feedbakc
+        this.setState({
+          inputValue: response.data.results[0].formatted_address
+        });
+
+        // TODO method call to add an user marker here
+      });
+    //end
+  }
+
   render() {
     return (
       <div className="input-group">
@@ -104,6 +138,7 @@ class LocationSearchInput extends React.Component {
           onClick={() => {
             this.getUserLocationBrowser();
           }}
+          value={this.state.inputValue}
           // autocomplete on type
           id="autocomplete"
           ref={this.autocompleteInput}
