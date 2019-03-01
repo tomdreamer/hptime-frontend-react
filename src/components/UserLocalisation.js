@@ -1,21 +1,31 @@
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
-import Jumbotron from "react-bootstrap/Button";
-
-import { Link } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import LocationSearchInput from "./LocationSearchInput.js";
 
 class UserLocalisation extends Component {
   render() {
     return (
-      <div className="UserLocalisation">
-        <h3>Ou se trouve le patient ?</h3>
-        <Jumbotron>
-          <h3>Entrez votre adresse.</h3>
-
-          <Button variant="primary">Vers mes résultats</Button>
-        </Jumbotron>
-        <Link to="/map">vers les résultats</Link>
-      </div>
+      <Row className="d-flex justify-content-center">
+        <Col md={{ span: 6 }}>
+          <div className="bg-light rounded p-5 mt-5">
+            <LocationSearchInput />
+            <p className="form-text text-muted small">
+              Trouvez des soins proches de vous.
+            </p>
+          </div>
+          <Form className="p-2 small">
+            <div key="default-checkbox" className="mb-3">
+              <Form.Check
+                type="checkbox"
+                id="prescription"
+                label="C'est un simple renouvellement d'ordonnance ? Cliquez ici. "
+              />
+            </div>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 }
