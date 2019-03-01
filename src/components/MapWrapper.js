@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./MapWrapper.css";
 import SingleMap from "./SingleMap.js";
-import MapMarker from "./MapMarker.js";
-import PopUp from "./PopUp.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

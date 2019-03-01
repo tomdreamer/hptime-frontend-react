@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker";
+import { Popup } from "react-map-gl";
 
 class SingleMap extends Component {
   constructor(props) {
@@ -57,6 +58,15 @@ class SingleMap extends Component {
             //onClick={() => this.setState({popupInfo: city})}
           />
         </Marker>
+        <Popup
+          latitude={48.858372}
+          longitude={2.294481}
+          closeButton={true}
+          closeOnClick={true}
+          anchor="top"
+        >
+          <div>You are here</div>
+        </Popup>
       </MapGL>
     );
   }
