@@ -94,16 +94,19 @@ class PathologyQuestions extends Component {
       <section className="PathologyQuestions container ">
         <h3>Ou le patient à t'il mal ?</h3>
 
-        {specialtyList.map(oneSpecialty => {
+        {specialtyList.map((oneSpecialty, index) => {
           return (
-            <SpecialtyCard
-              bodyPart={oneSpecialty.bodyPart}
-              picture={oneSpecialty.image}
-              neededSpecialist={oneSpecialty.neededSpecialist}
-              updatePatient={event => this.props.updatePatient(event)}
-              infoText={oneSpecialty.infoText}
-              nextStep={event => this.props.nextStep(event)}
-            />
+            <div key={index}>
+              <SpecialtyCard
+                bodyPart={oneSpecialty.bodyPart}
+                picture={oneSpecialty.image}
+                neededSpecialist={oneSpecialty.neededSpecialist}
+                updatePatient={event => this.props.updatePatient(event)}
+                infoText={oneSpecialty.infoText}
+                nextStep={event => this.props.nextStep(event)}
+                index={index}
+              />
+            </div>
           );
         })}
       </section>

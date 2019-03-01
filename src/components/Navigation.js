@@ -4,8 +4,7 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+import LocationSearchInput from "./LocationSearchInput.js";
 
 class Navigation extends Component {
   render() {
@@ -29,12 +28,7 @@ class Navigation extends Component {
               </LinkContainer>
             </Nav>
             <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Where are you?"
-                className="mr-sm-2"
-              />
-              <Button variant="outline-light">Search</Button>
+              <LocationSearchInput />
             </Form>
           </Navbar.Collapse>
         </Navbar>

@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import "./IsEmergency.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 
 class IsEmergency extends PureComponent {
   render() {
@@ -9,8 +10,8 @@ class IsEmergency extends PureComponent {
       <section className="IsEmergency">
         <Row className="justify-content-md-center">
           <Col md="8">
-            <div class="shadow p-3 mb-5 bg-white rounded" role="alert">
-              <h4 class="alert-heading">!Attention!</h4>
+            <div className="shadow p-3 mb-5 bg-white rounded" role="alert">
+              <h4 className="alert-heading">!Attention!</h4>
               <p>
                 Est-ce une urgence vitale?
                 <br />
@@ -18,9 +19,9 @@ class IsEmergency extends PureComponent {
                 <a className="btn" href="tel:+3315">
                   Yes
                 </a>{" "}
-                <a className="btn" href="/form">
+                <Link className="btn" to={"/form"}>
                   No
-                </a>
+                </Link>
               </p>
             </div>
           </Col>

@@ -14,9 +14,9 @@ class SpecialtyCard extends Component {
   }
   render() {
     const { open } = this.state;
-
+    console.log(this.props.index);
     return (
-      <section className="SpecialtyCard">
+      <section key={this.props.index} className="SpecialtyCard">
         <div className="row">
           <div className="container d-flex">
             <div className="col-md-3">
