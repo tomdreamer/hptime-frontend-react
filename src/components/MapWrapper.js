@@ -5,18 +5,38 @@ import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import structuresAlternatives from "../structuresAlternatives.json";
+import { getHospitalList } from "../api.js";
 
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      strAlternatives: structuresAlternatives.slice(0, 5),
-      open: true
+      newstructureArray: structuresAlternatives.slice(0, 5),
+      open: true,
+      structureArray:[],
+      newstructureArray:[]
+
     };
   }
+  componentDidMount() {
+    // get data from our Express API (localhost:299)
+    getHospitalList().then(response => {
+      console.log("Structure list", response.data);
+      const { neededSpecialist, patientType } = this.props;
+      const structureArray = response.data;
+      const  newstructureArray = structureArray.filter(el =>
+      el.availablePoles.some(pole => pole.pathology === neededSpecialist && (pole.patientType === patientType || pole.patientType ==="Universel")))
 
+      console.log({ structureArray, newstructureArray })
+      this.setState({ structureArray, newstructureArray });
+
+    });
+  }
   render() {
-    const { strAlternatives, open } = this.state;
+    const {neededSpecialist} = this.props
+    console.log(this.props);
+    const {structureArray, newstructureArray, open} =this.state;
+    
     return (
       <section className="MapWrapper">
         <Row>
@@ -63,16 +83,16 @@ class MapWrapper extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        {strAlternatives.map(oneStructure => {
+                        {newstructureArray.map(oneStructure => {
                           return (
                             <tr>
                               <td>
                                 <ul class="list-group list-group-flush resultTb FCol">
                                   <li class="list-group-item namePolice">
-                                    Nom: {oneStructure.Nom}
+                                    Nom: {oneStructure.name}
                                   </li>
                                   <li class="list-group-item typePolice">
-                                    Type: {oneStructure.typeDeStructure}
+                                    Type: {oneStructure.type}
                                   </li>
                                 </ul>
                               </td>

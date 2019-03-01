@@ -16,10 +16,12 @@ function errorHandler(err) {
   throw err;
 }
 
-export function getStructureList() {
-  return backendApi.get("api/hospitals?size=20?offset=20").catch(errorHandler);
+export function getHospitalList() {
+  return backendApi.get("api/hospitals?size=60?offset=60").catch(errorHandler);
 }
-
+export function getHospitalList() {
+  return backendApi.get("api/hospitals?size=60?offset=60").catch(errorHandler);
+}
 
 // example function
 // export function getLogOut() {
