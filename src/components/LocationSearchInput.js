@@ -99,7 +99,7 @@ class LocationSearchInput extends React.Component {
       <div className="input-group">
         <FormControl
           type="text"
-          placeholder="Where are you?"
+          placeholder="Où?"
           // ask browser coordinates
           onClick={() => {
             this.getUserLocationBrowser();
