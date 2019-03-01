@@ -10,7 +10,7 @@ class UserLocalisation extends Component {
       <Row className="d-flex justify-content-center">
         <Col md={{ span: 6 }}>
           <div className="bg-light rounded p-5 mt-5">
-            <LocationSearchInput />
+            <LocationSearchInput onGeolocation={this.props.onGeolocation} />
             <p className="form-text text-muted small">
               Trouvez des soins proches de vous.
             </p>
