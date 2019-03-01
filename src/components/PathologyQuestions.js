@@ -20,7 +20,7 @@ class PathologyQuestions extends Component {
     const specialtyList = [
       {
         bodyPart: "Oeil",
-        neededSpecialist: "ophthalmology",
+        neededSpecialist: "Ophtalmologiques",
         image: oeil,
         infoTitle: "",
         infoText:
@@ -28,7 +28,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Dents",
-        neededSpecialist: "dentist",
+        neededSpecialist: "Dentaires",
         image: dent,
         infoTitle: "",
         infoText:
@@ -44,7 +44,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Main (plaie ouverte)",
-        neededSpecialist: "handWounds",
+        neededSpecialist: "Plaies de la main",
         image: main,
         infoTitle: "",
         infoText:
@@ -52,7 +52,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Psychiatrie",
-        neededSpecialist: "handWounds",
+        neededSpecialist: "Psychiatriques",
         image: dent,
         infoTitle: "",
         infoText:
@@ -60,7 +60,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Oreille",
-        neededSpecialist: "ENT",
+        neededSpecialist: "Oto-rhino-laryngologiques",
         image: orl,
         infoTitle: "",
         infoText:
@@ -68,7 +68,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Gorge",
-        neededSpecialist: "ENT",
+        neededSpecialist: "Oto-rhino-laryngologiques",
         image: orl,
         infoTitle: "",
         infoText:
@@ -76,7 +76,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Gynécologie, Grossesse",
-        neededSpecialist: "ENT",
+        neededSpecialist: "Gynéco-obstétricales",
         image: uterus,
         infoTitle: "",
         infoText:
@@ -84,7 +84,7 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Autres",
-        neededSpecialist: "generalist",
+        neededSpecialist: "Générales",
         image: dent,
         infoTitle: "",
         infoText:
