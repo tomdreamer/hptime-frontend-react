@@ -5,6 +5,7 @@ import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker";
 
 import { Popup } from "react-map-gl";
+import PopUp from "./PopUp";
 
 class SingleMap extends Component {
   constructor(props) {
@@ -35,16 +36,26 @@ class SingleMap extends Component {
     return (
       <Marker
         key={`marker-${index}`}
-        longitude={place.longitude}
-        latitude={place.latitude}
+        longitude={this.state.longitude}
+        latitude={this.state.latitude}
       >
-        <MapMarker
-          size={20}
-          //onClick={() => this.setState({popupInfo: city})}
-        />
+        {/* <MapMarker onClick={() => this.setState({ popupInfo: city })} /> */}
       </Marker>
     );
   };
+
+  _renderPopUp = (place, index) => {
+    return (
+      this.state.popupInfo && (
+        <PopUp
+          key={`PopUp-${index}`}
+          longitude={this.state.longitude}
+          latitude={this.state.latitude}
+        />
+      )
+    );
+  };
+
   render() {
   
     const { viewport } = this.state;
@@ -59,21 +70,16 @@ class SingleMap extends Component {
         height={window.innerHeight - 56}
         onViewportChange={this._onViewportChange}
       >
-        <Marker longitude={2.294481} latitude={48.858372}>
+        {/* MapMarker Below */}
+        <Marker latitude={48.858372} longitude={2.294481}>
           <MapMarker
             size={20}
             //onClick={() => this.setState({popupInfo: city})}
           />
         </Marker>
-        <Popup
-          latitude={48.858372}
-          longitude={2.294481}
-          closeButton={true}
-          closeOnClick={true}
-          anchor="top"
-        >
-          <div>You are here</div>
-        </Popup>
+
+        {/* PopUp Below */}
+        <PopUp />
       </MapGL>
     );
   }
