@@ -34,7 +34,7 @@ class SingleMap extends Component {
         longitude={this.state.longitude}
         latitude={this.state.latitude}
       >
-        <MapMarker onClick={() => this.setState({ popupInfo: city })} />
+        {/* <MapMarker onClick={() => this.setState({ popupInfo: city })} /> */}
       </Marker>
     );
   };
