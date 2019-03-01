@@ -1,6 +1,7 @@
 import axios from "axios";
+
 const backendApi = axios.create({
-  baseURL: "http://localhost:5555",
+  baseURL: "http://localhost:2999",
   withCredentials: true
 });
 
@@ -14,6 +15,11 @@ function errorHandler(err) {
 
   throw err;
 }
+
+export function getStructureList() {
+  return backendApi.get("api/hospitals?size=20?offset=20").catch(errorHandler);
+}
+
 
 // example function
 // export function getLogOut() {
