@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker";
-import { getStructureList } from "../api.js";
+
 import { Popup } from "react-map-gl";
 import PopUp from "./PopUp";
 
@@ -19,27 +19,13 @@ class SingleMap extends Component {
         bearing: -17.6
       },
       popupInfo: null,
-      structureArray:[],
-      newstructureArray:[]
+      
 
     };
     this._onViewportChange = this._onViewportChange.bind(this);
   }
 
-  componentDidMount() {
-    // get data from our Express API (localhost:299)
-    getStructureList().then(response => {
-      console.log("Structure list", response.data);
-      const { neededSpecialist, patientType } = this.props;
-      const structureArray = response.data;
-      const newstructureArray = structureArray.filter(el =>
-        el.availablePoles.some(pole => pole.pathology === neededSpecialist && pole.patientType === patientType))
-
-      console.log({ structureArray, newstructureArray })
-      this.setState({ structureArray, newstructureArray });
-
-    });
-  }
+  
 
   // update map on window size
   _onViewportChange(viewport) {
@@ -71,10 +57,7 @@ class SingleMap extends Component {
   };
 
   render() {
-    const {neededSpecialist} = this.props
-    console.log(this.props);
-    
-    const {structureArray} =this.state;
+  
     const { viewport } = this.state;
     
     

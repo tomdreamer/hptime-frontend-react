@@ -51,7 +51,7 @@ class App extends Component {
               path="/map"
               render={() => {
                 return (
-                  <SingleMap
+                  <MapWrapper
                     neededSpecialist={neededSpecialist}
                     patientType={patientAdult}
                   />
