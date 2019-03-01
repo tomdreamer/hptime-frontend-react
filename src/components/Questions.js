@@ -15,7 +15,7 @@ class Questions extends Component {
         <PathologyQuestions
           updatePatient={event => this.props.updatePatient(event)}
         />
-        <UserLocalisation />
+        <UserLocalisation onGeolocation={this.props.onGeolocation} />
       </StepWizard>
     );
   }

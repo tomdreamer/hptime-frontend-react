@@ -66,8 +66,8 @@ class LocationSearchInput extends React.Component {
       isLoadingCoordinates: false
     });
 
-    // TODO lifting state up below
-    var position = { latitude: latitude, longitude: longitude };
+    // TODO lifting state up top
+    this.props.onGeolocation(latitude, longitude);
   }
 
   // get user coords with HTML5 browser feature on click
@@ -93,6 +93,10 @@ class LocationSearchInput extends React.Component {
               position.coords.longitude
             );
             // TODO lifting state up here too
+            this.props.onGeolocation(
+              position.coords.latitude,
+              position.coords.longitude
+            );
           },
           error => {
             this.setState({

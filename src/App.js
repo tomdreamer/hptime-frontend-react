@@ -15,6 +15,7 @@ import Questions from "./components/Questions.js";
 import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
+import { set } from "gl-matrix/src/gl-matrix/vec3";
 
 require("dotenv").config();
 
@@ -32,7 +33,12 @@ class App extends Component {
   updatePatient(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    // console.log(event.target);
+  }
+
+  updatePatientPosition(latitude, longitude) {
+    this.setState({
+      patientLocation: { latitude, longitude }
+    });
   }
   render() {
     const { neededSpecialist, patientAdult } = this.state;
@@ -65,6 +71,9 @@ class App extends Component {
                 return (
                   <Questions
                     updatePatient={event => this.updatePatient(event)}
+                    onGeolocation={(latitude, longitude) =>
+                      this.updatePatientPosition(latitude, longitude)
+                    }
                   />
                 );
               }}
