@@ -18,7 +18,7 @@ class AdultQuestion extends Component {
               variant="primary"
               onClick={event => this.clickHandler(event)}
               name="patientAdult"
-              value={true}
+              value="Adultes"
             >
               Oui
             </Button>
@@ -28,7 +28,7 @@ class AdultQuestion extends Component {
               variant="primary"
               onClick={event => this.clickHandler(event)}
               name="patientAdult"
-              value={false}
+              value="Enfants"
             >
               Non
             </Button>
