@@ -15,7 +15,7 @@ class LocationSearchInput extends React.Component {
         latitude: null,
         longitude: null
       },
-      inputValue: "",
+      addressInputValue: "",
       isLoadingCoordinates: false
     };
 
@@ -66,10 +66,8 @@ class LocationSearchInput extends React.Component {
       isLoadingCoordinates: false
     });
 
-    // lifting state up
+    // TODO lifting state up below
     var position = { latitude: latitude, longitude: longitude };
-    this.props.currentUserPosition(position);
-    //this.props.onSelectLanguage(lang);
   }
 
   // get user coords with HTML5 browser feature on click
@@ -89,18 +87,12 @@ class LocationSearchInput extends React.Component {
             const { isLoadingCoordinates } = this.state;
             this.toggleSearchCoordinates(isLoadingCoordinates);
 
-            // lift state up
-            var position = {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-            };
-            this.props.currentUserPosition(position);
-
             // reverse geocode
             this.reverseGeocode(
               position.coords.latitude,
               position.coords.longitude
             );
+            // TODO lifting state up here too
           },
           error => {
             this.setState({
@@ -136,7 +128,7 @@ class LocationSearchInput extends React.Component {
       .then(response => {
         // get the result into the form so user has a feedbakc
         this.setState({
-          inputValue: response.data.results[0].formatted_address
+          addressInputValue: response.data.results[0].formatted_address
         });
 
         // TODO method call to add an user marker here
@@ -150,13 +142,12 @@ class LocationSearchInput extends React.Component {
         <FormControl
           type="text"
           placeholder="Où?"
-          // ask browser coordinates
           onClick={() => {
             this.getUserLocationBrowser();
           }}
-          value={this.state.inputValue}
+          name="addressInputValue"
+          value={this.state.addressInputValue}
           onChange={this.handleChange}
-          // autocomplete on type
           id="autocomplete"
           ref={this.autocompleteInput}
         />
