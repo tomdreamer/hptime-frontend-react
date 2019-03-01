@@ -3,11 +3,8 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker";
-<<<<<<< HEAD
 import { getStructureList } from "../api.js";
-=======
 import { Popup } from "react-map-gl";
->>>>>>> 7de957e92652be95c4edc8a9c12adc95b9f66a34
 
 class SingleMap extends Component {
   constructor(props) {
