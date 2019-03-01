@@ -24,7 +24,7 @@ class SpecialtyCard extends Component {
 
             <div className="col-md-9">
               <div className="col-md-12">
-                <h5>{this.props.bodyPart}</h5>
+                <h6>{this.props.bodyPart}</h6>
               </div>
 
               <div className="row">
