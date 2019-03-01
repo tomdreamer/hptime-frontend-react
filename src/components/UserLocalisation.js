@@ -16,11 +16,11 @@ class UserLocalisation extends Component {
             </p>
           </div>
           <Form className="p-2 small">
-            <div key="default-checkbox" className="mb-3">
+            <div key="hint-checkbox" className="hint-checkbox ml-2 mt-2">
               <Form.Check
                 type="checkbox"
                 id="prescription"
-                label="C'est un simple renouvellement d'ordonnance ? Cliquez ici. "
+                label="C'est un simple renouvellement d'ordonnance ?"
               />
             </div>
           </Form>
