@@ -3,8 +3,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
-import LocationSearchInput from "./LocationSearchInput.js";
 
 class Navigation extends Component {
   render() {
@@ -27,9 +25,6 @@ class Navigation extends Component {
                 <Nav.Link>Geoloc</Nav.Link>
               </LinkContainer>
             </Nav>
-            <Form inline>
-              <LocationSearchInput />
-            </Form>
           </Navbar.Collapse>
         </Navbar>
       </Container>

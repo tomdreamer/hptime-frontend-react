@@ -6,13 +6,13 @@ import Navigation from "./components/Navigation.js";
 import IsEmergency from "./components/IsEmergency.js";
 import SpeedDial from "./components/SpeedDial.js";
 import Results from "./components/Results.js";
-import MapWrapper from "./components/MapWrapper.js";
+// import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
 //Css/styling
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Questions from "./components/Questions.js";
-import SingleMap from "./components/SingleMap"
+import SingleMap from "./components/SingleMap";
 import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
@@ -36,8 +36,8 @@ class App extends Component {
     // console.log(event.target);
   }
   render() {
-    const {neededSpecialist, patientAdult}= this.state
-    console.log(neededSpecialist)
+    const { neededSpecialist, patientAdult } = this.state;
+    console.log(neededSpecialist);
     return (
       <div className="App">
         <Container>
@@ -47,14 +47,17 @@ class App extends Component {
 
           <Switch>
             <Route path="/" exact component={IsEmergency} />
-            <Route path="/map" render={() => {
+            <Route
+              path="/map"
+              render={() => {
                 return (
                   <SingleMap
-                  neededSpecialist={neededSpecialist}
-                  patientType={patientAdult}
+                    neededSpecialist={neededSpecialist}
+                    patientType={patientAdult}
                   />
                 );
-              }} />
+              }}
+            />
             <Route path="/results" component={Results} />
             <Route path="/geolocation" component={GeolocationCoodinates} />
             <Route
