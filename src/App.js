@@ -12,7 +12,6 @@ import NotFound from "./components/NotFound.js";
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Questions from "./components/Questions.js";
-import SingleMap from "./components/SingleMap";
 import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
