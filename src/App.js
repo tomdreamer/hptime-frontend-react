@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation.js";
 import IsEmergency from "./components/IsEmergency.js";
 import SpeedDial from "./components/SpeedDial.js";
 import Results from "./components/Results.js";
-// import MapWrapper from "./components/MapWrapper.js";
+import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
 //Css/styling
 import "./App.scss";
