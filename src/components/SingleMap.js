@@ -9,7 +9,7 @@ class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayedItems: {},
+      displayedItems: [],
       viewport: {
         latitude: 48.85341,
         longitude: 2.3488,
@@ -38,21 +38,32 @@ class SingleMap extends Component {
 
     const markerMap = displayedItems.map((oneItem, index) => {
       return (
-        <Marker
-          key={`marker-${index}`}
-          longitude={oneItem.longitude}
-          latitude={oneItem.latitude}
+        <MapGL
+          {...viewport}
+          mapboxApiAccessToken="pk.eyJ1IjoicHJvamVjdDNpcm9uaGFjayIsImEiOiJjanNpdzA4aXcxemloNDRueDBkaXlkZDh0In0.bbNCzs-0njORLSHu9bXeDQ"
+          mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
+          width="100%"
+          height={window.innerHeight - 56}
+          onViewportChange={this._onViewportChange}
         >
-          <PopUp
-            key={`PopUp-${index}`}
+          <Marker
+            key={`marker-${index}`}
             longitude={oneItem.longitude}
             latitude={oneItem.latitude}
-          />
-        </Marker>
+          >
+            <MapMarker size={20} />
+
+            <PopUp
+              key={`PopUp-${index}`}
+              longitude={oneItem.longitude}
+              latitude={oneItem.latitude}
+            />
+          </Marker>
+          {markerMap}
+        </MapGL>
       );
     });
     // -----------
-
     return (
       <MapGL
         {...viewport}
