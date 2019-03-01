@@ -25,7 +25,7 @@ class App extends Component {
       patientGender: "",
       neededSpecialist: "",
       patientAdult: "",
-      patientLocalization: ""
+      patientLocation: { latitude: null, longitude: null }
     };
   }
 

@@ -24,6 +24,7 @@ class LocationSearchInput extends React.Component {
     this.autocomplete = null;
     this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
     this.getUserLocationBrowser = this.getUserLocationBrowser.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   // load Google API for autocompletion on mount
@@ -37,6 +38,17 @@ class LocationSearchInput extends React.Component {
     this.autocomplete.addListener("place_changed", this.handlePlaceChanged);
   }
 
+  handleChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    console.log(value, name);
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   // update state if any change on form
   handlePlaceChanged() {
     this.setState({
@@ -45,7 +57,6 @@ class LocationSearchInput extends React.Component {
     const place = this.autocomplete.getPlace();
     const longitude = place.geometry.viewport.ga.l;
     const latitude = place.geometry.viewport.ma.l;
-    console.log(latitude, longitude);
 
     this.setState({
       currentUserPosition: {
@@ -54,6 +65,11 @@ class LocationSearchInput extends React.Component {
       },
       isLoadingCoordinates: false
     });
+
+    // lifting state up
+    var position = { latitude: latitude, longitude: longitude };
+    this.props.currentUserPosition(position);
+    //this.props.onSelectLanguage(lang);
   }
 
   // get user coords with HTML5 browser feature on click
@@ -72,13 +88,13 @@ class LocationSearchInput extends React.Component {
             // update state with results
             const { isLoadingCoordinates } = this.state;
             this.toggleSearchCoordinates(isLoadingCoordinates);
-            // TODO get address name from user coordinates
-            this.setState({
-              currentUserPosition: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-              }
-            });
+
+            // lift state up
+            var position = {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            };
+            this.props.currentUserPosition(position);
 
             // reverse geocode
             this.reverseGeocode(
@@ -139,6 +155,7 @@ class LocationSearchInput extends React.Component {
             this.getUserLocationBrowser();
           }}
           value={this.state.inputValue}
+          onChange={this.handleChange}
           // autocomplete on type
           id="autocomplete"
           ref={this.autocompleteInput}
