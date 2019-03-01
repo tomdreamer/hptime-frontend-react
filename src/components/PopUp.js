@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import "./PopUp.css";
-import ReactMapGL, { Popup } from "react-map-gl";
+import { Popup } from "react-map-gl";
 
 class PopUp extends Component {
   render() {
     return (
-      <ReactMapGL latitude={37.78} longitude={-122.41} zoom={8}>
-        <Popup
-          latitude={37.78}
-          longitude={-122.41}
-          closeButton={true}
-          closeOnClick={false}
-          anchor="top"
-        >
-          <div>You are here</div>
-        </Popup>
-      </ReactMapGL>
+      <Popup
+        latitude={48.858372}
+        longitude={2.294481}
+        closeButton={true}
+        closeOnClick={false}
+        anchor="top"
+        className="PopUp"
+        onClose={() => this.setState({ popupInfo: null })}
+      >
+        <div>You are here</div>
+      </Popup>
     );
   }
 }
