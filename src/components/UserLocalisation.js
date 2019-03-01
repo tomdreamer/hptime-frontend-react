@@ -5,8 +5,6 @@ import Jumbotron from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 class UserLocalisation extends Component {
-  state = {};
-
   render() {
     return (
       <div className="UserLocalisation">
@@ -14,9 +12,7 @@ class UserLocalisation extends Component {
         <Jumbotron>
           <h3>Entrez votre adresse.</h3>
 
-          <p>
-            <Button variant="primary">Vers mes résultats</Button>
-          </p>
+          <Button variant="primary">Vers mes résultats</Button>
         </Jumbotron>
         <Link to="/map">vers les résultats</Link>
       </div>

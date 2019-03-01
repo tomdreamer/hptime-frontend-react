@@ -14,13 +14,12 @@ class SpecialtyCard extends Component {
   }
   render() {
     const { open } = this.state;
-    console.log(this.props.index);
     return (
       <section key={this.props.index} className="SpecialtyCard">
         <div className="row">
           <div className="container d-flex">
             <div className="col-md-3">
-              <img src={this.props.picture} />
+              <img alt={this.props.bodyPart} src={this.props.picture} />
             </div>
 
             <div className="col-md-9">
