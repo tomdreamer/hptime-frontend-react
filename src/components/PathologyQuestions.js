@@ -3,11 +3,12 @@ import React, { Component } from "react";
 import SpecialtyCard from "./SpecialtyCard";
 
 import dent from "../images/Pictos/Dentaire.svg";
-import uterus from "../images/Pictos/Gynéco.svg";
+import uterus from "../images/Pictos/Gynéco.svg";
 import main from "../images/Pictos/Plaie de main.svg";
 // import oreille from "../images/Pictos/ORL_1.svg";
 import oeil from "../images/Pictos/Ophtalmo.svg";
 import orl from "../images/Pictos/ORL_1.svg";
+import psy from "../images/Pictos/Psychiatrie.svg";
 
 class PathologyQuestions extends Component {
   state = {};
