@@ -8,13 +8,12 @@ import SpeedDial from "./components/SpeedDial.js";
 import Results from "./components/Results.js";
 import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
-//Css/styling
+//Styling
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Questions from "./components/Questions.js";
 import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
-import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
 
 require("dotenv").config();
 
@@ -62,7 +61,6 @@ class App extends Component {
               }}
             />
             <Route path="/results" component={Results} />
-            <Route path="/geolocation" component={GeolocationCoodinates} />
             <Route
               path="/form"
               render={() => {
@@ -77,7 +75,7 @@ class App extends Component {
               }}
             />
 
-            <Route path="/404" component={NotFound} />
+            <Route component={NotFound} />
           </Switch>
 
           <footer className="fixed-bottom">
