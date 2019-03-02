@@ -15,7 +15,6 @@ import Questions from "./components/Questions.js";
 import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
-import { set } from "gl-matrix/src/gl-matrix/vec3";
 
 require("dotenv").config();
 
@@ -42,7 +41,6 @@ class App extends Component {
   }
   render() {
     const { neededSpecialist, patientAdult } = this.state;
-    console.log(neededSpecialist);
     return (
       <div className="App">
         <Container>
