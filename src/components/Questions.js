@@ -16,7 +16,7 @@ class Questions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberOfSteps: 3,
+      numberOfSteps: ["3", "", ""],
       currentStep: 1
     };
   }
