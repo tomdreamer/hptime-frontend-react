@@ -1,13 +1,3 @@
-a.button {
-  text-decoration: none;
-  background-color: #cc0000;
-  border: 1px solid #660000;
-  border-radius: 5px;
-  color: #fff;
-  margin-right: 10px;
-  padding: 10px 10px 10px 10px;
-}
-
 /*
 NONAME PROJECT THEME 0.1 
 Bootstrap SASS variables list available here :
@@ -53,7 +43,7 @@ $success: #01dd73 !default;
 $info: #214866 !default;
 $warning: #ff9d2c !default;
 
-$danger: #df2821 !default;
+$danger: #e86863 !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
 
@@ -134,7 +124,7 @@ $alert-link-font-weight: $font-weight-bold !default;
 $alert-border-width: $border-width !default;
 
 // Modal
-$modal-backdrop-bg: $black !default;
+$modal-backdrop-bg: $white !default;
 $modal-backdrop-opacity: 0.5 !default;
 $modal-fade-transform: translate(0, -50px) !default;
 $modal-show-transform: none !default;
