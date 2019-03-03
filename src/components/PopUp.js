@@ -6,15 +6,16 @@ class PopUp extends Component {
   render() {
     return (
       <Popup
-        latitude={48.858372}
-        longitude={2.294481}
+        latitude={this.props.latitude}
+        longitude={this.props.longitude}
+        openButton={true}
         closeButton={true}
         closeOnClick={false}
         anchor="top"
         className="PopUp"
         onClose={() => this.setState({ popupInfo: null })}
       >
-        <div>You are here</div>
+        <div>{this.props.popupName}</div>
       </Popup>
     );
   }

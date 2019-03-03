@@ -130,7 +130,7 @@ class MapWrapper extends Component {
           </Col>
 
           <Col sm={{ span: 12, order: 2 }} md={{ span: 9, order: 2 }}>
-            <SingleMap />
+            <SingleMap dataFrombackend={this.state.structureArray} />
           </Col>
         </Row>
       </section>
