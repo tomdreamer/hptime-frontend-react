@@ -51,7 +51,7 @@ class SingleMap extends Component {
             longitude={oneItem.longitude}
             latitude={oneItem.latitude}
           >
-            <MapMarker size={20} />
+            <MapMarker  />
 
             <PopUp
               key={`PopUp-${index}`}
