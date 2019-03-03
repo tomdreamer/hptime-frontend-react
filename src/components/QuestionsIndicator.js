@@ -2,28 +2,22 @@ import React, { Component } from "react";
 import "./QuestionsIndicator.scss";
 
 function renderDots(dots, currentActiveDot) {
-  if (dots.length > 0) {
-    return dots.map((dot, index) => (
-      <span key={index} className="dot active">
-        •
-      </span>
-    ));
-  } else return [];
+  // number to array to be able to use map()
+  let pills = Array.apply(null, { length: dots }).map((dot, index) => (
+    <span
+      key={index}
+      // determine if dot must be set to .active class
+      className={index === currentActiveDot ? " dot active" : "dot"}
+    >
+      •
+    </span>
+  ));
+  return pills;
 }
 class Questions extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      numberOfSteps: [],
-      currentStep: 2
-    };
-  }
-
   render() {
-    const { numberOfSteps, currentActiveDot } = this.props;
-    const dots = renderDots(numberOfSteps, currentActiveDot);
-
-    return <section>{dots}</section>;
+    const { numberOfSteps, currentStep } = this.props;
+    return <section>{renderDots(numberOfSteps, currentStep)}</section>;
   }
 }
 

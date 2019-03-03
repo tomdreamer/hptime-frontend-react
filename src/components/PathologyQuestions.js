@@ -1,18 +1,23 @@
 import React, { Component } from "react";
-// import Button from "react-bootstrap/Button";
+// child component
 import SpecialtyCard from "./SpecialtyCard";
-
+// images
 import dent from "../images/Pictos/Dentaire.svg";
 import uterus from "../images/Pictos/Gynéco.svg";
 import main from "../images/Pictos/Plaie de main.svg";
-// import oreille from "../images/Pictos/ORL_1.svg";
 import oeil from "../images/Pictos/Ophtalmo.svg";
 import orl from "../images/Pictos/ORL_1.svg";
 
 class PathologyQuestions extends Component {
-  state = {};
+  // update user search filters
   clickHandler(event) {
     this.props.updatePatient(event);
+  }
+
+  // show next step and lift choice up to form step counter
+  userChoice(event) {
+    this.props.nextStep(event);
+    this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
   }
 
   render() {
@@ -91,20 +96,21 @@ class PathologyQuestions extends Component {
       }
     ];
     return (
-      <section className="PathologyQuestions container ">
-        <h3>Ou le patient à t'il mal ?</h3>
-
+      <section>
+        <p className="lead">Où se situe la douleur ?</p>
         {specialtyList.map((oneSpecialty, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="row">
               <SpecialtyCard
+                // card specs
                 bodyPart={oneSpecialty.bodyPart}
                 picture={oneSpecialty.image}
                 neededSpecialist={oneSpecialty.neededSpecialist}
-                updatePatient={event => this.props.updatePatient(event)}
                 infoText={oneSpecialty.infoText}
-                nextStep={event => this.props.nextStep(event)}
                 index={index}
+                // update filter and next step in form events
+                updatePatient={event => this.props.updatePatient(event)}
+                nextStep={event => this.userChoice(event)}
               />
             </div>
           );
