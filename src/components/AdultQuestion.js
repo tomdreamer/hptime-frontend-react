@@ -11,6 +11,7 @@ class AdultQuestion extends Component {
     return (
       <section className="text-center">
         <p className="lead">Le patient à t&#39;il plus de 16 ans ?</p>
+        <hr className="mb-2" />
         <Button
           variant="primary"
           onClick={event => this.clickHandler(event)}

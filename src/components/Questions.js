@@ -10,7 +10,6 @@ import QuestionsIndicator from "./QuestionsIndicator";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserLocalisation from "./UserLocalisation.js";
-import "./Questions.scss";
 
 class Questions extends Component {
   constructor(props) {
@@ -27,7 +26,6 @@ class Questions extends Component {
       numberOfSteps,
       currentStep
     });
-    console.log(numberOfSteps, currentStep);
   }
 
   render() {
