@@ -61,7 +61,7 @@ class SingleMap extends Component {
         mapboxApiAccessToken="pk.eyJ1IjoicHJvamVjdDNpcm9uaGFjayIsImEiOiJjanNpdzA4aXcxemloNDRueDBkaXlkZDh0In0.bbNCzs-0njORLSHu9bXeDQ"
         mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
         width="100%"
-        height={window.innerHeight - 56}
+        height={window.innerHeight - 150}
         onViewportChange={this._onViewportChange}
       >
         {/* calling method below with Marker */}
