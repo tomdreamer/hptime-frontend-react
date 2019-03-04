@@ -10,7 +10,13 @@ class Navigation extends Component {
   render() {
     return (
       <Container>
-        <Navbar bg="light" variant="light" expand="sm" fixed="top">
+        <Navbar
+          bg="light"
+          variant="light"
+          expand="sm"
+          fixed="top"
+          collapseOnSelect="true"
+        >
           <LinkContainer to="/">
             <Navbar.Brand>MedDirect</Navbar.Brand>
           </LinkContainer>

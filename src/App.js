@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 //Components
 import Navigation from "./components/Navigation.js";
 import IsEmergency from "./components/IsEmergency.js";
-import SpeedDial from "./components/SpeedDial.js";
 import Results from "./components/Results.js";
 import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
@@ -71,73 +70,70 @@ class App extends Component {
 
   render() {
     const { neededSpecialist, patientAdult } = this.state;
+
+    console.log(this.state.location);
+
     return (
       <div className="App">
-        <>
-          <header>
-            <Navigation
-              currentUser={this.state.currentUser}
-              logoutClick={() => this.logoutClick()}
-            />
-          </header>
+        <header>
+          <Navigation
+            currentUser={this.state.currentUser}
+            logoutClick={() => this.logoutClick()}
+          />
+        </header>
 
-          <Switch>
-            <Route path="/" exact component={IsEmergency} />
-            <Route
-              path="/map"
-              render={() => {
-                return (
-                  <MapWrapper
-                    neededSpecialist={neededSpecialist}
-                    patientType={patientAdult}
-                  />
-                );
-              }}
-            />
-            <Route path="/results" component={Results} />
-            <Route
-              path="/form"
-              render={() => {
-                return (
-                  <Questions
-                    updatePatient={event => this.updatePatient(event)}
-                    onGeolocation={(latitude, longitude) =>
-                      this.updatePatientPosition(latitude, longitude)
-                    }
-                  />
-                );
-              }}
-            />
-            <Route
-              path="/signup"
-              render={() => {
-                return (
-                  <SignupPage
-                    currentUser={this.state.currentUser}
-                    signupSuccess={user => this.updateUser(user)}
-                  />
-                );
-              }}
-            />
-            <Route
-              path="/login"
-              render={() => {
-                return (
-                  <LoginPage
-                    currentUser={this.state.currentUser}
-                    loginSuccess={user => this.updateUser(user)}
-                  />
-                );
-              }}
-            />
+        <Switch>
+          <Route path="/" exact component={IsEmergency} />
+          <Route
+            path="/map"
+            render={() => {
+              return (
+                <MapWrapper
+                  neededSpecialist={neededSpecialist}
+                  patientType={patientAdult}
+                />
+              );
+            }}
+          />
+          <Route path="/results" component={Results} />
+          <Route
+            path="/form"
+            render={() => {
+              return (
+                <Questions
+                  updatePatient={event => this.updatePatient(event)}
+                  onGeolocation={(latitude, longitude) =>
+                    this.updatePatientPosition(latitude, longitude)
+                  }
+                />
+              );
+            }}
+          />
+          <Route
+            path="/signup"
+            render={() => {
+              return (
+                <SignupPage
+                  currentUser={this.state.currentUser}
+                  signupSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/login"
+            render={() => {
+              return (
+                <LoginPage
+                  currentUser={this.state.currentUser}
+                  loginSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
 
-            <Route component={NotFound} />
-          </Switch>
-
-          <footer className="fixed-bottom">
-            <SpeedDial />
-          </footer>
-        </>
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }

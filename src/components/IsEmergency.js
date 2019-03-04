@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import SpeedDial from "./SpeedDial.js";
+
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
 
@@ -80,6 +82,9 @@ class IsEmergency extends PureComponent {
             </LinkContainer>
           </Modal.Footer>
         </Modal>
+          <footer className="fixed-bottom">
+            <SpeedDial />
+          </footer>
       </div>
               </div>
 

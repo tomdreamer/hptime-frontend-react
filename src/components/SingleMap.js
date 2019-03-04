@@ -5,32 +5,12 @@ import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker.js";
 import PopUp from "./PopUp";
 
-function renderMapAndMarkers(argumentContainer) {
-  let shownArray = argumentContainer.map((oneItem, index) => {
-    return (
-      <Marker
-        key={`marker-${index}`}
-        longitude={oneItem.longitude}
-        latitude={oneItem.latitude}
-      >
-        <MapMarker />
-        <PopUp
-          latitude={oneItem.latitude}
-          longitude={oneItem.longitude}
-          popupName={oneItem.name}
-        />
-      </Marker>
-    );
-  });
-
-  return shownArray;
-}
-
 class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayedItems: [],
+      hospitalArray: [],
+      newstructureArray: [],
       viewport: {
         latitude: 48.85341,
         longitude: 2.3488,
@@ -43,13 +23,46 @@ class SingleMap extends Component {
     this._onViewportChange = this._onViewportChange.bind(this);
   }
 
+  renderMapAndMarkers() {
+    const hospitalArray = this.props.hospitalArray;
+    let resultArray = hospitalArray.map((oneItem, index) => {
+      return (
+        <Marker
+          key={`marker-${index}`}
+          longitude={oneItem.longitude}
+          latitude={oneItem.latitude}
+        >
+          <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
+        </Marker>
+      );
+    });
+    return resultArray;
+  }
+
+  clearPopup() {
+    this.setState({ popupInfo: null });
+  }
+
   // update map on window size
   _onViewportChange(viewport) {
     this.setState({ viewport });
   }
 
+  renderPopup() {
+    const { popupInfo } = this.state;
+    // console.log("renderpopup", this.props.hospitalArray);
+
+    // if there is info being passed to popup, it will show
+    return (
+      popupInfo && (
+        <PopUp popupInfo={popupInfo} onCloseClick={() => this.clearPopup()} />
+      )
+    );
+  }
+
   render() {
     const { viewport } = this.state;
+
     return (
       <MapGL
         {...viewport}
@@ -59,8 +72,10 @@ class SingleMap extends Component {
         height={window.innerHeight - 56}
         onViewportChange={this._onViewportChange}
       >
-        {/* calling method below */}
-        {renderMapAndMarkers(this.props.dataFrombackend)}
+        {/* calling method below with Marker */}
+        {this.renderMapAndMarkers()}
+        {/* displaying PopUp */}
+        {this.renderPopup()}
       </MapGL>
     );
   }
