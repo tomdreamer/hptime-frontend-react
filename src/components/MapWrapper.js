@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "./MapWrapper.css";
+import "./MapWrapper.scss";
 import SingleMap from "./SingleMap.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import structuresAlternatives from "../structuresAlternatives.json";
 import { getHospitalList } from "../api.js";
 
@@ -65,17 +66,19 @@ class MapWrapper extends Component {
     return (
       <section className="MapWrapper">
         <Row>
+          
           <Col
             sm={{ span: 12, order: 2 }}
-            md={{ span: 3, order: 1 }}
+            md={{ span: 4, order: 2 }}
             id="map-filter"
           >
             <div id="accordion">
               <div className="card border-bottom-0">
                 <div className="card-header" id="headingOne">
-                  <h5 className="mb-0">
-                    <button
+                  
+                    <Button
                       className="btn btn-primary btn-lg btn-block"
+                      
                       onClick={() => this.setState({ open: !open })}
                       aria-controls="example-collapse-text"
                       aria-expanded={open}
@@ -86,12 +89,13 @@ class MapWrapper extends Component {
                       ) : (
                         <p className="clollapsBtnText">VOIR PROPOSITIONS</p>
                       )}
-                    </button>
-                  </h5>
+                    </Button>
+                  
                 </div>
                 <Collapse
                   in={this.state.open}
-                  className="collapse show dimension"
+                  className=" dimension"
+                  id="example-collapse-text"
                 >
                   <div aria-labelledby="headingOne" data-parent="#accordion">
                     {/* ---------------------------------------------------------- */}
@@ -154,10 +158,10 @@ class MapWrapper extends Component {
                   </div>
                 </Collapse>
               </div>
-            </div>
+              </div>
           </Col>
-
-          <Col sm={{ span: 12, order: 2 }} md={{ span: 9, order: 2 }}>
+          
+          <Col sm={{ span: 12, order: 2 }} md={{ span: 8, order: 2 }}>
             {/* pass name of results array */}
             <SingleMap
               hospitalArray={this.state.hospitalArray}

@@ -2,8 +2,15 @@
   max-height: 90vh;
   overflow: scroll;
 }
+@media (max-width: 1200px) {
+  .dimension {
+    height: 300px !important;
+  }
+}
+@media (max-width: 768px) {
 .dimension {
   height: 300px;
+}
 }
 .title1Col{
   padding-left: 12px !important;
@@ -16,21 +23,31 @@
 tr {
   width: 100%;
   display: inline-table;
-  // table-layout: fixed;
+  // table-layout: fixed
   }
-  
+
 table{
    height:20px;              // <-- Select the height of the table
    display: -moz-groupbox; // Firefox Bad Effect
    font-size: 15px; 
      
   }
+  @media (max-width: 1200px) {
+  tbody{
+    overflow-y: scroll;      
+    height: 350px;            //  <-- Select the height of the body
+    width: 100%;
+    position: absolute;
+  }
+}
+@media (max-width: 768px) {
   tbody{
     overflow-y: scroll;      
     height: 230px;            //  <-- Select the height of the body
     width: 100%;
     position: absolute;
   }
+}
 .ResultMap{
   margin:10px;
 }
