@@ -19,8 +19,8 @@ function errorHandler(err) {
 export function getHospitalList() {
   return backendApi.get("api/hospitals?size=60?offset=60").catch(errorHandler);
 }
-export function getHospitalList() {
-  return backendApi.get("api/hospitals?size=60?offset=60").catch(errorHandler);
+export function getAltStructureList() {
+  return backendApi.get("api/alternatives-structures/?size=20?offset=20").catch(errorHandler);
 }
 
 // example function

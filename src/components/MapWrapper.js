@@ -13,7 +13,8 @@ class MapWrapper extends Component {
     this.state = {
       newstructureArray: structuresAlternatives.slice(0, 5),
       open: true,
-      structureArray:[],
+      hospitalArray:[],
+      altStructure:[],
       newstructureArray:[]
 
     };
@@ -23,14 +24,26 @@ class MapWrapper extends Component {
     getHospitalList().then(response => {
       console.log("Structure list", response.data);
       const { neededSpecialist, patientType } = this.props;
-      const structureArray = response.data;
-      const  newstructureArray = structureArray.filter(el =>
+      const hospitalArray = response.data;
+      const  newstructureArray = hospitalArray.filter(el =>
       el.availablePoles.some(pole => pole.pathology === neededSpecialist && (pole.patientType === patientType || pole.patientType ==="Universel")))
 
-      console.log({ structureArray, newstructureArray })
-      this.setState({ structureArray, newstructureArray });
+      console.log({ hospitalArray, newstructureArray })
+      this.setState({ hospitalArray, newstructureArray });
 
     });
+    // getAltStructureList().then(response => {
+    //   console.log("Aternative Structure list", response.data);
+    //   const { neededSpecialist, patientType } = this.props;
+    //   const altStructure = response.data;
+    //   const  newstructureArray = this.state
+    //   newstructureArray = newstructureArray.push(altStructure.filter(el =>
+    //   el.availablePoles.some(pole => pole.pathology === neededSpecialist && (pole.patientType === patientType || pole.patientType ==="Universel"))))
+
+    //   console.log({ altStructure, newstructureArray })
+    //   this.setState({ altStructure, newstructureArray });
+
+    // });
   }
   render() {
     const {neededSpecialist} = this.props
@@ -125,10 +138,14 @@ class MapWrapper extends Component {
               </div>
             </div>
           </Col>
-
+          
           <Col sm={{ span: 12, order: 2 }} md={{ span: 9, order: 2 }}>
-            <SingleMap />
+           <SingleMap 
+            newstructureArray={newstructureArray} 
+           
+            />
           </Col>
+        
         </Row>
       </section>
     );
