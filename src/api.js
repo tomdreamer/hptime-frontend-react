@@ -20,6 +20,22 @@ export function getHospitalList() {
   return backendApi.get("api/hospitals?size=60?offset=60").catch(errorHandler);
 }
 
+export function postSignUp(userSubmission) {
+  return backendApi
+    .post("/api/process-signup", userSubmission)
+    .catch(errorHandler);
+}
+
+export function postLogin(loginCredentials) {
+  return backendApi
+    .post("/api/process-login", loginCredentials)
+    .catch(errorHandler);
+}
+
+export function getLogout() {
+  return backendApi.get("/api/logout").catch(errorHandler);
+}
+
 // example function
 // export function getLogOut() {
 //   return backendApi.get("/api/logout").catch(errorHandler);

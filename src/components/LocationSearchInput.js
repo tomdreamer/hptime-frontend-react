@@ -169,6 +169,7 @@ class LocationSearchInput extends React.Component {
           placeholder="Où?"
           onClick={() => {
             this.getUserLocationBrowser();
+            // this.props.nextStep();
           }}
           name="addressInputValue"
           value={this.state.addressInputValue}

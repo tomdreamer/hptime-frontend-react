@@ -80,7 +80,7 @@ class PathologyQuestions extends Component {
           "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
       },
       {
-        bodyPart: "Gorge",
+        bodyPart: "Problème à la gorge",
         neededSpecialist: "Oto-rhino-laryngologiques",
         image: gorge,
         infoTitle: "",

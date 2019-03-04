@@ -10,7 +10,7 @@ import QuestionsIndicator from "./QuestionsIndicator";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserLocalisation from "./UserLocalisation.js";
-
+import MapWrapper from "./MapWrapper";
 class Questions extends Component {
   constructor(props) {
     super(props);
@@ -65,6 +65,7 @@ class Questions extends Component {
               hashKey={"position"}
               onGeolocation={this.props.onGeolocation}
             />
+            <MapWrapper />
           </StepWizard>
         </Col>
       </Row>
