@@ -17,7 +17,13 @@ class PopUp extends Component {
         anchor="top"
         onClose={this.props.onCloseClick}
       >
-        <p>{popupInfo.group}</p>
+        <p>
+          <b> {popupInfo.name}</b>
+          <br />
+          <a href="tel:+33{popupInfo.phoneNumber}">
+            {popupInfo.phoneNumber}
+          </a>{" "}
+        </p>
       </Popup>
     );
   }

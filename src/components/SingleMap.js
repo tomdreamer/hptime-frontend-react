@@ -10,6 +10,8 @@ class SingleMap extends Component {
     super(props);
     this.state = {
       hospitalArray: [],
+      structureArray: [],
+      altStructure: [],
       newstructureArray: [],
       viewport: {
         latitude: 48.85341,
@@ -32,7 +34,10 @@ class SingleMap extends Component {
           longitude={oneItem.longitude}
           latitude={oneItem.latitude}
         >
-          <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
+          <MapMarker
+            hospitalArray={this.props.hospitalArray}
+            onClick={() => this.setState({ popupInfo: oneItem })}
+          />
         </Marker>
       );
     });
@@ -50,9 +55,6 @@ class SingleMap extends Component {
 
   renderPopup() {
     const { popupInfo } = this.state;
-    // console.log("renderpopup", this.props.hospitalArray);
-
-    // if there is info being passed to popup, it will show
     return (
       popupInfo && (
         <PopUp popupInfo={popupInfo} onCloseClick={() => this.clearPopup()} />

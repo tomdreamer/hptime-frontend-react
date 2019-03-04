@@ -19,7 +19,7 @@ class MapWrapper extends Component {
       altStructure: [],
       // newstructureArray render all the filtered hospitals from the firltering process
       newstructureArray: [],
-
+      // structureArray renders all hospitals and alt structures in existance (full array)
       structureArray: []
     };
   }
@@ -27,7 +27,7 @@ class MapWrapper extends Component {
   componentDidMount() {
     // get data from our backend Express API (localhost:2999)
     getHospitalList().then(response => {
-      console.log("Structure list", response.data);
+      // console.log("Structure list", response.data);
       const { neededSpecialist, patientType } = this.props;
       const hospitalArray = response.data;
       const newstructureArray = hospitalArray.filter(el => {
@@ -42,7 +42,7 @@ class MapWrapper extends Component {
         return el.filtered;
       });
 
-      console.log({ hospitalArray, newstructureArray });
+      //      console.log({ structureArray });
 
       this.setState({ hospitalArray, newstructureArray });
     });
@@ -161,7 +161,9 @@ class MapWrapper extends Component {
             {/* pass name of results array */}
             <SingleMap
               hospitalArray={this.state.hospitalArray}
+              altStructure={this.state.altStructure}
               newstructureArray={this.state.newstructureArray}
+              structureArray={this.state.structureArray}
             />
           </Col>
         </Row>
