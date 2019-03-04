@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import structuresAlternatives from "../structuresAlternatives.json";
 import { getHospitalList } from "../api.js";
+import { finished } from "stream";
 
 class MapWrapper extends Component {
   constructor(props) {
@@ -13,27 +14,48 @@ class MapWrapper extends Component {
     this.state = {
       newstructureArray: structuresAlternatives.slice(0, 5),
       open: true,
+      //hospitalArray renders all the hospital from the backend
+      hospitalArray:[],
+      //Will render all the alternative structure from the backend
+      altStructure:[],
+      // newstructureArray render all the filtered hospitals from the firltering process
+      newstructureArray:[],
+
       structureArray: []
     };
   }
+  // Allow us to filter data coming fro the back end to render only some kind of hospitals
   componentDidMount() {
     // get data from our backend Express API (localhost:2999)
     getHospitalList().then(response => {
       console.log("Structure list", response.data);
       const { neededSpecialist, patientType } = this.props;
-      const structureArray = response.data;
-      const newstructureArray = structureArray.filter(el =>
-        el.availablePoles.some(
-          pole =>
-            pole.pathology === neededSpecialist &&
-            (pole.patientType === patientType ||
-              pole.patientType === "Universel")
-        )
-      );
+      const hospitalArray = response.data;
+      const newstructureArray = hospitalArray.filter(el => {
+        //filtered is the object that allow us to know if the hospital is or not in the proposition list
+        el.filtered = el.availablePoles.some(pole => pole.pathology === neededSpecialist &&
+          (pole.patientType === patientType || pole.patientType === "Universel"));
 
-      //console.log({ structureArray, newstructureArray });
-      this.setState({ structureArray, newstructureArray });
+        return el.filtered;
+      });
+
+      console.log({ hospitalArray, newstructureArray })
+
+      this.setState({ hospitalArray, newstructureArray });
+
     });
+    // getAltStructureList().then(response => {
+    //   console.log("Aternative Structure list", response.data);
+    //   const { neededSpecialist, patientType } = this.props;
+    //   const altStructure = response.data;
+    //   const  newstructureArray = this.state
+    //   newstructureArray = newstructureArray.push(altStructure.filter(el =>
+    //   el.availablePoles.some(pole => pole.pathology === neededSpecialist && (pole.patientType === patientType || pole.patientType ==="Universel"))))
+
+    //   console.log({ altStructure, newstructureArray })
+    //   this.setState({ altStructure, newstructureArray });
+
+    // });
   }
   render() {
     const { newstructureArray, open } = this.state;
@@ -56,6 +78,7 @@ class MapWrapper extends Component {
                       aria-controls="example-collapse-text"
                       aria-expanded={open}
                     >
+                    {/* condition to change the voir map button to voir condition over the propositions list */}
                       {open ? (
                         <p className="clollapsBtnText">VOIR MAP</p>
                       ) : (
@@ -69,6 +92,10 @@ class MapWrapper extends Component {
                   className="collapse show dimension"
                 >
                   <div aria-labelledby="headingOne" data-parent="#accordion">
+
+                  {/* ---------------------------------------------------------- */}
+                  {/* this table display the structure propostions into the collaps button list */}
+                  {/* ---------------------------------------------------------- */}  
                     <table className="table scrolling">
                       <thead className="thead-light">
                         <tr>
@@ -128,11 +155,12 @@ class MapWrapper extends Component {
               </div>
             </div>
           </Col>
-
+          
           <Col sm={{ span: 12, order: 2 }} md={{ span: 9, order: 2 }}>
             {/* pass name of results array */}
             <SingleMap dataFrombackend={this.state.structureArray} />
           </Col>
+        
         </Row>
       </section>
     );
