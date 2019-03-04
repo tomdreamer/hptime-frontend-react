@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./MapWrapper.scss";
 import SingleMap from "./SingleMap.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
@@ -66,7 +65,6 @@ class MapWrapper extends Component {
     return (
       <section className="MapWrapper">
         <Row>
-          
           <Col
             sm={{ span: 12, order: 2 }}
             md={{ span: 4, order: 2 }}
@@ -75,22 +73,19 @@ class MapWrapper extends Component {
             <div id="accordion">
               <div className="card border-bottom-0">
                 <div className="card-header" id="headingOne">
-                  
-                    <Button
-                      className="btn btn-primary btn-lg btn-block"
-                      
-                      onClick={() => this.setState({ open: !open })}
-                      aria-controls="example-collapse-text"
-                      aria-expanded={open}
-                    >
-                      {/* condition to change the voir map button to voir condition over the propositions list */}
-                      {open ? (
-                        <p className="clollapsBtnText">VOIR MAP</p>
-                      ) : (
-                        <p className="clollapsBtnText">VOIR PROPOSITIONS</p>
-                      )}
-                    </Button>
-                  
+                  <Button
+                    className="btn btn-primary btn-lg btn-block"
+                    onClick={() => this.setState({ open: !open })}
+                    aria-controls="example-collapse-text"
+                    aria-expanded={open}
+                  >
+                    {/* condition to change the voir map button to voir condition over the propositions list */}
+                    {open ? (
+                      <p className="clollapsBtnText">VOIR MAP</p>
+                    ) : (
+                      <p className="clollapsBtnText">VOIR PROPOSITIONS</p>
+                    )}
+                  </Button>
                 </div>
                 <Collapse
                   in={this.state.open}
@@ -158,9 +153,9 @@ class MapWrapper extends Component {
                   </div>
                 </Collapse>
               </div>
-              </div>
+            </div>
           </Col>
-          
+
           <Col sm={{ span: 12, order: 2 }} md={{ span: 8, order: 2 }}>
             {/* pass name of results array */}
             <SingleMap
