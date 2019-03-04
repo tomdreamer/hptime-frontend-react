@@ -98,18 +98,10 @@ class MapWrapper extends Component {
                   id="example-collapse-text"
                 >
                   <div aria-labelledby="headingOne" data-parent="#accordion">
-<<<<<<< HEAD
-
-                  {/* ---------------------------------------------------------- */}
-                  {/* this table display the structure propostions into the collaps button list */}
-                  {/* ---------------------------------------------------------- */}  
-                    <table className="table scrolling" id="example-collapse-text">
-=======
                     {/* ---------------------------------------------------------- */}
                     {/* this table display the structure propostions into the collaps button list */}
                     {/* ---------------------------------------------------------- */}
                     <table className="table scrolling">
->>>>>>> 5095220de5a2d5c8b0250c06a33836c6ee174703
                       <thead className="thead-light">
                         <tr>
                           <th className="title1Col" scope="col">
@@ -168,13 +160,8 @@ class MapWrapper extends Component {
               </div>
               </div>
           </Col>
-<<<<<<< HEAD
           
           <Col sm={{ span: 12, order: 2 }} md={{ span: 8, order: 2 }}>
-=======
-
-          <Col sm={{ span: 12, order: 2 }} md={{ span: 9, order: 2 }}>
->>>>>>> 5095220de5a2d5c8b0250c06a33836c6ee174703
             {/* pass name of results array */}
             <SingleMap
               hospitalArray={this.state.hospitalArray}
