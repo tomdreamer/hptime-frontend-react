@@ -24,6 +24,8 @@ class SingleMap extends Component {
       popupInfo: null
     };
     this._onViewportChange = this._onViewportChange.bind(this);
+    // this.renderUserMarker = this.renderUserMarker.bind(this);
+    // need to bind the specific event to avoid triggering on load
   }
 
   renderMapAndMarkers() {
@@ -65,12 +67,13 @@ class SingleMap extends Component {
 
   // user current position (static atm)
   renderUserMarker(location) {
-    console.log(location);
-    return (
-      <Marker latitude={location.latitude} longitude={location.longitude}>
-        <UserMarker />
-      </Marker>
-    );
+    if (location) {
+      return (
+        <Marker latitude={location.latitude} longitude={location.longitude}>
+          <UserMarker />
+        </Marker>
+      );
+    }
   }
 
   render() {
