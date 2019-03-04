@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import "./MapWrapper.scss";
+
 import SingleMap from "./SingleMap.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import structuresAlternatives from "../structuresAlternatives.json";
 import { getHospitalList } from "../api.js";
 
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newstructureArray: structuresAlternatives.slice(0, 5),
+     
       open: true,
       //hospitalArray renders all the hospital from the backend
       hospitalArray: [],
