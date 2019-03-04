@@ -64,9 +64,10 @@ class SingleMap extends Component {
   }
 
   // user current position (static atm)
-  renderUserMarker(position) {
+  renderUserMarker(location) {
+    console.log(location);
     return (
-      <Marker latitude={48.871632} longitude={2.31091}>
+      <Marker latitude={location.latitude} longitude={location.longitude}>
         <UserMarker />
       </Marker>
     );
@@ -74,7 +75,7 @@ class SingleMap extends Component {
 
   render() {
     const { viewport } = this.state;
-
+    const { userLocation } = this.props;
     return (
       <MapGL
         {...viewport}
@@ -85,7 +86,7 @@ class SingleMap extends Component {
         onViewportChange={this._onViewportChange}
       >
         {/* user marker  */}
-        {this.renderUserMarker()}
+        {this.renderUserMarker(userLocation)}
         {/* calling method below with Marker */}
         {this.renderMapAndMarkers()}
         {/* displaying PopUp */}

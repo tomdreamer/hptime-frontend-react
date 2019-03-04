@@ -6,15 +6,15 @@ class UserMarker extends PureComponent {
     const size = 165;
     return (
       <div
-        class="dot"
+        className="dot"
         style={{
           cursor: "pointer",
           transform: `translate(${-size}px,${-size - 10}px)`
         }}
       >
-        <div class="centraldot" />
-        <div class="wave" />
-        <div class="wave2" />
+        <div className="centraldot" />
+        <div className="wave" />
+        <div className="wave2" />
       </div>
     );
   }

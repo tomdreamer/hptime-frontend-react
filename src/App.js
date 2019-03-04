@@ -14,7 +14,7 @@ import Questions from "./components/Questions.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
-import GeolocationPoint from "./components/GeolocationCoodinates.js"
+import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
 
 require("dotenv").config();
@@ -33,7 +33,7 @@ class App extends Component {
       patientGender: "",
       neededSpecialist: "",
       patientAdult: "",
-      patientLocation: { latitude: null, longitude: null }
+      patientLocation: { latitude: 0, longitude: 0 }
     };
   }
   updateUser(newUser) {
@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   render() {
-    const { neededSpecialist, patientAdult } = this.state;
+    const { neededSpecialist, patientAdult, patientLocation } = this.state;
     return (
       <div className="App">
         <header>
@@ -89,12 +89,13 @@ class App extends Component {
                 <MapWrapper
                   neededSpecialist={neededSpecialist}
                   patientType={patientAdult}
+                  userLocation={patientLocation}
                 />
               );
             }}
           />
           <Route path="/results" component={Results} />
-          <Route path="/geoloc" component={GeolocationPoint}/>
+          <Route path="/geoloc" component={GeolocationPoint} />
           <Route
             path="/form"
             render={() => {

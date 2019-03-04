@@ -42,7 +42,7 @@ class MapMarker extends PureComponent {
     const isHospital = this.props.hospitalArray;
     const isFiltered = this.props.filtered;
 
-    console.log(isHospital);
+    // console.log(isHospital);
     if (isHospital && isFiltered) {
       return (
         <div>

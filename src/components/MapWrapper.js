@@ -11,7 +11,6 @@ class MapWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     
       open: true,
       //hospitalArray renders all the hospital from the backend
       hospitalArray: [],
@@ -163,6 +162,7 @@ class MapWrapper extends Component {
               altStructure={this.state.altStructure}
               newstructureArray={this.state.newstructureArray}
               structureArray={this.state.structureArray}
+              userLocation={this.props.userLocation}
             />
           </Col>
         </Row>
