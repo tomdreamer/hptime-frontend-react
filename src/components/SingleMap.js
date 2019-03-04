@@ -9,7 +9,8 @@ class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayedItems: [],
+      structureArray: [],
+      newstructureArray: [],
       viewport: {
         latitude: 48.85341,
         longitude: 2.3488,
@@ -23,8 +24,8 @@ class SingleMap extends Component {
   }
 
   renderMapAndMarkers() {
-    const argumentContainer = this.props.dataFrombackend;
-    let shownArray = argumentContainer.map((oneItem, index) => {
+    const structureArray = this.props.structureArray;
+    let resultArray = structureArray.map((oneItem, index) => {
       return (
         <div>
           <Marker
@@ -37,7 +38,7 @@ class SingleMap extends Component {
         </div>
       );
     });
-    return shownArray;
+    return resultArray;
   }
 
   // update map on window size
@@ -46,15 +47,16 @@ class SingleMap extends Component {
   }
 
   renderPopup() {
-    console.log("here it is");
+    const { popupInfo } = this.props.structureArray;
+    console.log("renderpopup", this.props.structureArray);
 
-    const { popupInfo } = this.state;
     // if there is info being passed to popup, it will show
-    return popupInfo && <PopUp popupInfo={popupInfo} />;
+    return popupInfo && <PopUp popupInfo={this.state.popupInfo} />;
   }
 
   render() {
     const { viewport } = this.state;
+
     return (
       <MapGL
         {...viewport}
