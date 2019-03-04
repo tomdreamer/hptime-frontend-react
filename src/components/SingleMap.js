@@ -2,15 +2,35 @@
 import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
-import MapMarker from "./MapMarker";
-
-import { Popup } from "react-map-gl";
+import MapMarker from "./MapMarker.js";
 import PopUp from "./PopUp";
+
+function renderMapAndMarkers(argumentContainer) {
+  let shownArray = argumentContainer.map((oneItem, index) => {
+    return (
+      <Marker
+        key={`marker-${index}`}
+        longitude={oneItem.longitude}
+        latitude={oneItem.latitude}
+      >
+        <MapMarker />
+        <PopUp
+          latitude={oneItem.latitude}
+          longitude={oneItem.longitude}
+          popupName={oneItem.name}
+        />
+      </Marker>
+    );
+  });
+
+  return shownArray;
+}
 
 class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      displayedItems: [],
       viewport: {
         latitude: 48.85341,
         longitude: 2.3488,
@@ -18,49 +38,18 @@ class SingleMap extends Component {
         pitch: 45,
         bearing: -17.6
       },
-      popupInfo: null,
-      
-
+      popupInfo: null
     };
     this._onViewportChange = this._onViewportChange.bind(this);
   }
-
-  
 
   // update map on window size
   _onViewportChange(viewport) {
     this.setState({ viewport });
   }
 
-  _renderCityMarker = (place, index) => {
-    return (
-      <Marker
-        key={`marker-${index}`}
-        longitude={this.state.longitude}
-        latitude={this.state.latitude}
-      >
-        {/* <MapMarker onClick={() => this.setState({ popupInfo: city })} /> */}
-      </Marker>
-    );
-  };
-
-  _renderPopUp = (place, index) => {
-    return (
-      this.state.popupInfo && (
-        <PopUp
-          key={`PopUp-${index}`}
-          longitude={this.state.longitude}
-          latitude={this.state.latitude}
-        />
-      )
-    );
-  };
-
   render() {
-  
     const { viewport } = this.state;
-    
-    
     return (
       <MapGL
         {...viewport}
@@ -70,16 +59,8 @@ class SingleMap extends Component {
         height={window.innerHeight - 56}
         onViewportChange={this._onViewportChange}
       >
-        {/* MapMarker Below */}
-        <Marker latitude={48.858372} longitude={2.294481}>
-          <MapMarker
-            size={20}
-            //onClick={() => this.setState({popupInfo: city})}
-          />
-        </Marker>
-
-        {/* PopUp Below */}
-        <PopUp />
+        {/* calling method below */}
+        {renderMapAndMarkers(this.props.dataFrombackend)}
       </MapGL>
     );
   }

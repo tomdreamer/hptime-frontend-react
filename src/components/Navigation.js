@@ -3,10 +3,10 @@ import { LinkContainer } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
-import LocationSearchInput from "./LocationSearchInput.js";
 
 class Navigation extends Component {
+  // state = { }
+
   render() {
     return (
       <Container>
@@ -23,13 +23,25 @@ class Navigation extends Component {
               <LinkContainer to="/map">
                 <Nav.Link>Map Component</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/geolocation">
-                <Nav.Link>Geoloc</Nav.Link>
-              </LinkContainer>
+              {this.props.currentUser ? (
+                <span>
+                  <LinkContainer to="/map">
+                    <Nav.Link onClick={() => this.props.logoutClick()}>
+                      Log Out{" "}
+                    </Nav.Link>
+                  </LinkContainer>
+                </span>
+              ) : (
+                <span>
+                  <LinkContainer to="/signup">
+                    <Nav.Link>S'enregistrer</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <Nav.Link>Se connecter</Nav.Link>
+                  </LinkContainer>
+                </span>
+              )}
             </Nav>
-            <Form inline>
-              <LocationSearchInput />
-            </Form>
           </Navbar.Collapse>
         </Navbar>
       </Container>

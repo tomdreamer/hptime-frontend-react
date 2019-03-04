@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import "./LocationSearchInput.scss";
@@ -15,8 +16,9 @@ class LocationSearchInput extends React.Component {
         latitude: null,
         longitude: null
       },
-      inputValue: "",
-      isLoadingCoordinates: false
+      addressInputValue: "",
+      isLoadingCoordinates: false,
+      toMapResults: false
     };
 
     // binds for events
@@ -24,6 +26,8 @@ class LocationSearchInput extends React.Component {
     this.autocomplete = null;
     this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
     this.getUserLocationBrowser = this.getUserLocationBrowser.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.goToResult = this.goToResult.bind(this);
   }
 
   // load Google API for autocompletion on mount
@@ -37,6 +41,17 @@ class LocationSearchInput extends React.Component {
     this.autocomplete.addListener("place_changed", this.handlePlaceChanged);
   }
 
+  handleChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    console.log(value, name);
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   // update state if any change on form
   handlePlaceChanged() {
     this.setState({
@@ -45,7 +60,6 @@ class LocationSearchInput extends React.Component {
     const place = this.autocomplete.getPlace();
     const longitude = place.geometry.viewport.ga.l;
     const latitude = place.geometry.viewport.ma.l;
-    console.log(latitude, longitude);
 
     this.setState({
       currentUserPosition: {
@@ -54,9 +68,15 @@ class LocationSearchInput extends React.Component {
       },
       isLoadingCoordinates: false
     });
+
+    // TODO lifting state up top
+    this.props.onGeolocation(latitude, longitude);
+
+    // redirect user to map with filtered results
+    this.goToResult();
   }
 
-  // get user coords with HTML5 browser feature on click
+  // get user coords with HTML5 browser feature on click, redirect when filled
   getUserLocationBrowser() {
     const { currentUserPosition, isLoadingCoordinates } = this.state;
 
@@ -72,19 +92,20 @@ class LocationSearchInput extends React.Component {
             // update state with results
             const { isLoadingCoordinates } = this.state;
             this.toggleSearchCoordinates(isLoadingCoordinates);
-            // TODO get address name from user coordinates
-            this.setState({
-              currentUserPosition: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-              }
-            });
 
             // reverse geocode
             this.reverseGeocode(
               position.coords.latitude,
               position.coords.longitude
             );
+            // TODO lifting state up here too
+            this.props.onGeolocation(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+
+            // redirect user to map with filtered results
+            this.goToResult();
           },
           error => {
             this.setState({
@@ -120,7 +141,7 @@ class LocationSearchInput extends React.Component {
       .then(response => {
         // get the result into the form so user has a feedbakc
         this.setState({
-          inputValue: response.data.results[0].formatted_address
+          addressInputValue: response.data.results[0].formatted_address
         });
 
         // TODO method call to add an user marker here
@@ -128,30 +149,45 @@ class LocationSearchInput extends React.Component {
     //end
   }
 
+  // redirect to map when address found
+  goToResult() {
+    // TODO Need UX feedback, Users may need time change the address (may taking them to the map too fast)
+    // intermediate button > submit
+    this.setState({ toMapResults: true });
+  }
+
   render() {
+    // redirect to map when address found
+    if (this.state.toMapResults === true) {
+      return <Redirect to="/map" />;
+    }
+
     return (
       <div className="input-group">
         <FormControl
           type="text"
           placeholder="Où?"
-          // ask browser coordinates
           onClick={() => {
             this.getUserLocationBrowser();
+            // this.props.nextStep();
           }}
-          value={this.state.inputValue}
-          // autocomplete on type
+          name="addressInputValue"
+          value={this.state.addressInputValue}
+          onChange={this.handleChange}
           id="autocomplete"
           ref={this.autocompleteInput}
         />
 
         <div className="input-group-append">
-          <Button variant="outline-secondary">
-            {this.state.isLoadingCoordinates ? (
+          {this.state.isLoadingCoordinates ? (
+            <Button variant="info" onClick={this.goToResult}>
               <i className="fas fa-circle-notch fa-spin" />
-            ) : (
+            </Button>
+          ) : (
+            <Button variant="outline-secondary">
               <i className="fas fa-search" />
-            )}
-          </Button>
+            </Button>
+          )}
         </div>
       </div>
     );

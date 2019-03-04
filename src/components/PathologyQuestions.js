@@ -1,29 +1,67 @@
 import React, { Component } from "react";
-// import Button from "react-bootstrap/Button";
+// child card component
 import SpecialtyCard from "./SpecialtyCard";
-
-import dent from "../images/Pictos/Dentaire.svg";
-import uterus from "../images/Pictos/Gynéco.svg";
-import main from "../images/Pictos/Plaie de main.svg";
-// import oreille from "../images/Pictos/ORL_1.svg";
-import oeil from "../images/Pictos/Ophtalmo.svg";
-import orl from "../images/Pictos/ORL_1.svg";
+// images
+import generale from "../images/Pictos/medical.svg";
+import dent from "../images/Pictos/dentaire.svg";
+import uterus from "../images/Pictos/gynecologie.svg";
+import main from "../images/Pictos/plaie_de_main.svg";
+import oeil from "../images/Pictos/ophtalmologie.svg";
+import orl from "../images/Pictos/ORL.png";
+import anus from "../images/Pictos/anus.svg";
+import psychiatrie from "../images/Pictos/psychiatrie.svg";
+import gorge from "../images/Pictos/gorge.svg";
 
 class PathologyQuestions extends Component {
-  state = {};
+  // update user search filters
   clickHandler(event) {
     this.props.updatePatient(event);
   }
 
+  // show next step and lift choice up to form step counter
+  userChoice(event) {
+    this.props.nextStep(event);
+    this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
+  }
+
+  // card list of specialities that helps to filter search results of hospitals and structures with corresponding services
   render() {
     const specialtyList = [
+      {
+        bodyPart: "ORL",
+        neededSpecialist: "Oto-rhino-laryngologiques",
+        image: orl,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+      },
       {
         bodyPart: "Oeil",
         neededSpecialist: "Ophtalmologiques",
         image: oeil,
         infoTitle: "",
         infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
+          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
+      },
+      {
+        bodyPart: "Main (plaie ouverte)",
+        neededSpecialist: "Plaies de la main",
+        image: main,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+      },
+      {
+        bodyPart: "Gynécologie, Grossesse",
+        neededSpecialist: "Gynéco-obstétricales",
+        image: uterus,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+      },
+      {
+        bodyPart: "Psychiatrie",
+        neededSpecialist: "Psychiatriques",
+        image: psychiatrie,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
       {
         bodyPart: "Dents",
@@ -31,84 +69,54 @@ class PathologyQuestions extends Component {
         image: dent,
         infoTitle: "",
         infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
+          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
       },
       {
         bodyPart: "Anus",
         neededSpecialist: "Proctology",
-        image: dent,
+        image: anus,
         infoTitle: "",
         infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
+          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
       },
       {
-        bodyPart: "Main (plaie ouverte)",
-        neededSpecialist: "Plaies de la main",
-        image: main,
-        infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-      },
-      {
-        bodyPart: "Psychiatrie",
-        neededSpecialist: "Psychiatriques",
-        image: dent,
-        infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-      },
-      {
-        bodyPart: "Oreille",
+        bodyPart: "Problème à la gorge",
         neededSpecialist: "Oto-rhino-laryngologiques",
-        image: orl,
+        image: gorge,
         infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
       {
-        bodyPart: "Gorge",
-        neededSpecialist: "Oto-rhino-laryngologiques",
-        image: orl,
-        infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-      },
-      {
-        bodyPart: "Gynécologie, Grossesse",
-        neededSpecialist: "Gynéco-obstétricales",
-        image: uterus,
-        infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
-      },
-      {
-        bodyPart: "Autres",
+        bodyPart: "Medecine générale",
         neededSpecialist: "Générales",
-        image: dent,
+        image: generale,
         infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker."
+        infoText: "Pour tout autre type d'urgence."
       }
     ];
     return (
-      <section className="PathologyQuestions container ">
-        <h3>Ou le patient à t'il mal ?</h3>
-
-        {specialtyList.map((oneSpecialty, index) => {
-          return (
-            <div key={index}>
-              <SpecialtyCard
-                bodyPart={oneSpecialty.bodyPart}
-                picture={oneSpecialty.image}
-                neededSpecialist={oneSpecialty.neededSpecialist}
-                updatePatient={event => this.props.updatePatient(event)}
-                infoText={oneSpecialty.infoText}
-                nextStep={event => this.props.nextStep(event)}
-                index={index}
-              />
-            </div>
-          );
-        })}
+      <section>
+        <p className="lead">Où se situe la douleur ?</p>
+        <hr className="mb-5" />
+        <ul className="list-unstyled">
+          {specialtyList.map((oneSpecialty, index) => {
+            return (
+              <li key={index} className="item">
+                <SpecialtyCard
+                  // card specs
+                  bodyPart={oneSpecialty.bodyPart}
+                  picture={oneSpecialty.image}
+                  neededSpecialist={oneSpecialty.neededSpecialist}
+                  infoText={oneSpecialty.infoText}
+                  index={index}
+                  // update filter and next step in form events
+                  updatePatient={event => this.props.updatePatient(event)}
+                  nextStep={event => this.userChoice(event)}
+                />
+              </li>
+            );
+          })}
+        </ul>
       </section>
     );
   }

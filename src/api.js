@@ -21,6 +21,21 @@ export function getHospitalList() {
 }
 export function getAltStructureList() {
   return backendApi.get("api/alternatives-structures/?size=20?offset=20").catch(errorHandler);
+
+export function postSignUp(userSubmission) {
+  return backendApi
+    .post("/api/process-signup", userSubmission)
+    .catch(errorHandler);
+}
+
+export function postLogin(loginCredentials) {
+  return backendApi
+    .post("/api/process-login", loginCredentials)
+    .catch(errorHandler);
+}
+
+export function getLogout() {
+  return backendApi.get("/api/logout").catch(errorHandler);
 }
 
 // example function

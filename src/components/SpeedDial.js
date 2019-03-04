@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import "./SpeedDial.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -8,9 +7,13 @@ class SpeedDial extends PureComponent {
     return (
       <section className="SpeedDial">
         <Row>
-          <Col sm>
-            <a variant="danger" className="btn btn-danger" href="tel:+3315">
-              Appeler l'Urgence
+          <Col>
+            <a
+              variant="danger"
+              className="btn btn-danger btn-block rounded-0"
+              href="tel:+3315"
+            >
+              <i className="fas fa-phone" /> Appeler le SAMU (15)
             </a>
           </Col>
         </Row>

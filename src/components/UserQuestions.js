@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import "./UserQuestions.scss";
 
 class UserQuestions extends Component {
   constructor(props) {
@@ -14,9 +13,9 @@ class UserQuestions extends Component {
   }
   render() {
     return (
-      <section className="UserQuestions container text-center">
-        <div className="row ">
-          <h4>Quel est le genre du patient ?</h4>{" "}
+      <section className="container text-center">
+        <div className="row">
+          <h4>Quel est le genre du patient ?</h4>
         </div>
         <div className="row ">
           <div className="col">

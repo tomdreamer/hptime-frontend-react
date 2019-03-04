@@ -10,17 +10,20 @@ class UserLocalisation extends Component {
       <Row className="d-flex justify-content-center">
         <Col md={{ span: 6 }}>
           <div className="bg-light rounded p-5 mt-5">
-            <LocationSearchInput />
+            <LocationSearchInput
+              onGeolocation={this.props.onGeolocation}
+              nextStep={event => this.props.nextStep(event)}
+            />
             <p className="form-text text-muted small">
               Trouvez des soins proches de vous.
             </p>
           </div>
           <Form className="p-2 small">
-            <div key="default-checkbox" className="mb-3">
+            <div key="hint-checkbox" className="hint-checkbox ml-2 mt-2">
               <Form.Check
                 type="checkbox"
                 id="prescription"
-                label="C'est un simple renouvellement d'ordonnance ? Cliquez ici. "
+                label="C'est un simple renouvellement d'ordonnance ?"
               />
             </div>
           </Form>
