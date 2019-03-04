@@ -28,9 +28,9 @@ class IsEmergency extends PureComponent {
   render() {
     return (
       <div className="bg-light">
-      <div className="bg-header w-75 mx-auto d-flex">
-          <div className="d-flex justify-content-start pt-5"> {' '}</div>
-          <h1 className="display-3">MedDirect</h1>
+        <div className="bg-header w-75 mx-auto d-flex">
+          <div className="d-flex justify-content-start pt-5"> </div>
+          <h1 className="display-3">Medirect</h1>
           <div className="align-self-end">
             <div className="p-5 d-flex justify-content-start flex-column">
               <div className="px-5">
@@ -46,48 +46,47 @@ class IsEmergency extends PureComponent {
                 </p>
               </div>
             </div>
-        </div>
+          </div>
 
-        <Modal
-          size="md"
-          aria-labelledby="contained-modal-title-vcenter"
-          show={this.state.show}
-          onHide={this.handleClose}
-        >
-          <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Est-ce une urgence vitale?
-            </Modal.Title>
-          </Modal.Header>
+          <Modal
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            show={this.state.show}
+            onHide={this.handleClose}
+          >
+            <Modal.Header>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Est-ce une urgence vitale?
+              </Modal.Title>
+            </Modal.Header>
 
-          <Modal.Body>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae.
-            </p>
-          </Modal.Body>
+            <Modal.Body>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae.
+              </p>
+            </Modal.Body>
 
-          <Modal.Footer>
-            <a href="tel:+3315">
-              <Button variant="danger">
-                <i className="fas fa-phone" /> Appeller le SAMU (15)
-              </Button>
-            </a>
+            <Modal.Footer>
+              <a href="tel:+3315">
+                <Button variant="danger">
+                  <i className="fas fa-phone" /> Appeller le SAMU (15)
+                </Button>
+              </a>
 
-            <LinkContainer to="/form">
-              <Button variant="primary">
-                <i className="fas fa-arrow-right" /> Continuer
-              </Button>
-            </LinkContainer>
-          </Modal.Footer>
-        </Modal>
+              <LinkContainer to="/form">
+                <Button variant="primary">
+                  <i className="fas fa-arrow-right" /> Continuer
+                </Button>
+              </LinkContainer>
+            </Modal.Footer>
+          </Modal>
           <footer className="fixed-bottom">
             <SpeedDial />
           </footer>
+        </div>
       </div>
-              </div>
-
     );
   }
 }
