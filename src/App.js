@@ -71,9 +71,6 @@ class App extends Component {
 
   render() {
     const { neededSpecialist, patientAdult } = this.state;
-
-    console.log(this.state.location);
-
     return (
       <div className="App">
         <header>

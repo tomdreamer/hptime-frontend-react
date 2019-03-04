@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker.js";
+import UserMarker from "./UserMarker.js";
 import PopUp from "./PopUp";
 
 class SingleMap extends Component {
@@ -10,6 +11,8 @@ class SingleMap extends Component {
     super(props);
     this.state = {
       hospitalArray: [],
+      structureArray: [],
+      altStructure: [],
       newstructureArray: [],
       viewport: {
         latitude: 48.85341,
@@ -32,7 +35,10 @@ class SingleMap extends Component {
           longitude={oneItem.longitude}
           latitude={oneItem.latitude}
         >
-          <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
+          <MapMarker
+            hospitalArray={this.props.hospitalArray}
+            onClick={() => this.setState({ popupInfo: oneItem })}
+          />
         </Marker>
       );
     });
@@ -50,13 +56,19 @@ class SingleMap extends Component {
 
   renderPopup() {
     const { popupInfo } = this.state;
-    // console.log("renderpopup", this.props.hospitalArray);
-
-    // if there is info being passed to popup, it will show
     return (
       popupInfo && (
         <PopUp popupInfo={popupInfo} onCloseClick={() => this.clearPopup()} />
       )
+    );
+  }
+
+  // user current position (static atm)
+  renderUserMarker(position) {
+    return (
+      <Marker latitude={48.871632} longitude={2.31091}>
+        <UserMarker />
+      </Marker>
     );
   }
 
@@ -72,6 +84,8 @@ class SingleMap extends Component {
         height={window.innerHeight - 150}
         onViewportChange={this._onViewportChange}
       >
+        {/* user marker  */}
+        {this.renderUserMarker()}
         {/* calling method below with Marker */}
         {this.renderMapAndMarkers()}
         {/* displaying PopUp */}

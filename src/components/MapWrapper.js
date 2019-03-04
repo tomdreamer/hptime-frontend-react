@@ -19,7 +19,7 @@ class MapWrapper extends Component {
       altStructure: [],
       // newstructureArray render all the filtered hospitals from the firltering process
       newstructureArray: [],
-
+      // structureArray renders all hospitals and alt structures in existance (full array)
       structureArray: []
     };
   }
@@ -27,7 +27,7 @@ class MapWrapper extends Component {
   componentDidMount() {
     // get data from our backend Express API (localhost:2999)
     getHospitalList().then(response => {
-      console.log("Structure list", response.data);
+      // console.log("Structure list", response.data);
       const { neededSpecialist, patientType } = this.props;
       const hospitalArray = response.data;
       const newstructureArray = hospitalArray.filter(el => {
@@ -42,7 +42,7 @@ class MapWrapper extends Component {
         return el.filtered;
       });
 
-      console.log({ hospitalArray, newstructureArray });
+      //      console.log({ structureArray });
 
       this.setState({ hospitalArray, newstructureArray });
     });
@@ -65,7 +65,6 @@ class MapWrapper extends Component {
     return (
       <section className="MapWrapper">
         <Row>
-          
           <Col
             sm={{ span: 12, order: 2 }}
             md={{ span: 4, order: 2 }}
@@ -74,22 +73,19 @@ class MapWrapper extends Component {
             <div id="accordion">
               <div className="card border-bottom-0">
                 <div className="card-header" id="headingOne">
-                  
-                    <Button
-                      className="btn btn-primary btn-lg btn-block"
-                      
-                      onClick={() => this.setState({ open: !open })}
-                      aria-controls="example-collapse-text"
-                      aria-expanded={open}
-                    >
-                      {/* condition to change the voir map button to voir condition over the propositions list */}
-                      {open ? (
-                        <p className="clollapsBtnText">VOIR MAP</p>
-                      ) : (
-                        <p className="clollapsBtnText">VOIR PROPOSITIONS</p>
-                      )}
-                    </Button>
-                  
+                  <Button
+                    className="btn btn-primary btn-lg btn-block"
+                    onClick={() => this.setState({ open: !open })}
+                    aria-controls="example-collapse-text"
+                    aria-expanded={open}
+                  >
+                    {/* condition to change the voir map button to voir condition over the propositions list */}
+                    {open ? (
+                      <p className="clollapsBtnText">VOIR MAP</p>
+                    ) : (
+                      <p className="clollapsBtnText">VOIR PROPOSITIONS</p>
+                    )}
+                  </Button>
                 </div>
                 <Collapse
                   in={this.state.open}
@@ -157,14 +153,16 @@ class MapWrapper extends Component {
                   </div>
                 </Collapse>
               </div>
-              </div>
+            </div>
           </Col>
-          
+
           <Col sm={{ span: 12, order: 2 }} md={{ span: 8, order: 2 }}>
             {/* pass name of results array */}
             <SingleMap
               hospitalArray={this.state.hospitalArray}
+              altStructure={this.state.altStructure}
               newstructureArray={this.state.newstructureArray}
+              structureArray={this.state.structureArray}
             />
           </Col>
         </Row>
