@@ -12,7 +12,6 @@ import NotFound from "./components/NotFound.js";
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Questions from "./components/Questions.js";
-import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
 import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
@@ -74,7 +73,7 @@ class App extends Component {
     const { neededSpecialist, patientAdult } = this.state;
     return (
       <div className="App">
-        <Container>
+        <>
           <header>
             <Navigation
               currentUser={this.state.currentUser}
@@ -138,7 +137,7 @@ class App extends Component {
           <footer className="fixed-bottom">
             <SpeedDial />
           </footer>
-        </Container>
+        </>
       </div>
     );
   }
