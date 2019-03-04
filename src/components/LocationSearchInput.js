@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import "./LocationSearchInput.scss";
@@ -16,7 +17,8 @@ class LocationSearchInput extends React.Component {
         longitude: null
       },
       addressInputValue: "",
-      isLoadingCoordinates: false
+      isLoadingCoordinates: false,
+      toMapResults: false
     };
 
     // binds for events
@@ -25,6 +27,7 @@ class LocationSearchInput extends React.Component {
     this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
     this.getUserLocationBrowser = this.getUserLocationBrowser.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.goToResult = this.goToResult.bind(this);
   }
 
   // load Google API for autocompletion on mount
@@ -68,9 +71,12 @@ class LocationSearchInput extends React.Component {
 
     // TODO lifting state up top
     this.props.onGeolocation(latitude, longitude);
+
+    // redirect user to map with filtered results
+    this.goToResult();
   }
 
-  // get user coords with HTML5 browser feature on click
+  // get user coords with HTML5 browser feature on click, redirect when filled
   getUserLocationBrowser() {
     const { currentUserPosition, isLoadingCoordinates } = this.state;
 
@@ -97,6 +103,9 @@ class LocationSearchInput extends React.Component {
               position.coords.latitude,
               position.coords.longitude
             );
+
+            // redirect user to map with filtered results
+            this.goToResult();
           },
           error => {
             this.setState({
@@ -140,7 +149,19 @@ class LocationSearchInput extends React.Component {
     //end
   }
 
+  // redirect to map when address found
+  goToResult() {
+    // TODO Need UX feedback, Users may need time change the address (may taking them to the map too fast)
+    // intermediate button > submit
+    this.setState({ toMapResults: true });
+  }
+
   render() {
+    // redirect to map when address found
+    if (this.state.toMapResults === true) {
+      return <Redirect to="/map" />;
+    }
+
     return (
       <div className="input-group">
         <FormControl
@@ -157,13 +178,15 @@ class LocationSearchInput extends React.Component {
         />
 
         <div className="input-group-append">
-          <Button variant="outline-secondary">
-            {this.state.isLoadingCoordinates ? (
+          {this.state.isLoadingCoordinates ? (
+            <Button variant="info" onClick={this.goToResult}>
               <i className="fas fa-circle-notch fa-spin" />
-            ) : (
+            </Button>
+          ) : (
+            <Button variant="outline-secondary">
               <i className="fas fa-search" />
-            )}
-          </Button>
+            </Button>
+          )}
         </div>
       </div>
     );
