@@ -9,7 +9,7 @@ class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      structureArray: [],
+      hospitalArray: [],
       newstructureArray: [],
       viewport: {
         latitude: 48.85341,
@@ -24,21 +24,23 @@ class SingleMap extends Component {
   }
 
   renderMapAndMarkers() {
-    const structureArray = this.props.structureArray;
-    let resultArray = structureArray.map((oneItem, index) => {
+    const hospitalArray = this.props.hospitalArray;
+    let resultArray = hospitalArray.map((oneItem, index) => {
       return (
-        <div>
-          <Marker
-            key={`marker-${index}`}
-            longitude={oneItem.longitude}
-            latitude={oneItem.latitude}
-          >
-            <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
-          </Marker>
-        </div>
+        <Marker
+          key={`marker-${index}`}
+          longitude={oneItem.longitude}
+          latitude={oneItem.latitude}
+        >
+          <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
+        </Marker>
       );
     });
     return resultArray;
+  }
+
+  clearPopup() {
+    this.setState({ popupInfo: null });
   }
 
   // update map on window size
@@ -47,11 +49,15 @@ class SingleMap extends Component {
   }
 
   renderPopup() {
-    const { popupInfo } = this.props.structureArray;
-    console.log("renderpopup", this.props.structureArray);
+    const { popupInfo } = this.state;
+    // console.log("renderpopup", this.props.hospitalArray);
 
     // if there is info being passed to popup, it will show
-    return popupInfo && <PopUp popupInfo={this.state.popupInfo} />;
+    return (
+      popupInfo && (
+        <PopUp popupInfo={popupInfo} onCloseClick={() => this.clearPopup()} />
+      )
+    );
   }
 
   render() {

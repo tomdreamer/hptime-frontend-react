@@ -5,6 +5,7 @@ import { Popup } from "react-map-gl";
 class PopUp extends Component {
   render() {
     const { popupInfo } = this.props;
+
     return (
       <Popup
         className="PopUp"
@@ -14,10 +15,9 @@ class PopUp extends Component {
         // functionality
         closeOnClick={false}
         anchor="top"
-        onClose={() => this.setState({ popupInfo: null })}
+        onClose={this.props.onCloseClick}
       >
-        {/* <div> 
-        let popupInfo = {{this.props.popupName}}</div> */}
+        <p>{popupInfo.group}</p>
       </Popup>
     );
   }

@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import structuresAlternatives from "../structuresAlternatives.json";
 import { getHospitalList } from "../api.js";
-import { finished } from "stream";
 
 class MapWrapper extends Component {
   constructor(props) {
@@ -15,11 +14,11 @@ class MapWrapper extends Component {
       newstructureArray: structuresAlternatives.slice(0, 5),
       open: true,
       //hospitalArray renders all the hospital from the backend
-      hospitalArray:[],
+      hospitalArray: [],
       //Will render all the alternative structure from the backend
-      altStructure:[],
+      altStructure: [],
       // newstructureArray render all the filtered hospitals from the firltering process
-      newstructureArray:[],
+      newstructureArray: [],
 
       structureArray: []
     };
@@ -33,16 +32,19 @@ class MapWrapper extends Component {
       const hospitalArray = response.data;
       const newstructureArray = hospitalArray.filter(el => {
         //filtered is the object that allow us to know if the hospital is or not in the proposition list
-        el.filtered = el.availablePoles.some(pole => pole.pathology === neededSpecialist &&
-          (pole.patientType === patientType || pole.patientType === "Universel"));
+        el.filtered = el.availablePoles.some(
+          pole =>
+            pole.pathology === neededSpecialist &&
+            (pole.patientType === patientType ||
+              pole.patientType === "Universel")
+        );
 
         return el.filtered;
       });
 
-      console.log({ hospitalArray, newstructureArray })
+      console.log({ hospitalArray, newstructureArray });
 
       this.setState({ hospitalArray, newstructureArray });
-
     });
     // getAltStructureList().then(response => {
     //   console.log("Aternative Structure list", response.data);
@@ -78,7 +80,7 @@ class MapWrapper extends Component {
                       aria-controls="example-collapse-text"
                       aria-expanded={open}
                     >
-                    {/* condition to change the voir map button to voir condition over the propositions list */}
+                      {/* condition to change the voir map button to voir condition over the propositions list */}
                       {open ? (
                         <p className="clollapsBtnText">VOIR MAP</p>
                       ) : (
@@ -92,10 +94,9 @@ class MapWrapper extends Component {
                   className="collapse show dimension"
                 >
                   <div aria-labelledby="headingOne" data-parent="#accordion">
-
-                  {/* ---------------------------------------------------------- */}
-                  {/* this table display the structure propostions into the collaps button list */}
-                  {/* ---------------------------------------------------------- */}  
+                    {/* ---------------------------------------------------------- */}
+                    {/* this table display the structure propostions into the collaps button list */}
+                    {/* ---------------------------------------------------------- */}
                     <table className="table scrolling">
                       <thead className="thead-light">
                         <tr>
@@ -155,12 +156,14 @@ class MapWrapper extends Component {
               </div>
             </div>
           </Col>
-          
+
           <Col sm={{ span: 12, order: 2 }} md={{ span: 9, order: 2 }}>
             {/* pass name of results array */}
-            <SingleMap dataFrombackend={this.state.structureArray} />
+            <SingleMap
+              hospitalArray={this.state.hospitalArray}
+              newstructureArray={this.state.newstructureArray}
+            />
           </Col>
-        
         </Row>
       </section>
     );
