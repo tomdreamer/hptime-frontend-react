@@ -9,7 +9,8 @@ class SingleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayedItems: [],
+      hospitalArray: [],
+      newstructureArray: [],
       viewport: {
         latitude: 48.85341,
         longitude: 2.3488,
@@ -23,21 +24,23 @@ class SingleMap extends Component {
   }
 
   renderMapAndMarkers() {
-    const argumentContainer = this.props.dataFrombackend;
-    let shownArray = argumentContainer.map((oneItem, index) => {
+    const hospitalArray = this.props.hospitalArray;
+    let resultArray = hospitalArray.map((oneItem, index) => {
       return (
-        <div>
-          <Marker
-            key={`marker-${index}`}
-            longitude={oneItem.longitude}
-            latitude={oneItem.latitude}
-          >
-            <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
-          </Marker>
-        </div>
+        <Marker
+          key={`marker-${index}`}
+          longitude={oneItem.longitude}
+          latitude={oneItem.latitude}
+        >
+          <MapMarker onClick={() => this.setState({ popupInfo: oneItem })} />
+        </Marker>
       );
     });
-    return shownArray;
+    return resultArray;
+  }
+
+  clearPopup() {
+    this.setState({ popupInfo: null });
   }
 
   // update map on window size
@@ -46,15 +49,20 @@ class SingleMap extends Component {
   }
 
   renderPopup() {
-    console.log("here it is");
-
     const { popupInfo } = this.state;
+    // console.log("renderpopup", this.props.hospitalArray);
+
     // if there is info being passed to popup, it will show
-    return popupInfo && <PopUp popupInfo={popupInfo} />;
+    return (
+      popupInfo && (
+        <PopUp popupInfo={popupInfo} onCloseClick={() => this.clearPopup()} />
+      )
+    );
   }
 
   render() {
     const { viewport } = this.state;
+
     return (
       <MapGL
         {...viewport}
