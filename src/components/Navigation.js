@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import LocationSearchInput from "./LocationSearchInput.js";
 
 class Navigation extends Component {
+  // state = { }
+
   render() {
     return (
       <Container>
@@ -26,6 +28,27 @@ class Navigation extends Component {
               <LinkContainer to="/geolocation">
                 <Nav.Link>Geoloc</Nav.Link>
               </LinkContainer>
+              {this.props.currentUser ? (
+                <span>
+                  <LinkContainer to="/map">
+                    <Nav.Link onClick={() => this.props.logoutClick()}>
+                      Log Out{" "}
+                    </Nav.Link>
+                  </LinkContainer>
+                </span>
+              ) : (
+                <span>
+                  {" "}
+                  <LinkContainer to="/signup">
+                    <Nav.Link>S'enregistrer</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <Nav.Link>Se connecter</Nav.Link>
+                  </LinkContainer>
+                </span>
+              )}
+
+              {/* <button onClick={() => this.props.logoutClick()}>Log Out</button> */}
             </Nav>
             <Form inline>
               <LocationSearchInput />

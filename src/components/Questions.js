@@ -4,6 +4,7 @@ import PathologyQuestions from "./PathologyQuestions";
 import AdultQuestion from "./AdultQuestion";
 import StepWizard from "react-step-wizard";
 import UserLocalisation from "./UserLocalisation.js";
+import MapWrapper from "./MapWrapper";
 class Questions extends Component {
   render() {
     return (
@@ -16,6 +17,7 @@ class Questions extends Component {
           updatePatient={event => this.props.updatePatient(event)}
         />
         <UserLocalisation />
+        <MapWrapper />
       </StepWizard>
     );
   }

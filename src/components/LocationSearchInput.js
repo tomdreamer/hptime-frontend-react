@@ -137,6 +137,7 @@ class LocationSearchInput extends React.Component {
           // ask browser coordinates
           onClick={() => {
             this.getUserLocationBrowser();
+            // this.props.nextStep();
           }}
           value={this.state.inputValue}
           // autocomplete on type
