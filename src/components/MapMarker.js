@@ -12,8 +12,7 @@ const pinStyle = {
 
 class MapMarker extends PureComponent {
   render() {
-    //const { size = 20, onClick } = this.props;
-    const { size = 20 } = this.props;
+    const { size = 20, onClick } = this.props;
 
     return (
       <svg
@@ -24,7 +23,7 @@ class MapMarker extends PureComponent {
           ...pinStyle,
           transform: `translate(${-size / 2}px,${-size}px)`
         }}
-        // onClick={onClick}
+        onClick={onClick}
       >
         <path d={ICON} />
       </svg>

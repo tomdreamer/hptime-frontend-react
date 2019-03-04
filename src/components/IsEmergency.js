@@ -3,6 +3,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import SpeedDial from "./SpeedDial.js";
+
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
 
@@ -32,48 +34,54 @@ class IsEmergency extends PureComponent {
 
   render() {
     return (
-      <Row>
-        <Col>
-          {/* <Button variant="primary" onClick={this.handleShow}>
+      <div>
+        <Row>
+          <Col>
+            {/* <Button variant="primary" onClick={this.handleShow}>
             Launch demo modal
           </Button> */}
 
-          <Modal
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            show={this.state.show}
-            onHide={this.handleClose}
-          >
-            <Modal.Header>
-              <Modal.Title id="contained-modal-title-vcenter">
-                Est-ce une urgence vitale?
-              </Modal.Title>
-            </Modal.Header>
+            <Modal
+              size="md"
+              aria-labelledby="contained-modal-title-vcenter"
+              show={this.state.show}
+              onHide={this.handleClose}
+            >
+              <Modal.Header>
+                <Modal.Title id="contained-modal-title-vcenter">
+                  Est-ce une urgence vitale?
+                </Modal.Title>
+              </Modal.Header>
 
-            <Modal.Body>
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae.
-              </p>
-            </Modal.Body>
+              <Modal.Body>
+                <p>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium, totam rem aperiam, eaque
+                  ipsa quae.
+                </p>
+              </Modal.Body>
 
-            <Modal.Footer>
-              <a href="tel:+3315">
-                <Button variant="danger">
-                  <i className="fas fa-phone" /> Appeller le SAMU (15)
-                </Button>
-              </a>
+              <Modal.Footer>
+                <a href="tel:+3315">
+                  <Button variant="danger">
+                    <i className="fas fa-phone" /> Appeller le SAMU (15)
+                  </Button>
+                </a>
 
-              <LinkContainer to="/form">
-                <Button variant="primary">
-                  <i className="fas fa-arrow-right" /> Continuer
-                </Button>
-              </LinkContainer>
-            </Modal.Footer>
-          </Modal>
-        </Col>
-      </Row>
+                <LinkContainer to="/form">
+                  <Button variant="primary">
+                    <i className="fas fa-arrow-right" /> Continuer
+                  </Button>
+                </LinkContainer>
+              </Modal.Footer>
+            </Modal>
+          </Col>
+        </Row>
+
+        <footer className="fixed-bottom">
+          <SpeedDial />
+        </footer>
+      </div>
     );
   }
 }

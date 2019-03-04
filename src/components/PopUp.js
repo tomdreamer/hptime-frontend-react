@@ -4,18 +4,20 @@ import { Popup } from "react-map-gl";
 
 class PopUp extends Component {
   render() {
+    const { popupInfo } = this.props;
     return (
       <Popup
-        latitude={this.props.latitude}
-        longitude={this.props.longitude}
-        openButton={true}
-        closeButton={true}
+        className="PopUp"
+        // info passed
+        longitude={popupInfo.longitude}
+        latitude={popupInfo.latitude}
+        // functionality
         closeOnClick={false}
         anchor="top"
-        className="PopUp"
         onClose={() => this.setState({ popupInfo: null })}
       >
-        <div>{this.props.popupName}</div>
+        {/* <div> 
+        let popupInfo = {{this.props.popupName}}</div> */}
       </Popup>
     );
   }
