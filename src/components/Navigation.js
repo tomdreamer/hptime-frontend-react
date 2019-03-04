@@ -24,22 +24,22 @@ class Navigation extends Component {
                 <Nav.Link>Map Component</Nav.Link>
               </LinkContainer>
               {this.props.currentUser ? (
-                <span>
+                <>
                   <LinkContainer to="/map">
                     <Nav.Link onClick={() => this.props.logoutClick()}>
-                      Log Out{" "}
+                      Log Out
                     </Nav.Link>
                   </LinkContainer>
-                </span>
+                </>
               ) : (
-                <span>
+                <>
                   <LinkContainer to="/signup">
                     <Nav.Link>S'enregistrer</Nav.Link>
                   </LinkContainer>
                   <LinkContainer to="/login">
                     <Nav.Link>Se connecter</Nav.Link>
                   </LinkContainer>
-                </span>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>
