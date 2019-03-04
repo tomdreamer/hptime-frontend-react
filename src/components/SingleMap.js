@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker.js";
+import UserMarker from "./UserMarker.js";
 import PopUp from "./PopUp";
 
 class SingleMap extends Component {
@@ -62,6 +63,15 @@ class SingleMap extends Component {
     );
   }
 
+  // user current position (static atm)
+  renderUserMarker(position) {
+    return (
+      <Marker latitude={48.871632} longitude={2.31091}>
+        <UserMarker />
+      </Marker>
+    );
+  }
+
   render() {
     const { viewport } = this.state;
 
@@ -71,9 +81,11 @@ class SingleMap extends Component {
         mapboxApiAccessToken="pk.eyJ1IjoicHJvamVjdDNpcm9uaGFjayIsImEiOiJjanNpdzA4aXcxemloNDRueDBkaXlkZDh0In0.bbNCzs-0njORLSHu9bXeDQ"
         mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
         width="100%"
-        height={window.innerHeight - 56}
+        height={window.innerHeight - 150}
         onViewportChange={this._onViewportChange}
       >
+        {/* user marker  */}
+        {this.renderUserMarker()}
         {/* calling method below with Marker */}
         {this.renderMapAndMarkers()}
         {/* displaying PopUp */}

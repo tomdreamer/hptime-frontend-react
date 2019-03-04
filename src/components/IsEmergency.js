@@ -1,6 +1,4 @@
 import React, { PureComponent } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import SpeedDial from "./SpeedDial.js";
@@ -27,60 +25,67 @@ class IsEmergency extends PureComponent {
     this.setState({ show: true });
   }
 
-  // open on page load
-  componentDidMount() {
-    this.handleShow();
-  }
-
   render() {
     return (
-      <div>
-        <Row>
-          <Col>
-            {/* <Button variant="primary" onClick={this.handleShow}>
-            Launch demo modal
-          </Button> */}
-
-            <Modal
-              size="md"
-              aria-labelledby="contained-modal-title-vcenter"
-              show={this.state.show}
-              onHide={this.handleClose}
-            >
-              <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter">
-                  Est-ce une urgence vitale?
-                </Modal.Title>
-              </Modal.Header>
-
-              <Modal.Body>
+      <div className="bg-light">
+        <div className="bg-header w-75 mx-auto d-flex">
+          <div className="d-flex justify-content-start pt-5"> </div>
+          <h1 className="display-3">Medirect</h1>
+          <div className="align-self-end">
+            <div className="p-5 d-flex justify-content-start flex-column">
+              <div className="px-5">
+                <Button variant="primary" size="lg" onClick={this.handleShow}>
+                  Commencer
+                </Button>
+              </div>
+              <div className="px-5 p-2 w-75">
                 <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam, eaque
-                  ipsa quae.
+                  Usce lacinia viverra leo non dignissim. Morbi ac lectus vel
+                  arcu commodo tincidunt nec et mi. Aliquam tellus libero,
+                  aliquam id commodo ut.
                 </p>
-              </Modal.Body>
+              </div>
+            </div>
+          </div>
 
-              <Modal.Footer>
-                <a href="tel:+3315">
-                  <Button variant="danger">
-                    <i className="fas fa-phone" /> Appeller le SAMU (15)
-                  </Button>
-                </a>
+          <Modal
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            show={this.state.show}
+            onHide={this.handleClose}
+          >
+            <Modal.Header>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Est-ce une urgence vitale?
+              </Modal.Title>
+            </Modal.Header>
 
-                <LinkContainer to="/form">
-                  <Button variant="primary">
-                    <i className="fas fa-arrow-right" /> Continuer
-                  </Button>
-                </LinkContainer>
-              </Modal.Footer>
-            </Modal>
-          </Col>
-        </Row>
+            <Modal.Body>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae.
+              </p>
+            </Modal.Body>
 
-        <footer className="fixed-bottom">
-          <SpeedDial />
-        </footer>
+            <Modal.Footer>
+              <a href="tel:+3315">
+                <Button variant="danger">
+                  <i className="fas fa-phone" /> Appeller le SAMU (15)
+                </Button>
+              </a>
+
+              <LinkContainer to="/form">
+                <Button variant="primary">
+                  <i className="fas fa-arrow-right" /> Continuer
+                </Button>
+              </LinkContainer>
+            </Modal.Footer>
+          </Modal>
+          <footer className="fixed-bottom">
+            <SpeedDial />
+          </footer>
+        </div>
       </div>
     );
   }
