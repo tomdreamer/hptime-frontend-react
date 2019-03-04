@@ -8,14 +8,12 @@ import SpeedDial from "./components/SpeedDial.js";
 import Results from "./components/Results.js";
 import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
-//Css/styling
+//Styling
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Questions from "./components/Questions.js";
-import SingleMap from "./components/SingleMap";
 import Container from "react-bootstrap/Container.js";
 import "mapbox-gl/dist/mapbox-gl.css";
-import GeolocationCoodinates from "./components/GeolocationCoodinates.js";
 import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import { getLogout } from "./api";
@@ -36,7 +34,7 @@ class App extends Component {
       patientGender: "",
       neededSpecialist: "",
       patientAdult: "",
-      patientLocalization: ""
+      patientLocation: { latitude: null, longitude: null }
     };
   }
   updateUser(newUser) {
@@ -55,6 +53,13 @@ class App extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
+
+  updatePatientPosition(latitude, longitude) {
+    this.setState({
+      patientLocation: { latitude, longitude }
+    });
+  }
+
   logoutClick() {
     getLogout()
       .then(response => {
@@ -64,9 +69,9 @@ class App extends Component {
       })
       .catch(err => err);
   }
+
   render() {
     const { neededSpecialist, patientAdult } = this.state;
-    console.log(neededSpecialist);
     return (
       <div className="App">
         <Container>
@@ -91,13 +96,15 @@ class App extends Component {
               }}
             />
             <Route path="/results" component={Results} />
-            <Route path="/geolocation" component={GeolocationCoodinates} />
             <Route
               path="/form"
               render={() => {
                 return (
                   <Questions
                     updatePatient={event => this.updatePatient(event)}
+                    onGeolocation={(latitude, longitude) =>
+                      this.updatePatientPosition(latitude, longitude)
+                    }
                   />
                 );
               }}
@@ -125,7 +132,7 @@ class App extends Component {
               }}
             />
 
-            <Route path="/404" component={NotFound} />
+            <Route component={NotFound} />
           </Switch>
 
           <footer className="fixed-bottom">
