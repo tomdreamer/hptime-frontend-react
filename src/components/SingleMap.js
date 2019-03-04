@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./SingleMap.scss";
 import MapGL, { Marker } from "react-map-gl";
 import MapMarker from "./MapMarker.js";
+import UserMarker from "./UserMarker.js";
 import PopUp from "./PopUp";
 
 class SingleMap extends Component {
@@ -60,6 +61,15 @@ class SingleMap extends Component {
     );
   }
 
+  // user current position (static atm)
+  renderUserMarker(position) {
+    return (
+      <Marker latitude={48.871632} longitude={2.31091}>
+        <UserMarker />
+      </Marker>
+    );
+  }
+
   render() {
     const { viewport } = this.state;
 
@@ -72,6 +82,8 @@ class SingleMap extends Component {
         height={window.innerHeight - 56}
         onViewportChange={this._onViewportChange}
       >
+        {/* user marker  */}
+        {this.renderUserMarker()}
         {/* calling method below with Marker */}
         {this.renderMapAndMarkers()}
         {/* displaying PopUp */}
