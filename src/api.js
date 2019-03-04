@@ -21,6 +21,7 @@ export function getHospitalList() {
 }
 export function getAltStructureList() {
   return backendApi.get("api/alternatives-structures/?size=20?offset=20").catch(errorHandler);
+}
 
 export function postSignUp(userSubmission) {
   return backendApi
