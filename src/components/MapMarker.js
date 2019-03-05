@@ -6,7 +6,7 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 const hospitalUnfiltered = {
   cursor: "pointer",
-  fill: "e37222",
+  fill: "green",
   stroke: "none",
   opacity: 0.25,
   size: 10
@@ -14,7 +14,7 @@ const hospitalUnfiltered = {
 
 const hospitalFiltered = {
   cursor: "pointer",
-  fill: "e37222",
+  fill: "yellow",
   stroke: "none",
   opacity: 1,
   size: 20
@@ -22,7 +22,7 @@ const hospitalFiltered = {
 
 const structureUnfiltered = {
   cursor: "pointer",
-  fill: "blue",
+  fill: "black",
   stroke: "none",
   opacity: 0.25,
   size: 10
@@ -30,7 +30,7 @@ const structureUnfiltered = {
 
 const structureFiltered = {
   cursor: "pointer",
-  fill: "blue",
+  fill: "red",
   stroke: "none",
   opacity: 1,
   size: 20
@@ -39,8 +39,10 @@ const structureFiltered = {
 class MapMarker extends PureComponent {
   render() {
     const { size = 20, onClick } = this.props;
-    const isHospital = this.props.hospitalArray;
-    const isFiltered = this.props.filtered;
+    const isHospital = this.props.oneItem.group;
+    //  if false then not a hospital
+    const isFiltered = this.props.oneItem.filtered;
+    // if false then unfiltered
 
     // console.log(isHospital);
     if (isHospital && isFiltered) {
