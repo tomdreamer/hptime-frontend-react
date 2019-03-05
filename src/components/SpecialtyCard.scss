@@ -1,6 +1,6 @@
 // later import sass viewport if anychange made to bootstrap default value hardcoded here
 img.picto {
-  max-width: 100px;
+  width: 80px;
 }
 div.card:hover .card-header {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
@@ -27,4 +27,8 @@ div.card:hover .card-header {
 #PathologyCards .card {
   border-right: 3px solid;
   border-bottom: 3px solid;
+}
+
+.customOrangeUgly {
+  border-radius: 3px 0 0 1px !important;
 }

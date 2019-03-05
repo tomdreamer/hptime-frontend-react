@@ -9,7 +9,7 @@ import main from "../images/Pictos/plaie_de_main.svg";
 import oeil from "../images/Pictos/ophtalmologie.svg";
 import orl from "../images/Pictos/ORL.png";
 import anus from "../images/Pictos/anus.svg";
-import psychiatrie from "../images/Pictos/psychiatrie.svg";
+import psychiatrie from "../images/Pictos/Psychiatrie.svg";
 import gorge from "../images/Pictos/gorge.svg";
 
 class PathologyQuestions extends Component {
@@ -72,7 +72,7 @@ class PathologyQuestions extends Component {
           "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
       },
       {
-        bodyPart: "Anus",
+        bodyPart: "Côlon",
         neededSpecialist: "Proctology",
         image: anus,
         infoTitle: "",
@@ -96,8 +96,10 @@ class PathologyQuestions extends Component {
     ];
     return (
       <section id="PathologyCards">
-        <p className="lead">Où se situe la douleur ?</p>
-        <hr className="mb-5" />
+        <p className="lead bg-primary text-center font-weight-bold text-white py-2">
+          Où se situe la douleur ?
+        </p>
+        {/* <hr className="mb-5" /> */}
         <ul className="list-unstyled">
           {specialtyList.map((oneSpecialty, index) => {
             return (

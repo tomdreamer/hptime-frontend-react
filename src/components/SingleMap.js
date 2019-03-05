@@ -17,7 +17,7 @@ class SingleMap extends Component {
       viewport: {
         latitude: 48.85341,
         longitude: 2.3488,
-        zoom: 9.5,
+        zoom: 10,
         pitch: 45,
         bearing: -17.6
       },
@@ -30,8 +30,8 @@ class SingleMap extends Component {
   }
 
   renderMapAndMarkers() {
-    const hospitalArray = this.props.hospitalArray;
-    let resultArray = hospitalArray.map((oneItem, index) => {
+    const structureArray = this.props.structureArray;
+    let resultArray = structureArray.map((oneItem, index) => {
       return (
         <Marker
           key={`marker-${index}`}
@@ -39,7 +39,8 @@ class SingleMap extends Component {
           latitude={oneItem.latitude}
         >
           <MapMarker
-            hospitalArray={this.props.hospitalArray}
+            structureArray={this.props.structureArray}
+            oneItem={oneItem}
             onClick={() => this.setState({ popupInfo: oneItem })}
           />
         </Marker>
@@ -100,6 +101,7 @@ class SingleMap extends Component {
   render() {
     const { viewport } = this.state;
     const { userLocation } = this.props;
+    console.log(this.state.structureArray, "coucou");
     return (
       <MapGL
         {...viewport}
