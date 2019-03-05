@@ -57,11 +57,6 @@ class SingleMap extends Component {
     this.setState({ viewport });
   }
 
-  // update map on window size
-  _onViewportChangeNew(latitude, longitude) {
-    this.setState({ viewport: { latitude: latitude, longitude: longitude } });
-  }
-
   renderPopup() {
     const { popupInfo } = this.state;
     return (
