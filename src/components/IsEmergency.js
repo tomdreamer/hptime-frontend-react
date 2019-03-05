@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import SpeedDial from "./SpeedDial.js";
 
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
@@ -28,48 +27,50 @@ class IsEmergency extends PureComponent {
   render() {
     return (
       <>
-        <section className="bg-light pt-2">
-          <div className="container bg-header">
+        <section className="bg-light">
+          <div className="container">
             <div className="row">
-              <div className="col-lg-12">
-                <h1 className="display-3">
-                  <span className="text-primary">Med</span>Direct
+              <div className="col-lg-12 pt-4">
+                <h1 className="display-3 pt-4">
+                  <span className="text-primary">Med</span>
+                  <span className="text-muted">Direct</span>
                 </h1>
               </div>
-              {/* speech and CTA */}
-              <div className="col-lg-4 align-self-center pt-2">
-                <div className="py-5 pl-5">
-                  <p className="pt-4 mt-5">
-                    MedDirect connects you with the best emergency health care
-                    suited for <i>your</i> needs. Find wait times at health
-                    centers nearby and access alternative emergency centers with
-                    little to no wait!
-                  </p>
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="mt-3"
-                    onClick={this.handleShow}
-                  >
-                    Commencer
-                  </Button>
-                </div>
-              </div>
               {/* illustration */}
-              <div className="col-lg-8 align-self-center">
+              <div className="col-lg-8  order-first order-md-1">
                 <img
                   src="/images/illustrations/medicine.svg"
-                  alt="Calm and soothing illustration of two doctors waiting for you in an hospital"
-                  className="img-fluid pb-3"
+                  alt="Illustration calme et apaisante de deux docteurs dans un hopital"
+                  className="img-fluid"
                 />
+              </div>
+              {/* speech and CTA */}
+              <div className="col-lg-4 py-4 pr-0">
+                <p className="lead mb-3">
+                  MedDirect vous aide a trouver les meilleurs soins d'urgence
+                  adaptés à vos besoins.
+                </p>
+                <p className="text-muted">
+                  Estimez les temps d'attente dans les centres de soins à
+                  proximité et trouvez des alternatives sans attendre!
+                </p>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="mt-3"
+                  onClick={this.handleShow}
+                >
+                  Commencer
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
         <Modal
-          size="md"
+          {...this.props}
           aria-labelledby="contained-modal-title-vcenter"
+          centered
           show={this.state.show}
           onHide={this.handleClose}
         >
@@ -81,9 +82,8 @@ class IsEmergency extends PureComponent {
 
           <Modal.Body>
             <p>
-              Please only click continue if your medical emergency is <b>NOT</b>{" "}
-              immediatly life threatening to you or those around you. MedDirect
-              should not be used to self diagnose health issues.
+              Si vous pensez que votre vie ou celle d'un proche est en danger,
+              appellez le SAMU, sinon merci de <b>cliquer sur Continuer.</b>
             </p>
           </Modal.Body>
 
@@ -102,8 +102,15 @@ class IsEmergency extends PureComponent {
           </Modal.Footer>
         </Modal>
 
-        <footer className="fixed-bottom">
-          <SpeedDial />
+        <footer className="bg-light">
+          <div className="container">
+            <div className="row">
+              <p class="small text-muted p-5">
+                Done with love by Christina Bailey, Christophe Begue, Thomas
+                Lesage Samuel Bouaroua and Raphael Veil.
+              </p>
+            </div>
+          </div>
         </footer>
       </>
     );
