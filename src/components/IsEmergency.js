@@ -40,9 +40,10 @@ class IsEmergency extends PureComponent {
               </div>
               <div className="px-5 p-2 w-75">
                 <p>
-                  Usce lacinia viverra leo non dignissim. Morbi ac lectus vel
-                  arcu commodo tincidunt nec et mi. Aliquam tellus libero,
-                  aliquam id commodo ut.
+                  MedDirect connects you with the best emergency health care
+                  suited for <i>your</i> needs. Find wait times at health
+                  centers nearby and access alternative emergency centers with
+                  little to no wait!
                 </p>
               </div>
             </div>
@@ -62,9 +63,7 @@ class IsEmergency extends PureComponent {
 
             <Modal.Body>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae.
+                Please only click continue if your medical emergency is <b>NOT</b> immediatly life threatening to you or those around you. MedDirect should not be used to self diagnose health issues.
               </p>
             </Modal.Body>
 
