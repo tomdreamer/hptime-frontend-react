@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 //Components
 import Navigation from "./components/Navigation.js";
 import IsEmergency from "./components/IsEmergency.js";
-import Results from "./components/Results.js";
 import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
 //Styling
@@ -95,7 +94,6 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/results" component={Results} />
           <Route path="/geoloc" component={GeolocationPoint} />
           <Route
             path="/form"
