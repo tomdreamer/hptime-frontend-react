@@ -6,7 +6,7 @@ import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { getHospitalList, getAltStructureList } from "../api.js";
+import { getHospitalList, getAltStructureList, getHospitalsbyLocation, getAtlStructuresbyLocation } from "../api.js";
 
 class MapWrapper extends Component {
   constructor(props) {
@@ -25,10 +25,16 @@ class MapWrapper extends Component {
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
   componentDidMount() {
+    
+    const userLocation=this.props.userLocation
+    
     // get data from our backend Express API (localhost:2999)
+    if(userLocation){
+      console.log(userLocation.latitude)
+    console.log(userLocation.longitude)
     axios.all([
-      getHospitalList(),
-      getAltStructureList()
+      getHospitalsbyLocation(userLocation.latitude, userLocation.longitude),
+      getAtlStructuresbyLocation(userLocation.latitude, userLocation.longitude)
     ])
     .then(axios.spread((responseHos, responseAlt) => {
       // console.log("Structure list", response.data);
@@ -52,10 +58,11 @@ class MapWrapper extends Component {
       });
       console.log({newstructureArray})
 
-      this.setState({ structureArray, hospitalArray, altStructure, newstructureArray });
+      this.setState({ structureArray, hospitalArray, altStructure, newstructureArray});
   })).catch(()=>{
     alert("Sorry! Something went wrong with the search.");
 })
+}
   
   }
   render() {

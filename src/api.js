@@ -39,6 +39,13 @@ export function getLogout() {
   return backendApi.get("/api/logout").catch(errorHandler);
 }
 
+export function getHospitalsbyLocation(latt, long ){
+  return backendApi.get(`/api/hospitals/near?latitude=${latt}&longitude=${long}&radius=50000`)
+}
+
+export function getAtlStructuresbyLocation(latt, long ){
+  return backendApi.get(`/api/alternatives-structures/near?latitude=${latt}&longitude=${long}&radius=50000`)
+}
 // example function
 // export function getLogOut() {
 //   return backendApi.get("/api/logout").catch(errorHandler);
