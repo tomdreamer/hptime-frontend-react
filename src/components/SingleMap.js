@@ -1,7 +1,7 @@
 // See and copy pasta available components
 import React, { Component } from "react";
 import "./SingleMap.scss";
-import MapGL, { Marker } from "react-map-gl";
+import MapGL, { Marker, FlyToInterpolator } from "react-map-gl";
 import MapMarker from "./MapMarker.js";
 import UserMarker from "./UserMarker.js";
 import PopUp from "./PopUp";
@@ -23,8 +23,9 @@ class SingleMap extends Component {
       },
       popupInfo: null
     };
+
     this._onViewportChange = this._onViewportChange.bind(this);
-    // this.renderUserMarker = this.renderUserMarker.bind(this);
+    this.renderUserMarker = this.renderUserMarker.bind(this);
     // need to bind the specific event to avoid triggering on load
   }
 
@@ -56,6 +57,11 @@ class SingleMap extends Component {
     this.setState({ viewport });
   }
 
+  // update map on window size
+  _onViewportChangeNew(latitude, longitude) {
+    this.setState({ viewport: { latitude: latitude, longitude: longitude } });
+  }
+
   renderPopup() {
     const { popupInfo } = this.state;
     return (
@@ -65,15 +71,35 @@ class SingleMap extends Component {
     );
   }
 
-  // user current position (static atm)
+  // set user current marker and fly to it
   renderUserMarker(location) {
     if (location) {
+      // change viewport to location
+
+      // try 1
+      //    this._goToViewport(location.latitude, location.longitude);
+
+      // try 2
+      // this.setState({
+      //   viewport: { latitude: location.latitude, longitude: location.longitude }
+      // });
+
       return (
         <Marker latitude={location.latitude} longitude={location.longitude}>
           <UserMarker />
         </Marker>
       );
     }
+  }
+
+  // change viewport ()
+  _goToViewport(longitude, latitude) {
+    this._onViewportChange({
+      viewport: { longitude, latitude },
+      zoom: 14,
+      transitionInterpolator: new FlyToInterpolator(),
+      transitionDuration: 2500
+    });
   }
 
   render() {
