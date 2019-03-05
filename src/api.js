@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const backendApi = axios.create({
   baseURL: "http://localhost:2999",
   withCredentials: true
@@ -19,12 +20,18 @@ function errorHandler(err) {
 export function getHospitalList() {
   return backendApi.get("/api/hospitals?size=60&offset=60").catch(errorHandler);
 }
+
 export function getAltStructureList() {
   return backendApi
     .get("/api/alternatives-structures?size=20&offset=20")
     .catch(errorHandler);
 }
 
+export function getDistanceDuration(userLong, userLatt, long, latt){
+  return backendApi
+  .get(`https://api.mapbox.com/directions/v5/mapbox/cycling/${userLong},${userLatt};${long},${latt}?access_token=pk.eyJ1IjoiYmFsMSIsImEiOiJjanI5ZXJpb2MwZmM5M3lxazFqbWkzZG81In0.XoYsD5Eyl2RqCFphhICBLQ`)
+  .catch(errorHandler);
+}
 export function postSignUp(userSubmission) {
   return backendApi
     .post("/api/process-signup", userSubmission)
