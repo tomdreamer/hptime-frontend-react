@@ -115,11 +115,7 @@ class MapWrapper extends Component {
                             <tr key={index}>
                               <td>
                                 <ul className="list-group list-group-flush resultTb FCol">
-<<<<<<< HEAD
-                                  <li className="list-group-item namePolice">
-=======
                                   <li className="list-group-item namePolice small">
->>>>>>> c46829825eea5e7aa90e77e3195fdd3701a4cdaf
                                     {oneStructure.name}
                                   </li>
                                   <li className="list-group-item typePolice">
