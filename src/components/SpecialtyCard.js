@@ -42,10 +42,10 @@ class SpecialtyCard extends Component {
     return (
       // <PoseGroup>
       <div
-        className="card flex-row m-4 bg-light rounded border-secondary p-2"
+        className="card flex-row m-3 bg-light rounded border-secondary "
         key={this.props.index}
       >
-        <div className="card-header bg-primary p-2 m-0 d-flex flex-wrap align-items-center border-left border-bottom-0 rounded-circle ">
+        <div className="card-header bg-primary p-2 m-0 d-flex flex-wrap align-items-center  customOrangeUgly border-0">
           <img
             src={this.props.picture}
             alt={this.props.bodyPart}
@@ -53,25 +53,26 @@ class SpecialtyCard extends Component {
           />
         </div>
         <div className="w-100 p-0 d-flex flex-column justify-content-between">
-          <div className="card-title px-2">
-            <h6>{this.props.bodyPart}</h6>
+          <div className="card-title px-2 text-primary font-weight-normal">
+            <h4 className="font-weight-normal">{this.props.bodyPart}</h4>
           </div>
 
-          <div className="card-block p-2 px-2 d-flex justify-content-end">
+          <div className="card-block p-2 pl-2 d-flex justify-content-end">
             {/* <p className="card-text">{this.props.infoText}</p> */}
             <Button
+              variant="outline-dark mr-2"
+              onClick={event => this.clickHandler(event)}
+            >
+              <i className="far fa-question-circle" />
+            </Button>
+            <Button
+              className="w-50 text-white"
               variant="primary"
               onClick={event => this.clickHandler(event)}
               name="neededSpecialist"
               value={this.props.neededSpecialist}
             >
-              <i class="fas fa-check-circle" />{" "}
-            </Button>
-            <Button
-              variant="outline-dark ml-1"
-              onClick={event => this.clickHandler(event)}
-            >
-              <i class="far fa-question-circle" />
+              <i className="fas fa-check-circle" />{" "}
             </Button>
           </div>
         </div>
