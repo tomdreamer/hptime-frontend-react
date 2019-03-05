@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import SingleMap from "./SingleMap.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { getHospitalList } from "../api.js";
+import { getHospitalList, getAltStructureList } from "../api.js";
 
 class MapWrapper extends Component {
   constructor(props) {
@@ -25,11 +26,20 @@ class MapWrapper extends Component {
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
   componentDidMount() {
     // get data from our backend Express API (localhost:2999)
-    getHospitalList().then(response => {
+    axios.all([
+      getHospitalList(),
+      getAltStructureList()
+    ])
+    .then(axios.spread((responseHos, responseAlt) => {
       // console.log("Structure list", response.data);
       const { neededSpecialist, patientType } = this.props;
-      const hospitalArray = response.data;
-      const newstructureArray = hospitalArray.filter(el => {
+      console.log(neededSpecialist, patientType)
+      const hospitalArray = responseHos.data || []
+      const altStructure = responseAlt.data || []
+      const structureArray = hospitalArray.concat(altStructure) 
+      console.log(responseHos.data);
+      console.log( structureArray );
+      const newstructureArray = structureArray.filter(el => {if (el.availablePoles){
         //filtered is the object that allow us to know if the hospital is or not in the proposition list
         el.filtered = el.availablePoles.some(
           pole =>
@@ -38,25 +48,15 @@ class MapWrapper extends Component {
               pole.patientType === "Universel")
         );
 
-        return el.filtered;
+        return el.filtered;}
       });
+      console.log({newstructureArray})
 
-      //      console.log({ structureArray });
-
-      this.setState({ hospitalArray, newstructureArray });
-    });
-    // getAltStructureList().then(response => {
-    //   console.log("Aternative Structure list", response.data);
-    //   const { neededSpecialist, patientType } = this.props;
-    //   const altStructure = response.data;
-    //   const  newstructureArray = this.state
-    //   newstructureArray = newstructureArray.push(altStructure.filter(el =>
-    //   el.availablePoles.some(pole => pole.pathology === neededSpecialist && (pole.patientType === patientType || pole.patientType ==="Universel"))))
-
-    //   console.log({ altStructure, newstructureArray })
-    //   this.setState({ altStructure, newstructureArray });
-
-    // });
+      this.setState({ structureArray, hospitalArray, altStructure, newstructureArray });
+  })).catch(()=>{
+    alert("Sorry! Something went wrong with the search.");
+})
+  
   }
   render() {
     const { newstructureArray, open } = this.state;
@@ -116,7 +116,7 @@ class MapWrapper extends Component {
                               <td>
                                 <ul className="list-group list-group-flush resultTb FCol">
                                   <li className="list-group-item namePolice">
-                                    Nom: {oneStructure.name}
+                                    {oneStructure.name}
                                   </li>
                                   <li className="list-group-item typePolice">
                                     Type: {oneStructure.type}
