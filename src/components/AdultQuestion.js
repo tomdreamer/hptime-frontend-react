@@ -10,7 +10,7 @@ class AdultQuestion extends Component {
   render() {
     return (
       <section className="text-center">
-        <p className="lead bg-primary text-center font-weight-bold text-white py-2">
+        <p className="lead bg-light text-center py-2">
           Le patient à t&#39;il plus de 16 ans ?
         </p>
         <hr className="mb-2" />
