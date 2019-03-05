@@ -9,7 +9,7 @@ import main from "../images/Pictos/plaie_de_main.svg";
 import oeil from "../images/Pictos/ophtalmologie.svg";
 import orl from "../images/Pictos/ORL.png";
 import anus from "../images/Pictos/anus.svg";
-import psychiatrie from "../images/Pictos/psychiatrie.svg";
+import psychiatrie from "../images/Pictos/Psychiatrie.svg";
 import gorge from "../images/Pictos/gorge.svg";
 
 class PathologyQuestions extends Component {
