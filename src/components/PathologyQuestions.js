@@ -96,8 +96,10 @@ class PathologyQuestions extends Component {
     ];
     return (
       <section id="PathologyCards">
-        <p className="lead">Où se situe la douleur ?</p>
-        <hr className="mb-5" />
+        <p className="lead bg-primary text-center font-weight-bold text-white py-2">
+          Où se situe la douleur ?
+        </p>
+        {/* <hr className="mb-5" /> */}
         <ul className="list-unstyled">
           {specialtyList.map((oneSpecialty, index) => {
             return (

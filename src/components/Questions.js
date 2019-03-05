@@ -34,7 +34,7 @@ class Questions extends Component {
     return (
       <Row>
         <Col xs={12}>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center ">
             <QuestionsIndicator
               numberOfSteps={numberOfSteps}
               currentStep={currentStep}
