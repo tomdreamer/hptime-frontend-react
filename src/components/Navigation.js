@@ -11,7 +11,7 @@ class Navigation extends Component {
     return (
       <Container>
         <Navbar
-          bg="light"
+          bg="white"
           variant="light"
           expand="sm"
           fixed="top"
