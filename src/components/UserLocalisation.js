@@ -1,34 +1,40 @@
 import React, { Component } from "react";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import LocationSearchInput from "./LocationSearchInput.js";
+import "./UserLocalisation.scss";
 
 class UserLocalisation extends Component {
   render() {
     return (
-      <Row className="d-flex justify-content-center">
-        <Col md={{ span: 6 }}>
-          <div className="bg-light rounded p-5 mt-5">
+      <section className="text-center">
+        <div className="bg-directions" />
+        <p className="lead my-4">Trouvez des soins proches de vous.</p>
+
+        <Col md={{ span: 12 }}>
+          <div className="bg-light shadow-sm border rounded p-2 w-50 mx-auto">
             <LocationSearchInput
               onGeolocation={this.props.onGeolocation}
               nextStep={event => this.props.nextStep(event)}
             />
-            <p className="form-text text-muted small">
-              Trouvez des soins proches de vous.
-            </p>
           </div>
-          <Form className="p-2 small">
-            <div key="hint-checkbox" className="hint-checkbox ml-2 mt-2">
-              <Form.Check
-                type="checkbox"
-                id="prescription"
-                label="C'est un simple renouvellement d'ordonnance ?"
-              />
+          <Form className="p-2 small w-50 mx-auto text-left">
+            <div key="hint-checkbox" className="hint-checkbox m-2 px-2">
+              <label>
+                <Form.Check
+                  type="checkbox"
+                  id="prescription"
+                  className="d-inline mr-2"
+                />
+                <span className="text-muted">
+                  C'est pour renouveller une ordonnance ?{" "}
+                  <span class="text-dark">Cliquez ici !</span>
+                </span>
+              </label>
             </div>
           </Form>
         </Col>
-      </Row>
+      </section>
     );
   }
 }

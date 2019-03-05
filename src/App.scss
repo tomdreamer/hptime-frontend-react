@@ -133,8 +133,3 @@ $card-bg: $white !default;
   // Dynamic padding according to navbar height
   margin-top: $nav-link-height + $nav-link-padding-y * 2;
 }
-
-.hint-checkbox {
-  border-left: 2.5px solid $info;
-  padding: 2.5px 8px;
-}

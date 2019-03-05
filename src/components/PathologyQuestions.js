@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 // child card component
 import SpecialtyCard from "./SpecialtyCard";
 // images
@@ -28,13 +30,6 @@ class PathologyQuestions extends Component {
   render() {
     const specialtyList = [
       {
-        bodyPart: "ORL",
-        neededSpecialist: "Oto-rhino-laryngologiques",
-        image: orl,
-        infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
-      },
-      {
         bodyPart: "Oeil",
         neededSpecialist: "Ophtalmologiques",
         image: oeil,
@@ -43,23 +38,9 @@ class PathologyQuestions extends Component {
           "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
       },
       {
-        bodyPart: "Main (plaie ouverte)",
-        neededSpecialist: "Plaies de la main",
-        image: main,
-        infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
-      },
-      {
-        bodyPart: "Gynécologie, Grossesse",
-        neededSpecialist: "Gynéco-obstétricales",
-        image: uterus,
-        infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
-      },
-      {
-        bodyPart: "Psychiatrie",
-        neededSpecialist: "Psychiatriques",
-        image: psychiatrie,
+        bodyPart: "ORL",
+        neededSpecialist: "Oto-rhino-laryngologiques",
+        image: orl,
         infoTitle: "",
         infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
@@ -72,6 +53,43 @@ class PathologyQuestions extends Component {
           "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
       },
       {
+        bodyPart: "Problème à la gorge",
+        neededSpecialist: "Oto-rhino-laryngologiques",
+        image: gorge,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+      },
+      {
+        bodyPart: "Main (plaie ouverte)",
+        neededSpecialist: "Plaies de la main",
+        image: main,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+      },
+      {
+        bodyPart: "Poitrine",
+        neededSpecialist: "Proctology",
+        image: generale,
+        infoTitle: "",
+        infoText:
+          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
+      },
+      {
+        bodyPart: "Gynécologie, Grossesse",
+        neededSpecialist: "Gynéco-obstétricales",
+        image: uterus,
+        infoTitle: "",
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+      },
+      {
+        bodyPart: "Ventre",
+        neededSpecialist: "Proctology",
+        image: generale,
+        infoTitle: "",
+        infoText:
+          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
+      },
+      {
         bodyPart: "Côlon",
         neededSpecialist: "Proctology",
         image: anus,
@@ -80,9 +98,9 @@ class PathologyQuestions extends Component {
           "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
       },
       {
-        bodyPart: "Problème à la gorge",
-        neededSpecialist: "Oto-rhino-laryngologiques",
-        image: gorge,
+        bodyPart: "Psychiatrie",
+        neededSpecialist: "Psychiatriques",
+        image: psychiatrie,
         infoTitle: "",
         infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
@@ -96,8 +114,19 @@ class PathologyQuestions extends Component {
     ];
     return (
       <section id="PathologyCards">
-        <p className="lead bg-light text-center py-2">
-          Où se situe la douleur ?
+        <p className="lead text-center">
+          <span className="float-left pl-3">
+            <Link
+              to="#0"
+              onClick={this.props.previousStep}
+              className="text-secondary"
+            >
+              ..revenir
+            </Link>
+          </span>
+          <span className="text-center mr-4 pr-4">
+            Où se situe la douleur ?
+          </span>
         </p>
         {/* <hr className="mb-5" /> */}
         <ul className="list-unstyled">
