@@ -2,15 +2,15 @@ import React, { Component } from "react";
 // child card component
 import SpecialtyCard from "./SpecialtyCard";
 // images
-import generale from "../images/Pictos/medical.svg";
-import dent from "../images/Pictos/dentaire.svg";
-import uterus from "../images/Pictos/gynecologie.svg";
-import main from "../images/Pictos/plaie_de_main.svg";
-import oeil from "../images/Pictos/ophtalmologie.svg";
-import orl from "../images/Pictos/ORL.png";
-import anus from "../images/Pictos/anus.svg";
-import psychiatrie from "../images/Pictos/Psychiatrie.svg";
-import gorge from "../images/Pictos/gorge.svg";
+const generale = "/images/pictos/medical.svg";
+const dent = "/images/pictos/dentaire.svg";
+const uterus = "/images/pictos/gynecologie.svg";
+const main = "/images/pictos/plaie_de_main.svg";
+const oeil = "/images/pictos/ophtalmologie.svg";
+const orl = "/images/pictos/ORL.png";
+const anus = "/images/pictos/anus.svg";
+const psychiatrie = "/images/pictos/psychiatrie.svg";
+const gorge = "/images/pictos/gorge.svg";
 
 class PathologyQuestions extends Component {
   // update user search filters
