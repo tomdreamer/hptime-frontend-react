@@ -102,10 +102,10 @@ class MapWrapper extends Component {
                             Tri/Pertinence
                           </th>
                           <th className="text-center colDeux" scope="col">
-                            Sur RDV
+                            Ouverte
                           </th>
                           <th className="text-center colDeux" scope="col">
-                            Temps total
+                            Attente
                           </th>
                         </tr>
                       </thead>
@@ -115,11 +115,13 @@ class MapWrapper extends Component {
                             <tr key={index}>
                               <td>
                                 <ul className="list-group list-group-flush resultTb FCol">
-                                  <li className="list-group-item namePolice">
-                                    Nom: {oneStructure.name}
+                                  <li className="list-group-item namePolice small">
+                                    {oneStructure.name}
                                   </li>
                                   <li className="list-group-item typePolice">
-                                    Type: {oneStructure.type}
+                                    <a href="tel:+33{popupInfo.phoneNumber}">
+                                      {oneStructure.phoneNumber}
+                                    </a>{" "}
                                   </li>
                                 </ul>
                               </td>
@@ -138,10 +140,9 @@ class MapWrapper extends Component {
                                 <ul className="list-group list-unstyled resultTb">
                                   <li className="list-list-unstyled">
                                     <span className="badge badge-primary">
-                                      30
+                                      30 min
                                     </span>
                                   </li>
-                                  <li className="list-list-unstyled">min</li>
                                 </ul>
                               </td>
                             </tr>

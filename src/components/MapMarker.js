@@ -6,7 +6,7 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 const hospitalUnfiltered = {
   cursor: "pointer",
-  fill: "red",
+  fill: "e37222",
   stroke: "none",
   opacity: 0.25,
   size: 10
@@ -14,7 +14,7 @@ const hospitalUnfiltered = {
 
 const hospitalFiltered = {
   cursor: "pointer",
-  fill: "red",
+  fill: "e37222",
   stroke: "none",
   opacity: 1,
   size: 20

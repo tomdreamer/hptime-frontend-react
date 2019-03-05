@@ -63,7 +63,10 @@ class IsEmergency extends PureComponent {
 
             <Modal.Body>
               <p>
-                Please only click continue if your medical emergency is <b>NOT</b> immediatly life threatening to you or those around you. MedDirect should not be used to self diagnose health issues.
+                Please only click continue if your medical emergency is{" "}
+                <b>NOT</b> immediatly life threatening to you or those around
+                you. MedDirect should not be used to self diagnose health
+                issues.
               </p>
             </Modal.Body>
 
