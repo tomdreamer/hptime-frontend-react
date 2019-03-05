@@ -42,7 +42,7 @@ class SpecialtyCard extends Component {
     return (
       // <PoseGroup>
       <div
-        className="card flex-row m-3 bg-light rounded border-secondary "
+        className="card flex-row m-3 bg-light rounded "
         key={this.props.index}
       >
         <div className="card-header bg-primary p-2 m-0 d-flex flex-wrap align-items-center  customOrangeUgly border-0">
@@ -52,7 +52,7 @@ class SpecialtyCard extends Component {
             className="picto  d-block mx-auto"
           />
         </div>
-        <div className="w-100 p-0 d-flex flex-column justify-content-between">
+        <div className="w-100 px-2 d-flex flex-column justify-content-between">
           <div className="card-title px-2 text-primary font-weight-normal">
             <h4 className="font-weight-normal">{this.props.bodyPart}</h4>
           </div>
@@ -72,7 +72,7 @@ class SpecialtyCard extends Component {
               name="neededSpecialist"
               value={this.props.neededSpecialist}
             >
-              <i className="fas fa-check-circle" />{" "}
+              Valider
             </Button>
           </div>
         </div>

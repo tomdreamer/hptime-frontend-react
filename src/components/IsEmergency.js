@@ -28,7 +28,7 @@ class IsEmergency extends PureComponent {
   render() {
     return (
       <>
-        <section className="bg-white pt-2">
+        <section className="bg-light pt-2">
           <div className="container bg-header">
             <div className="row">
               <div className="col-lg-12">
@@ -60,7 +60,7 @@ class IsEmergency extends PureComponent {
                 <img
                   src="/images/illustrations/medicine.svg"
                   alt="Calm and soothing illustration of two doctors waiting for you in an hospital"
-                  className="img-fluid border-bottom pb-3"
+                  className="img-fluid pb-3"
                 />
               </div>
             </div>
