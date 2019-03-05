@@ -30,7 +30,9 @@ class IsEmergency extends PureComponent {
       <div className="bg-light">
         <div className="bg-header w-75 mx-auto d-flex">
           <div className="d-flex justify-content-start pt-5"> </div>
-          <h1 className="display-3">Medirect</h1>
+          <h1 className="display-3">
+            Med<b>Direct</b>
+          </h1>
           <div className="align-self-end">
             <div className="p-5 d-flex justify-content-start flex-column">
               <div className="px-5">
@@ -40,10 +42,11 @@ class IsEmergency extends PureComponent {
               </div>
               <div className="px-5 p-2 w-75">
                 <p>
-                  MedDirect connects you with the best emergency health care
-                  suited for <i>your</i> needs. Find wait times at health
-                  centers nearby and access alternative emergency centers with
-                  little to no wait!
+                  Med<b>Direct</b>
+                  connects you with the best emergency health care suited for{" "}
+                  <i>your</i> needs. Find wait times at health centers nearby
+                  and access alternative emergency centers with little to no
+                  wait!
                 </p>
               </div>
             </div>
@@ -65,8 +68,8 @@ class IsEmergency extends PureComponent {
               <p>
                 Please only click continue if your medical emergency is{" "}
                 <b>NOT</b> immediatly life threatening to you or those around
-                you. MedDirect should not be used to self diagnose health
-                issues.
+                you. Med<b>Direct</b>
+                should not be used to self diagnose health issues.
               </p>
             </Modal.Body>
 

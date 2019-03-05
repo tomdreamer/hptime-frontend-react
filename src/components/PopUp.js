@@ -27,25 +27,28 @@ class PopUp extends Component {
 
         <div className="card">
           <div className="card-body">
-            <p className="card-text">
+            <p className="card-text small">
               {" "}
               <b>{popupInfo.name}</b>
             </p>
-            <p className="card-text">
+            <p className="card-text small">
               <a href="tel:+33{popupInfo.phoneNumber}">
                 {popupInfo.phoneNumber}
               </a>
             </p>
-            <p className="card-text">
+            <p className="card-text small">
               {popupInfo.streetNumber} {popupInfo.roadType}{" "}
               {popupInfo.streetName}
               <br />
               {popupInfo.zipCode} {popupInfo.city}
             </p>
-            <a href="#" class="card-link">
+            <a
+              href="http://maps.google.com/?q=<{popupInfo.latitude}>,<{popupInfo.longitude}>"
+              className="card-link small"
+            >
               Route Me
             </a>
-            <a href={popupInfo.urlToPlan} class="card-link">
+            <a href={popupInfo.urlToPlan} className="card-link small">
               Access Plan
             </a>
           </div>

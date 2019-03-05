@@ -18,7 +18,10 @@ class Navigation extends Component {
           collapseOnSelect="true"
         >
           <LinkContainer to="/">
-            <Navbar.Brand>Medirect</Navbar.Brand>
+            <Navbar.Brand>
+              {" "}
+              Med<b>Direct</b>
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
