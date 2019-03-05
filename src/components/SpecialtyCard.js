@@ -45,7 +45,7 @@ class SpecialtyCard extends Component {
         className="card flex-row m-4 bg-light rounded border-secondary p-2"
         key={this.props.index}
       >
-        <div className="card-header bg-success p-2 m-0 d-flex flex-wrap align-items-center border-left border-bottom-0 rounded-circle ">
+        <div className="card-header bg-primary p-2 m-0 d-flex flex-wrap align-items-center border-left border-bottom-0 rounded-circle ">
           <img
             src={this.props.picture}
             alt={this.props.bodyPart}
