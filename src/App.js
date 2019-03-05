@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 //Components
 import Navigation from "./components/Navigation.js";
 import IsEmergency from "./components/IsEmergency.js";
-import Results from "./components/Results.js";
 import MapWrapper from "./components/MapWrapper.js";
 import NotFound from "./components/NotFound.js";
 //Styling
@@ -16,6 +15,7 @@ import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
+import posed, { PoseGroup } from "react-pose";
 
 require("dotenv").config();
 
@@ -94,7 +94,6 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/results" component={Results} />
           <Route path="/geoloc" component={GeolocationPoint} />
           <Route
             path="/form"

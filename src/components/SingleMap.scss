@@ -8,15 +8,15 @@
   }
 }
 @media (max-width: 768px) {
-.dimension {
-  height: 300px;
+  .dimension {
+    height: 300px;
+  }
 }
-}
-.title1Col{
+.title1Col {
   padding-left: 12px !important;
   vertical-align: middle !important;
 }
-.table  .cel {
+.table .cel {
   text-align: center;
   vertical-align: middle;
 }
@@ -24,54 +24,54 @@ tr {
   width: 100%;
   display: inline-table;
   // table-layout: fixed
-  }
+}
 
-table{
-   height:20px;              // <-- Select the height of the table
-   display: -moz-groupbox; // Firefox Bad Effect
-   font-size: 15px; 
-     
-  }
-  @media (max-width: 1200px) {
-  tbody{
-    overflow-y: scroll;      
-    height: 350px;            //  <-- Select the height of the body
+table {
+  height: 20px; // <-- Select the height of the table
+  display: -moz-groupbox; // Firefox Bad Effect
+  font-size: 15px;
+}
+@media (max-width: 1200px) {
+  tbody {
+    overflow-y: scroll;
+    height: 350px; //  <-- Select the height of the body
     width: 100%;
     position: absolute;
   }
 }
 @media (max-width: 768px) {
-  tbody{
-    overflow-y: scroll;      
-    height: 230px;            //  <-- Select the height of the body
+  tbody {
+    overflow-y: scroll;
+    height: 230px; //  <-- Select the height of the body
     width: 100%;
     position: absolute;
   }
 }
-.ResultMap{
-  margin:10px;
+.ResultMap {
+  margin: 10px;
 }
 .table td {
-  padding: 0.0rem;
+  padding: 0rem;
 }
 .list-group-item {
-  
-  padding: 0.3rem 0.25rem !important;}
-.colDeux{
+  padding: 0.3rem 0.25rem !important;
+}
+.colDeux {
   width: 80px !important;
 }
-.colFirst{
+.colFirst {
   vertical-align: middle;
 }
-table > tbody > tr > td{
-  border-bottom:1px solid rgb(50, 228, 50);
-  padding:0;
+table > tbody > tr > td {
+  border-bottom: 1px solid;
+  padding: 0;
 }
 .clollapsBtnText {
-  margin: 0;}
-.namePolice{
+  margin: 0;
+}
+.namePolice {
   font-size: 20px;
 }
-.typePolice{
+.typePolice {
   font-size: 13px;
 }

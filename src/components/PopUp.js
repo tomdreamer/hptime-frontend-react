@@ -25,21 +25,22 @@ class PopUp extends Component {
           </a>
         </p> */}
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{popupInfo.name}</h5>
-            <h6 class="card-subtitle mb-2">
+        <div className="card">
+          <div className="card-body">
+            <p className="card-text">
+              {" "}
+              <b>{popupInfo.name}</b>
+            </p>
+            <p className="card-text">
               <a href="tel:+33{popupInfo.phoneNumber}">
                 {popupInfo.phoneNumber}
               </a>
-            </h6>
-            <p class="card-text">
+            </p>
+            <p className="card-text">
               {popupInfo.streetNumber} {popupInfo.roadType}{" "}
               {popupInfo.streetName}
               <br />
-              {popupInfo.city}
-              {popupInfo.country}
-              {popupInfo.zipCode}
+              {popupInfo.zipCode} {popupInfo.city}
             </p>
             <a href="#" class="card-link">
               Route Me
