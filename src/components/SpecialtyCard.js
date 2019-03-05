@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 // import posed, { PoseGroup } from "react-pose";
 import Button from "react-bootstrap/Button";
 import "./SpecialtyCard.scss";
