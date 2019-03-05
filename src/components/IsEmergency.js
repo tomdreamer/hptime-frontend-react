@@ -27,71 +27,85 @@ class IsEmergency extends PureComponent {
 
   render() {
     return (
-      <div className="bg-light">
-        <div className="bg-header w-75 mx-auto d-flex">
-          <div className="d-flex justify-content-start pt-5"> </div>
-          <h1 className="display-3">
-            Med<b>Direct</b>
-          </h1>
-          <div className="align-self-end">
-            <div className="p-5 d-flex justify-content-start flex-column">
-              <div className="px-5">
-                <Button variant="primary" size="lg" onClick={this.handleShow}>
-                  Commencer
-                </Button>
+      <>
+        <section className="bg-white pt-2">
+          <div className="container bg-header">
+            <div className="row">
+              <div className="col-lg-12">
+                <h1 className="display-3">
+                  <span className="text-primary">Med</span>Direct
+                </h1>
               </div>
-              <div className="px-5 p-2 w-75">
-                <p>
-                  Med<b>Direct</b>
-                  connects you with the best emergency health care suited for{" "}
-                  <i>your</i> needs. Find wait times at health centers nearby
-                  and access alternative emergency centers with little to no
-                  wait!
-                </p>
+              {/* speech and CTA */}
+              <div className="col-lg-4 align-self-center pt-2">
+                <div className="py-5 pl-5">
+                  <p className="pt-4 mt-5">
+                    MedDirect connects you with the best emergency health care
+                    suited for <i>your</i> needs. Find wait times at health
+                    centers nearby and access alternative emergency centers with
+                    little to no wait!
+                  </p>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="mt-3"
+                    onClick={this.handleShow}
+                  >
+                    Commencer
+                  </Button>
+                </div>
+              </div>
+              {/* illustration */}
+              <div className="col-lg-8 align-self-center">
+                <img
+                  src="/images/illustrations/medicine.svg"
+                  alt="Calm and soothing illustration of two doctors waiting for you in an hospital"
+                  className="img-fluid border-bottom pb-3"
+                />
               </div>
             </div>
           </div>
+        </section>
 
-          <Modal
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            show={this.state.show}
-            onHide={this.handleClose}
-          >
-            <Modal.Header>
-              <Modal.Title id="contained-modal-title-vcenter">
-                Est-ce une urgence vitale?
-              </Modal.Title>
-            </Modal.Header>
+        <Modal
+          size="md"
+          aria-labelledby="contained-modal-title-vcenter"
+          show={this.state.show}
+          onHide={this.handleClose}
+        >
+          <Modal.Header>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Est-ce une urgence vitale?
+            </Modal.Title>
+          </Modal.Header>
 
-            <Modal.Body>
-              <p>
-                Please only click continue if your medical emergency is{" "}
-                <b>NOT</b> immediatly life threatening to you or those around
-                you. Med<b>Direct</b>
-                should not be used to self diagnose health issues.
-              </p>
-            </Modal.Body>
+          <Modal.Body>
+            <p>
+              Please only click continue if your medical emergency is <b>NOT</b>{" "}
+              immediatly life threatening to you or those around you. MedDirect
+              should not be used to self diagnose health issues.
+            </p>
+          </Modal.Body>
 
-            <Modal.Footer>
-              <a href="tel:+3315">
-                <Button variant="danger">
-                  <i className="fas fa-phone" /> Appeller le SAMU (15)
-                </Button>
-              </a>
+          <Modal.Footer>
+            <a href="tel:+3315">
+              <Button variant="danger">
+                <i className="fas fa-phone" /> Appeller le SAMU (15)
+              </Button>
+            </a>
 
-              <LinkContainer to="/form">
-                <Button variant="primary">
-                  <i className="fas fa-arrow-right" /> Continuer
-                </Button>
-              </LinkContainer>
-            </Modal.Footer>
-          </Modal>
-          <footer className="fixed-bottom">
-            <SpeedDial />
-          </footer>
-        </div>
-      </div>
+            <LinkContainer to="/form">
+              <Button variant="primary">
+                <i className="fas fa-arrow-right" /> Continuer
+              </Button>
+            </LinkContainer>
+          </Modal.Footer>
+        </Modal>
+
+        <footer className="fixed-bottom">
+          <SpeedDial />
+        </footer>
+      </>
     );
   }
 }
