@@ -1,0 +1,27 @@
+.bg-toy {
+  background-image: url("/images/illustrations/toy.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  height: 50vh;
+}
+
+/* sm */
+@media (min-width: 768px) {
+  .bg-toy {
+    // background-size: cover;
+    background-size: contain !important;
+  }
+}
+/* md */
+@media (min-width: 992px) {
+  .bg-toy {
+    background-size: contain !important;
+  }
+}
+/* lg */
+@media (min-width: 1200px) {
+  .bg-toy {
+    background-size: contain !important;
+  }
+}

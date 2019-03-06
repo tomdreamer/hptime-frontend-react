@@ -5,13 +5,7 @@ import StepWizard from "react-step-wizard";
 import PathologyQuestions from "./PathologyQuestions";
 import AdultQuestion from "./AdultQuestion";
 import QuestionsIndicator from "./QuestionsIndicator";
-
-// layout modules
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import UserLocalisation from "./UserLocalisation.js";
-import MapWrapper from "./MapWrapper";
 
 class Questions extends Component {
   constructor(props) {
@@ -33,45 +27,39 @@ class Questions extends Component {
   render() {
     const { numberOfSteps, currentStep } = this.state;
     return (
-      <Container>
-        <Row>
-          <Col xs={12}>
-            <div className="d-flex justify-content-center ">
-              <QuestionsIndicator
-                numberOfSteps={numberOfSteps}
-                currentStep={currentStep}
-              />
-            </div>
-          </Col>
+      <>
+        <section className="d-flex justify-content-center">
+          <QuestionsIndicator
+            numberOfSteps={numberOfSteps}
+            currentStep={currentStep}
+          />
+        </section>
 
-          <Col xs={12}>
-            <StepWizard isHashEnabled={true} initialStep={1}>
-              <AdultQuestion
-                // adding anchor to url
-                hashKey={"age"}
-                // update user search filters and form step counter
-                updatePatient={event => this.props.updatePatient(event)}
-                onFormStep={(numberOfSteps, currentStep) =>
-                  this.updateFormIndicator(numberOfSteps, currentStep)
-                }
-              />
+        <StepWizard isHashEnabled={true} initialStep={1}>
+          <AdultQuestion
+            // adding anchor to url
+            hashKey={"age"}
+            // update user search filters and form step counter
+            updatePatient={event => this.props.updatePatient(event)}
+            onFormStep={(numberOfSteps, currentStep) =>
+              this.updateFormIndicator(numberOfSteps, currentStep)
+            }
+          />
 
-              <PathologyQuestions
-                hashKey={"service"}
-                updatePatient={event => this.props.updatePatient(event)}
-                onFormStep={(numberOfSteps, currentStep) =>
-                  this.updateFormIndicator(numberOfSteps, currentStep)
-                }
-              />
+          <PathologyQuestions
+            hashKey={"service"}
+            updatePatient={event => this.props.updatePatient(event)}
+            onFormStep={(numberOfSteps, currentStep) =>
+              this.updateFormIndicator(numberOfSteps, currentStep)
+            }
+          />
 
-              <UserLocalisation
-                hashKey={"position"}
-                onGeolocation={this.props.onGeolocation}
-              />
-            </StepWizard>
-          </Col>
-        </Row>
-      </Container>
+          <UserLocalisation
+            hashKey={"position"}
+            onGeolocation={this.props.onGeolocation}
+          />
+        </StepWizard>
+      </>
     );
   }
 }

@@ -10,7 +10,8 @@ import {
   getHospitalList,
   getAltStructureList,
   getHospitalsbyLocation,
-  getAtlStructuresbyLocation
+  getAtlStructuresbyLocation,
+  getDistanceDuration
 } from "../api.js";
 
 class MapWrapper extends Component {
@@ -51,10 +52,15 @@ class MapWrapper extends Component {
             console.log(neededSpecialist, patientType);
             const hospitalArray = responseHos.data || [];
             const altStructure = responseAlt.data || [];
-            const structureArray = hospitalArray.concat(altStructure);
-            console.log(responseHos.data);
-            console.log(structureArray);
-            const newstructureArray = structureArray.filter(el => {
+            let i = 0;
+            for (i = 0; i <= 10; i++) {
+              altStructure[i].filtered = true;
+            }
+            const tenFirstaltStructure = altStructure.slice(0, 10);
+            console.log(altStructure);
+            console.log(newstructureArray);
+
+            const filteredHospiatls = hospitalArray.filter(el => {
               if (el.availablePoles) {
                 //filtered is the object that allow us to know if the hospital is or not in the proposition list
                 el.filtered = el.availablePoles.some(
@@ -67,7 +73,18 @@ class MapWrapper extends Component {
                 return el.filtered;
               }
             });
-            console.log({ newstructureArray });
+
+            const newstructureArray = tenFirstaltStructure
+              .concat(filteredHospiatls)
+              .slice(0, 20);
+            console.log(newstructureArray);
+            // console.log(newstructureArray.some(el=> getDistanceDuration(userLocation.latitude, userLocation.longitude, el.longitude, el.latitude)
+            // .then((response)=>{
+            // console.log(response)
+            //   this.setState({response})
+            // })))
+            const structureArray = filteredHospiatls.concat(altStructure);
+            console.log(structureArray);
 
             this.setState({
               structureArray,
