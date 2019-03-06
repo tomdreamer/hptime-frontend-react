@@ -1,0 +1,29 @@
+#map-filter {
+  max-height: calc(100vh - 56px);
+  overflow: scroll;
+}
+
+@media (max-width: 768px) {
+  .dimension {
+    height: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  tbody {
+    overflow-y: scroll;
+    height: calc(100vh - 56px); //  <-- Select the height of the body
+    width: 100%;
+  }
+}
+
+.ResultMap {
+  margin: 10px;
+}
+
+.list-group-item {
+  padding: 0.3rem 0.25rem !important;
+}
+.colDeux {
+  width: 80px !important;
+}
