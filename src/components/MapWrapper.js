@@ -7,11 +7,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import {
-  getHospitalList,
-  getAltStructureList,
+  // getHospitalList,
+  // getAltStructureList,
   getHospitalsbyLocation,
-  getAtlStructuresbyLocation,
-  getDistanceDuration
+  getAtlStructuresbyLocation
+  // getDistanceDuration
 } from "../api.js";
 
 class MapWrapper extends Component {
@@ -57,8 +57,8 @@ class MapWrapper extends Component {
               altStructure[i].filtered = true;
             }
             const tenFirstaltStructure = altStructure.slice(0, 10);
-            console.log(altStructure);
-            console.log(newstructureArray);
+            // console.log(altStructure);
+            // console.log(newstructureArray);
 
             const filteredHospiatls = hospitalArray.filter(el => {
               if (el.availablePoles) {
