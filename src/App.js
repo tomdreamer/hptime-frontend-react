@@ -15,12 +15,6 @@ import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
-<<<<<<< HEAD
-import posed, { PoseGroup } from "react-pose";
-import PathologyQuestions from "./components/PathologyQuestions.js";
-=======
-// import posed, { PoseGroup } from "react-pose";
->>>>>>> 418e9288819cc96b023dee7cd681b28315cbd17d
 
 require("dotenv").config();
 
