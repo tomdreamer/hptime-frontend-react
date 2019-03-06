@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import SingleMap from "./SingleMap.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import {
-  // getHospitalList,
-  // getAltStructureList,
+  getHospitalList,
+  getAltStructureList,
   getHospitalsbyLocation,
   getAtlStructuresbyLocation,
   getDistanceDuration
@@ -35,8 +34,8 @@ class MapWrapper extends Component {
 
     // get data from our backend Express API (localhost:2999)
     if (userLocation) {
-      console.log(userLocation.latitude);
-      console.log(userLocation.longitude);
+      // console.log(userLocation.latitude);
+      // console.log(userLocation.longitude);
       axios
         .all([
           getHospitalsbyLocation(userLocation.latitude, userLocation.longitude),
@@ -49,7 +48,7 @@ class MapWrapper extends Component {
           axios.spread((responseHos, responseAlt) => {
             // console.log("Structure list", response.data);
             const { neededSpecialist, patientType } = this.props;
-            console.log(neededSpecialist, patientType);
+            // console.log(neededSpecialist, patientType);
             const hospitalArray = responseHos.data || [];
             const altStructure = responseAlt.data || [];
             let i = 0;
@@ -78,6 +77,7 @@ class MapWrapper extends Component {
               .concat(filteredHospiatls)
               .slice(0, 20);
             console.log(newstructureArray);
+<<<<<<< HEAD
             const mapboxArray = newstructureArray.map(el => getDistanceDuration( userLocation.longitude, userLocation.latitude, el.longitude, el.latitude)
               .then((response) => {
              el.duration=Math.round((response.data.durations[0][0])/60);
@@ -88,6 +88,26 @@ class MapWrapper extends Component {
              this.setState({newstructureArray});
             })
             
+=======
+            const mapboxArray = newstructureArray.map(el =>
+              getDistanceDuration(
+                userLocation.latitude,
+                userLocation.longitude,
+                el.longitude,
+                el.latitude
+              ).then(response => {
+                el.duration = response.data.routes[0].duration;
+              })
+            );
+            axios.all(mapboxArray).then(() => {
+              newstructureArray.sort(function(a, b) {
+                return b.duration - a.duration;
+              });
+              console.log(newstructureArray);
+              this.setState({ newstructureArray });
+            });
+
+>>>>>>> 0deea52f2ace20f6d9ed79cec89923235b06dcaa
             const structureArray = filteredHospiatls.concat(altStructure);
             console.log(structureArray);
 
