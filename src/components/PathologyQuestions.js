@@ -24,14 +24,18 @@ const grossesse = "/images/pictos/grossesse.svg";
 
 const Ul = posed.ul({
   open: {
-    transition: { ease: "easeInOut", duration: 300 },
+    transition: { ease: "easeInOut", duration: 400 },
     x: 0,
     delayChildren: 100,
     staggerChildren: 120,
     opacity: 1,
     delay: 300
   },
-  closed: { x: 20, delay: 300, opacity: 0 }
+  closed: {
+    x: 20,
+    delay: 300,
+    opacity: 0
+  }
 });
 
 const Li = posed.li({
@@ -43,12 +47,6 @@ const Li = posed.li({
   },
   closed: { y: 0, opacity: 0, x: 300 }
 });
-
-// function pathologyAnimation() {
-//   if (this.props.pathologyAnimate === true) {
-//     setTimeout(this.toggle, 1000);
-//   }
-// }
 
 class PathologyQuestions extends Component {
   constructor(props) {
@@ -72,7 +70,6 @@ class PathologyQuestions extends Component {
 
   componentDidUpdate(oldProps) {
     if (!oldProps.isActive && this.props.isActive) {
-      console.log("coucou pathos-----------------");
       this.setState({ isOpen: true });
     }
   }
