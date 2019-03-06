@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
+import "./AdultQuestion.scss";
 
 class AdultQuestion extends Component {
   clickHandler(event) {
@@ -10,10 +11,9 @@ class AdultQuestion extends Component {
   render() {
     return (
       <section className="text-center">
-        <p className="lead bg-light text-center py-2">
-          Le patient à t&#39;il plus de 16 ans ?
-        </p>
-        <hr className="mb-2" />
+        <div className="bg-toy" />
+        <p className="lead my-4">Le patient à t&#39;il plus de 16 ans ?</p>
+
         <Button
           variant="primary"
           onClick={event => this.clickHandler(event)}
