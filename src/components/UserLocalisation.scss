@@ -3,7 +3,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  height: 50vh;
+  height: 42vh;
 }
 
 // Color System
@@ -11,21 +11,4 @@
 
 .hint-checkbox {
   //border-left: 2px solid $gray-600;
-}
-
-/* sm */
-@media (min-width: 768px) {
-  .bg-toy {
-    background-size: cover;
-  }
-}
-/* md */
-@media (min-width: 992px) {
-  .bg-toy {
-  }
-}
-/* lg */
-@media (min-width: 1200px) {
-  .bg-toy {
-  }
 }

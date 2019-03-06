@@ -105,9 +105,9 @@ class IsEmergency extends PureComponent {
         <footer className="bg-light">
           <div className="container">
             <div className="row">
-              <p class="small text-muted p-5">
+              <p className="small text-muted p-5">
                 Done with love by Christina Bailey, Christophe Begue, Thomas
-                Lesage Samuel Bouaroua and Raphael Veil.
+                Lesage, Samuel Bouaroua, and Raphael Veil.
               </p>
             </div>
           </div>

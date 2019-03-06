@@ -28,7 +28,7 @@ class UserLocalisation extends Component {
                 />
                 <span className="text-muted">
                   C'est pour renouveller une ordonnance ?{" "}
-                  <span class="text-dark">Cliquez ici !</span>
+                  <span className="text-dark">Cliquez ici !</span>
                 </span>
               </label>
             </div>
