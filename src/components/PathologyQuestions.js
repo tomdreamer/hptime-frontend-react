@@ -29,13 +29,19 @@ const Ul = posed.ul({
 
 const Li = posed.li({
   open: {
-    transition: { ease: "easeInOut", duration: 300 },
+    transition: { ease: "easeInOut", duration: 400 },
     y: 0,
     opacity: 1,
     x: 0
   },
   closed: { y: 0, opacity: 0, x: 300 }
 });
+
+// function pathologyAnimation() {
+//   if (this.props.pathologyAnimate === true) {
+//     setTimeout(this.toggle, 1000);
+//   }
+// }
 
 class PathologyQuestions extends Component {
   constructor(props) {
@@ -53,14 +59,16 @@ class PathologyQuestions extends Component {
     this.props.nextStep(event);
     this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
   }
-  componentDidMount() {
-    setTimeout(this.toggle, 400);
-  }
-  componentDidUnMount() {
-    setTimeout(this.toggle, 0);
+  componentWillMount() {
+    setTimeout(console.log("coucou pathos mount"), 500);
   }
 
-  toggle = () => this.setState({ isOpen: !this.state.isOpen });
+  componentDidUpdate(oldProps) {
+    if (!oldProps.isActive && this.props.isActive) {
+      console.log("coucou pathos-----------------");
+      this.setState({ isOpen: true });
+    }
+  }
 
   // card list of specialities that helps to filter search results of hospitals and structures with corresponding services
   render() {
