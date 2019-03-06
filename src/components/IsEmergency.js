@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import SpeedDial from "./SpeedDial.js";
 
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
@@ -60,7 +59,7 @@ class IsEmergency extends PureComponent {
                 <img
                   src="/images/illustrations/medicine.svg"
                   alt="Calm and soothing illustration of two doctors waiting for you in an hospital"
-                  className="img-fluid border-bottom pb-3"
+                  className="img-fluid pb-3"
                 />
               </div>
             </div>
@@ -102,9 +101,7 @@ class IsEmergency extends PureComponent {
           </Modal.Footer>
         </Modal>
 
-        <footer className="fixed-bottom">
-          <SpeedDial />
-        </footer>
+        <footer className="fixed-bottom" />
       </>
     );
   }

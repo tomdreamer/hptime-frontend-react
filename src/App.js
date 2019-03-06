@@ -15,7 +15,7 @@ import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
-import posed, { PoseGroup } from "react-pose";
+// import posed, { PoseGroup } from "react-pose";
 
 require("dotenv").config();
 
