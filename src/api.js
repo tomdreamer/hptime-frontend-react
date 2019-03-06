@@ -29,7 +29,7 @@ export function getAltStructureList() {
 
 export function getDistanceDuration(userLong, userLatt, long, latt){
   return axios
-  .get(`https://api.mapbox.com/directions/v5/mapbox/cycling/${userLong},${userLatt};${long},${latt}?access_token=pk.eyJ1IjoiYmFsMSIsImEiOiJjanI5ZXJpb2MwZmM5M3lxazFqbWkzZG81In0.XoYsD5Eyl2RqCFphhICBLQ`)
+  .get(`https://api.mapbox.com/directions-matrix/v1/mapbox/walking/${userLong},${userLatt};${long},${latt}?sources=1&annotations=distance,duration&access_token=pk.eyJ1IjoiYmFsMSIsImEiOiJjanI5ZXJpb2MwZmM5M3lxazFqbWkzZG81In0.XoYsD5Eyl2RqCFphhICBLQ`)
   .catch(errorHandler);
 }
 export function postSignUp(userSubmission) {
