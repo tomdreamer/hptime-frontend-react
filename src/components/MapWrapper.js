@@ -5,9 +5,9 @@ import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Swal from 'sweetalert2'
-import { Redirect } from 'react-router'
-import { 
+import Swal from "sweetalert2";
+import { Redirect } from "react-router";
+import {
   getHospitalList,
   getAltStructureList,
   getHospitalsbyLocation,
@@ -35,20 +35,18 @@ class MapWrapper extends Component {
   setRedirect = () => {
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
   componentDidMount() {
     const userLocation = this.props.userLocation;
 
     // get data from our backend Express API (localhost:2999)
     if (userLocation) {
-      // console.log(userLocation.latitude);
-      // console.log(userLocation.longitude);
       axios
         .all([
           getHospitalsbyLocation(userLocation.latitude, userLocation.longitude),
@@ -59,9 +57,8 @@ class MapWrapper extends Component {
         ])
         .then(
           axios.spread((responseHos, responseAlt) => {
-            // console.log("Structure list", response.data);
             const { neededSpecialist, patientType } = this.props;
-            // console.log(neededSpecialist, patientType);
+            // console.log(neededSpecialist, patientType, "Structure list", response.data);
             const hospitalArray = responseHos.data || [];
             const altStructure = responseAlt.data || [];
             let i = 0;
@@ -120,133 +117,140 @@ class MapWrapper extends Component {
           })
         )
         .catch(() => {
-           
-           Swal.fire({
-            position: 'center',
-            type: 'info',
-            title: 'Etes-vous sûr d avoir suivi le questionnaire?',
+          Swal.fire({
+            position: "center",
+            type: "info",
+            title: "Etes-vous sûr d avoir suivi le questionnaire?",
             showConfirmButton: false,
             timer: 2000
-          })    
-          this.setState({ isSubmitSuccessful: true });     
-          
-          
+          });
+          this.setState({ isSubmitSuccessful: true });
         });
     }
   }
   render() {
     const { newstructureArray, open } = this.state;
-
     return this.state.isSubmitSuccessful ? (
       // returning the <Redirect /> ONLY works inside RENDER
       <Redirect to="/" />
     ) : (
-      <section className="MapWrapper">
-        <Row>
-          <Col
-            sm={{ span: 12, order: 2 }}
-            md={{ span: 4, order: 2 }}
-            id="map-filter"
-          >
-            <div id="accordion">
-              <div className="card border-bottom-0">
-                <div className="card-header" id="headingOne">
+      <Row className="no-gutters">
+        {/* list of relevant results with a toggle button */}
+        <Col
+          sm={{ span: 12, order: 2 }}
+          md={{ span: 4, order: 2 }}
+          id="map-filter"
+        >
+          <div id="accordion">
+            <div className="card border-bottom-0">
+              <div className="card-header" id="headingOne">
+                {open ? (
                   <Button
-                    className="btn btn-primary btn-lg btn-block"
+                    variant="primary"
+                    size="lg"
+                    block
+                    className="d-md-none"
                     onClick={() => this.setState({ open: !open })}
                     aria-controls="example-collapse-text"
                     aria-expanded={open}
                   >
-                    {/* condition to change the voir map button to voir condition over the propositions list */}
-                    {open ? (
-                      <p className="clollapsBtnText">Voir Map</p>
-                    ) : (
-                      <p className="clollapsBtnText">Voir Propositions</p>
-                    )}
+                    <p className="clollapsBtnText">Carte seulement</p>
                   </Button>
-                </div>
-                <Collapse
-                  in={this.state.open}
-                  className=" dimension"
-                  id="example-collapse-text"
-                >
-                  <div aria-labelledby="headingOne" data-parent="#accordion">
-                    {/* ---------------------------------------------------------- */}
-                    {/* this table display the structure propostions into the collaps button list */}
-                    {/* ---------------------------------------------------------- */}
-                    <table className="table scrolling">
-                      <thead className="thead-light">
-                        <tr>
-                          <th className="title1Col" scope="col">
-                            Tri/Pertinence
-                          </th>
-                          <th className="text-center colDeux" scope="col">
-                            Ouverte
-                          </th>
-                          <th className="text-center colDeux" scope="col">
-                            Attente
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {newstructureArray.map((oneStructure, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>
-                                <ul className="list-group list-group-flush resultTb FCol">
-                                  <li className="list-group-item namePolice small">
-                                    <b>{oneStructure.name}</b>
-                                  </li>
-                                  <li className="list-group-item typePolice">
-                                    <a href="tel:+33{popupInfo.phoneNumber}">
-                                      {oneStructure.phoneNumber}
-                                    </a>{" "}
-                                  </li>
-                                </ul>
-                              </td>
-                              <td className="cel  colDeux">
-                                {oneStructure.AppelPrealable ? (
-                                  <span className="badge badge-success badge-pill">
-                                    Oui
-                                  </span>
-                                ) : (
-                                  <span className="badge badge-danger badge-pill">
-                                    Non
-                                  </span>
-                                )}
-                              </td>
-                              <td className="cel colDeux">
-                                <ul className="list-group list-unstyled resultTb">
-                                  <li className="list-list-unstyled">
-                                    <span className="badge badge-primary">
-                                      {oneStructure.duration} min
-                                    </span>
-                                  </li>
-                                </ul>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </Collapse>
+                ) : (
+                  <Button
+                    variant="outline-primary"
+                    size="lg"
+                    block
+                    className="d-md-none"
+                    onClick={() => this.setState({ open: !open })}
+                    aria-controls="example-collapse-text"
+                    aria-expanded={open}
+                  >
+                    <p className="clollapsBtnText">Carte et propositions</p>
+                  </Button>
+                )}
               </div>
+              <Collapse
+                in={this.state.open}
+                className=" dimension"
+                id="example-collapse-text"
+              >
+                <div aria-labelledby="headingOne" data-parent="#accordion">
+                  {/* ---------------------------------------------------------- */}
+                  {/* this table display the structure propostions into the collaps button list */}
+                  {/* ---------------------------------------------------------- */}
+                  <table className="table scrolling">
+                    <thead className="thead-light">
+                      <tr>
+                        <th className="title1Col" scope="col">
+                          Tri/Pertinence
+                        </th>
+                        <th className="text-center colDeux" scope="col">
+                          Ouverte
+                        </th>
+                        <th className="text-center colDeux" scope="col">
+                          Attente
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {newstructureArray.map((oneStructure, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>
+                              <ul className="list-group list-group-flush resultTb FCol">
+                                <li className="list-group-item namePolice small">
+                                  <b>{oneStructure.name}</b>
+                                </li>
+                                <li className="list-group-item typePolice">
+                                  <a href="tel:+33{popupInfo.phoneNumber}">
+                                    {oneStructure.phoneNumber}
+                                  </a>{" "}
+                                </li>
+                              </ul>
+                            </td>
+                            <td className="cel  colDeux">
+                              {oneStructure.AppelPrealable ? (
+                                <span className="badge badge-success badge-pill">
+                                  Oui
+                                </span>
+                              ) : (
+                                <span className="badge badge-danger badge-pill">
+                                  Non
+                                </span>
+                              )}
+                            </td>
+                            <td className="cel colDeux">
+                              <ul className="list-group list-unstyled resultTb">
+                                <li className="list-list-unstyled">
+                                  <span className="badge badge-primary">
+                                    {oneStructure.duration} min
+                                  </span>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </Collapse>
             </div>
-          </Col>
+          </div>
+        </Col>
 
-          <Col sm={{ span: 12, order: 2 }} md={{ span: 8, order: 2 }}>
-            {/* pass name of results array */}
-            <SingleMap
-              hospitalArray={this.state.hospitalArray}
-              altStructure={this.state.altStructure}
-              newstructureArray={this.state.newstructureArray}
-              structureArray={this.state.structureArray}
-              userLocation={this.props.userLocation}
-            />
-          </Col>
-        </Row>
-      </section>
+        {/* map container receiving data and user location as props */}
+        <Col sm={{ span: 12, order: 2 }} md={{ span: 8, order: 2 }}>
+          <SingleMap
+            hospitalArray={this.state.hospitalArray}
+            altStructure={this.state.altStructure}
+            newstructureArray={this.state.newstructureArray}
+            structureArray={this.state.structureArray}
+            userLocation={this.props.userLocation}
+          />
+        </Col>
+      </Row>
     );
   }
 }
