@@ -5,6 +5,8 @@ import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
+import { Redirect } from "react-router";
 import {
   getHospitalList,
   getAltStructureList,
@@ -12,6 +14,8 @@ import {
   getAtlStructuresbyLocation,
   getDistanceDuration
 } from "../api.js";
+
+const MAPBOX_KEY = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class MapWrapper extends Component {
   constructor(props) {
@@ -25,10 +29,21 @@ class MapWrapper extends Component {
       // newstructureArray render all the filtered hospitals from the firltering process
       newstructureArray: [],
       // structureArray renders all hospitals and alt structures in existance (full array)
-      structureArray: []
+      structureArray: [],
+      isSubmitSuccessful: false
     };
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+  };
   componentDidMount() {
     const userLocation = this.props.userLocation;
 
@@ -104,13 +119,23 @@ class MapWrapper extends Component {
           })
         )
         .catch(() => {
-          alert("Sorry! Something went wrong with the search.");
+          Swal.fire({
+            position: "center",
+            type: "info",
+            title: "Etes-vous sûr d avoir suivi le questionnaire?",
+            showConfirmButton: false,
+            timer: 2000
+          });
+          this.setState({ isSubmitSuccessful: true });
         });
     }
   }
   render() {
     const { newstructureArray, open } = this.state;
-    return (
+    return this.state.isSubmitSuccessful ? (
+      // returning the <Redirect /> ONLY works inside RENDER
+      <Redirect to="/" />
+    ) : (
       <Row className="no-gutters">
         {/* list of relevant results with a toggle button */}
         <Col

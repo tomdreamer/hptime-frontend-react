@@ -5,6 +5,7 @@ import MapGL, { Marker, FlyToInterpolator } from "react-map-gl";
 import MapMarker from "./MapMarker.js";
 import UserMarker from "./UserMarker.js";
 import PopUp from "./PopUp";
+const MAPBOX_KEY = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class SingleMap extends Component {
   constructor(props) {
@@ -100,7 +101,7 @@ class SingleMap extends Component {
     return (
       <MapGL
         {...viewport}
-        mapboxApiAccessToken="pk.eyJ1IjoicHJvamVjdDNpcm9uaGFjayIsImEiOiJjanNpdzA4aXcxemloNDRueDBkaXlkZDh0In0.bbNCzs-0njORLSHu9bXeDQ"
+        mapboxApiAccessToken={MAPBOX_KEY}
         mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
         width="100%"
         height={window.innerHeight - 56}
