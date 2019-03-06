@@ -16,8 +16,14 @@ import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
 import posed, { PoseGroup } from "react-pose";
+import PathologyQuestions from "./components/PathologyQuestions.js";
 
 require("dotenv").config();
+
+const RoutesContainer = posed.div({
+  enter: { opacity: 1, y: 0, x: 0, delay: 300 },
+  exit: { opacity: 0, y: 0, x: 0 }
+});
 
 class App extends Component {
   constructor(props) {
@@ -33,9 +39,11 @@ class App extends Component {
       patientGender: "",
       neededSpecialist: "",
       patientAdult: "",
+      beforeChildren: true,
       patientLocation: { latitude: 0, longitude: 0 }
     };
   }
+
   updateUser(newUser) {
     if (newUser) {
       // save the user info in local storage if we are logging IN
@@ -79,60 +87,68 @@ class App extends Component {
             logoutClick={() => this.logoutClick()}
           />
         </header>
+        <PoseGroup>
+          <RoutesContainer key="RoutesContainer">
+            <Switch>
+              <Route path="/" exact component={IsEmergency} key="isEmergency" />
+              <Route
+                key="3"
+                path="/map"
+                render={() => {
+                  return (
+                    <MapWrapper
+                      neededSpecialist={neededSpecialist}
+                      patientType={patientAdult}
+                      userLocation={patientLocation}
+                    />
+                  );
+                }}
+              />
+              <Route key="geoloc" path="/geoloc" component={GeolocationPoint} />
+              <Route
+                key="form"
+                path="/form"
+                render={() => {
+                  return (
+                    <Questions
+                      updatePatient={event => this.updatePatient(event)}
+                      onGeolocation={(latitude, longitude) =>
+                        this.updatePatientPosition(latitude, longitude)
+                      }
+                    />
+                  );
+                }}
+              />
 
-        <Switch>
-          <Route path="/" exact component={IsEmergency} />
-          <Route
-            path="/map"
-            render={() => {
-              return (
-                <MapWrapper
-                  neededSpecialist={neededSpecialist}
-                  patientType={patientAdult}
-                  userLocation={patientLocation}
-                />
-              );
-            }}
-          />
-          <Route path="/geoloc" component={GeolocationPoint} />
-          <Route
-            path="/form"
-            render={() => {
-              return (
-                <Questions
-                  updatePatient={event => this.updatePatient(event)}
-                  onGeolocation={(latitude, longitude) =>
-                    this.updatePatientPosition(latitude, longitude)
-                  }
-                />
-              );
-            }}
-          />
-          <Route
-            path="/signup"
-            render={() => {
-              return (
-                <SignupPage
-                  currentUser={this.state.currentUser}
-                  signupSuccess={user => this.updateUser(user)}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/login"
-            render={() => {
-              return (
-                <LoginPage
-                  currentUser={this.state.currentUser}
-                  loginSuccess={user => this.updateUser(user)}
-                />
-              );
-            }}
-          />
+              <Route
+                key="signup"
+                path="/signup"
+                render={() => {
+                  return (
+                    <SignupPage
+                      currentUser={this.state.currentUser}
+                      signupSuccess={user => this.updateUser(user)}
+                    />
+                  );
+                }}
+              />
+              <Route
+                key="login"
+                path="/login"
+                render={() => {
+                  return (
+                    <LoginPage
+                      currentUser={this.state.currentUser}
+                      loginSuccess={user => this.updateUser(user)}
+                    />
+                  );
+                }}
+              />
 
-          <Route component={NotFound} />
-        </Switch>
+              <Route component={NotFound} key="NotFound" />
+            </Switch>
+          </RoutesContainer>
+        </PoseGroup>
       </div>
     );
   }

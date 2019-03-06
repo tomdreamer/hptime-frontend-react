@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import posed, { PoseGroup } from "react-pose";
+
 // child card component
 import SpecialtyCard from "./SpecialtyCard";
 // images
@@ -26,6 +28,16 @@ class PathologyQuestions extends Component {
 
   // card list of specialities that helps to filter search results of hospitals and structures with corresponding services
   render() {
+    const Ul = posed.ul({
+      enter: { staggerChildren: 50 },
+      exit: { staggerChildren: 20 }
+    });
+
+    const Li = posed.li({
+      enter: { y: 0, opacity: 1, delay: 500 },
+      exit: { y: 5000, opacity: 0 }
+    });
+
     const specialtyList = [
       {
         bodyPart: "ORL",
@@ -100,10 +112,10 @@ class PathologyQuestions extends Component {
           Où se situe la douleur ?
         </p>
         {/* <hr className="mb-5" /> */}
-        <ul className="list-unstyled">
+        <Ul className="list-unstyled">
           {specialtyList.map((oneSpecialty, index) => {
             return (
-              <li key={index} className="item">
+              <Li key={index} className="item">
                 <SpecialtyCard
                   // card specs
                   bodyPart={oneSpecialty.bodyPart}
@@ -115,10 +127,10 @@ class PathologyQuestions extends Component {
                   updatePatient={event => this.props.updatePatient(event)}
                   nextStep={event => this.userChoice(event)}
                 />
-              </li>
+              </Li>
             );
           })}
-        </ul>
+        </Ul>
       </section>
     );
   }
