@@ -10,8 +10,8 @@ import {
   // getHospitalList,
   // getAltStructureList,
   getHospitalsbyLocation,
-  getAtlStructuresbyLocation
-  // getDistanceDuration
+  getAtlStructuresbyLocation,
+  getDistanceDuration
 } from "../api.js";
 
 class MapWrapper extends Component {
@@ -78,12 +78,12 @@ class MapWrapper extends Component {
               .concat(filteredHospiatls)
               .slice(0, 20);
             console.log(newstructureArray);
-            const mapboxArray = newstructureArray.map(el => getDistanceDuration(userLocation.latitude, userLocation.longitude, el.longitude, el.latitude)
+            const mapboxArray = newstructureArray.map(el => getDistanceDuration( userLocation.longitude, userLocation.latitude, el.longitude, el.latitude)
               .then((response) => {
-                el.duration=response.data.routes[0].duration;
+             el.duration=Math.round((response.data.durations[0][0])/60);
               }))
             axios.all(mapboxArray).then(() => {
-              newstructureArray.sort(function(a, b){return b.duration - a.duration});
+              newstructureArray.sort(function(a, b){return  a.duration - b.duration});
               console.log(newstructureArray)
              this.setState({newstructureArray});
             })
@@ -186,7 +186,7 @@ class MapWrapper extends Component {
                                 <ul className="list-group list-unstyled resultTb">
                                   <li className="list-list-unstyled">
                                     <span className="badge badge-primary">
-                                      30 min
+                                    {oneStructure.duration} min
                                     </span>
                                   </li>
                                 </ul>
