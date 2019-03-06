@@ -77,7 +77,6 @@ class MapWrapper extends Component {
               .concat(filteredHospiatls)
               .slice(0, 20);
             console.log(newstructureArray);
-<<<<<<< HEAD
             const mapboxArray = newstructureArray.map(el => getDistanceDuration( userLocation.longitude, userLocation.latitude, el.longitude, el.latitude)
               .then((response) => {
              el.duration=Math.round((response.data.durations[0][0])/60);
@@ -88,26 +87,6 @@ class MapWrapper extends Component {
              this.setState({newstructureArray});
             })
             
-=======
-            const mapboxArray = newstructureArray.map(el =>
-              getDistanceDuration(
-                userLocation.latitude,
-                userLocation.longitude,
-                el.longitude,
-                el.latitude
-              ).then(response => {
-                el.duration = response.data.routes[0].duration;
-              })
-            );
-            axios.all(mapboxArray).then(() => {
-              newstructureArray.sort(function(a, b) {
-                return b.duration - a.duration;
-              });
-              console.log(newstructureArray);
-              this.setState({ newstructureArray });
-            });
-
->>>>>>> 0deea52f2ace20f6d9ed79cec89923235b06dcaa
             const structureArray = filteredHospiatls.concat(altStructure);
             console.log(structureArray);
 
