@@ -5,7 +5,9 @@ import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import {
+import Swal from 'sweetalert2'
+import { Redirect } from 'react-router'
+import { 
   getHospitalList,
   getAltStructureList,
   getHospitalsbyLocation,
@@ -25,10 +27,21 @@ class MapWrapper extends Component {
       // newstructureArray render all the filtered hospitals from the firltering process
       newstructureArray: [],
       // structureArray renders all hospitals and alt structures in existance (full array)
-      structureArray: []
+      structureArray: [],
+      isSubmitSuccessful: false
     };
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
   componentDidMount() {
     const userLocation = this.props.userLocation;
 
@@ -77,16 +90,24 @@ class MapWrapper extends Component {
               .concat(filteredHospiatls)
               .slice(0, 20);
             console.log(newstructureArray);
-            const mapboxArray = newstructureArray.map(el => getDistanceDuration( userLocation.longitude, userLocation.latitude, el.longitude, el.latitude)
-              .then((response) => {
-             el.duration=Math.round((response.data.durations[0][0])/60);
-              }))
+            const mapboxArray = newstructureArray.map(el =>
+              getDistanceDuration(
+                userLocation.longitude,
+                userLocation.latitude,
+                el.longitude,
+                el.latitude
+              ).then(response => {
+                el.duration = Math.round(response.data.durations[0][0] / 60);
+              })
+            );
             axios.all(mapboxArray).then(() => {
-              newstructureArray.sort(function(a, b){return  a.duration - b.duration});
-              console.log(newstructureArray)
-             this.setState({newstructureArray});
-            })
-            
+              newstructureArray.sort(function(a, b) {
+                return a.duration - b.duration;
+              });
+              console.log(newstructureArray);
+              this.setState({ newstructureArray });
+            });
+
             const structureArray = hospitalArray.concat(altStructure);
             console.log(structureArray);
 
@@ -99,14 +120,27 @@ class MapWrapper extends Component {
           })
         )
         .catch(() => {
-          alert("Sorry! Something went wrong with the search.");
+           
+           Swal.fire({
+            position: 'center',
+            type: 'info',
+            title: 'Etes-vous sûr d avoir suivi le questionnaire?',
+            showConfirmButton: false,
+            timer: 2000
+          })    
+          this.setState({ isSubmitSuccessful: true });     
+          
+          
         });
     }
   }
   render() {
     const { newstructureArray, open } = this.state;
 
-    return (
+    return this.state.isSubmitSuccessful ? (
+      // returning the <Redirect /> ONLY works inside RENDER
+      <Redirect to="/" />
+    ) : (
       <section className="MapWrapper">
         <Row>
           <Col
@@ -125,9 +159,9 @@ class MapWrapper extends Component {
                   >
                     {/* condition to change the voir map button to voir condition over the propositions list */}
                     {open ? (
-                      <p className="clollapsBtnText">VOIR MAP</p>
+                      <p className="clollapsBtnText">Voir Map</p>
                     ) : (
-                      <p className="clollapsBtnText">VOIR PROPOSITIONS</p>
+                      <p className="clollapsBtnText">Voir Propositions</p>
                     )}
                   </Button>
                 </div>
@@ -185,7 +219,7 @@ class MapWrapper extends Component {
                                 <ul className="list-group list-unstyled resultTb">
                                   <li className="list-list-unstyled">
                                     <span className="badge badge-primary">
-                                    {oneStructure.duration} min
+                                      {oneStructure.duration} min
                                     </span>
                                   </li>
                                 </ul>

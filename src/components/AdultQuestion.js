@@ -12,7 +12,7 @@ class AdultQuestion extends Component {
     return (
       <section className="text-center">
         <div className="bg-toy" />
-        <p className="lead my-4">Le patient à t&#39;il plus de 16 ans ?</p>
+        <p className="lead my-4">Le patient a-t-il plus de 16 ans ?</p>
 
         <Button
           variant="primary"

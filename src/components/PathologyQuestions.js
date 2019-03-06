@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import posed, { PoseGroup } from "react-pose";
 import { Link } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // child card component
 import SpecialtyCard from "./SpecialtyCard";
@@ -10,10 +12,15 @@ const dent = "/images/pictos/dentaire.svg";
 const uterus = "/images/pictos/gynecologie.svg";
 const main = "/images/pictos/plaie_de_main.svg";
 const oeil = "/images/pictos/ophtalmologie.svg";
-const orl = "/images/pictos/ORL.png";
+const orl = "/images/pictos/ORL2.png";
 const anus = "/images/pictos/anus.svg";
 const psychiatrie = "/images/pictos/psychiatrie.svg";
+const ventre = "/images/pictos/ventre.svg";
+const torso = "/images/pictos/torso.svg";
+const brulure = "/images/pictos/brulure.svg";
+const fracture = "/images/pictos/fracture.svg";
 const gorge = "/images/pictos/gorge.svg";
+const grossesse = "/images/pictos/grossesse.svg";
 
 const Ul = posed.ul({
   open: {
@@ -114,26 +121,33 @@ class PathologyQuestions extends Component {
       },
       {
         bodyPart: "Poitrine",
-        neededSpecialist: "Proctology",
-        image: generale,
+        neededSpecialist: "Générales",
+        image: torso,
         infoTitle: "",
         infoText:
           "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
       },
       {
-        bodyPart: "Gynécologie, Grossesse",
+        bodyPart: "Ventre",
+        neededSpecialist: "Générales",
+        image: ventre,
+        infoTitle: "",
+        infoText:
+          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
+      },
+      {
+        bodyPart: "Gynécologie",
         neededSpecialist: "Gynéco-obstétricales",
         image: uterus,
         infoTitle: "",
         infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
       {
-        bodyPart: "Ventre",
-        neededSpecialist: "Proctology",
-        image: generale,
+        bodyPart: "Grossesse",
+        neededSpecialist: "Gynéco-obstétricales",
+        image: grossesse,
         infoTitle: "",
-        infoText:
-          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
+        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
       {
         bodyPart: "Côlon",
@@ -151,6 +165,20 @@ class PathologyQuestions extends Component {
         infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
       },
       {
+        bodyPart: "Brulure (medecine générale)",
+        neededSpecialist: "Générales",
+        image: brulure,
+        infoTitle: "",
+        infoText: "Pour tout autre type d'urgence."
+      },
+      {
+        bodyPart: "Fracture (medecine générale)",
+        neededSpecialist: "Générales",
+        image: fracture,
+        infoTitle: "",
+        infoText: "Pour tout autre type d'urgence."
+      },
+      {
         bodyPart: "Medecine générale",
         neededSpecialist: "Générales",
         image: generale,
@@ -160,6 +188,7 @@ class PathologyQuestions extends Component {
     ];
     return (
       <section id="PathologyCards">
+        {/* quuestion */}
         <p className="lead text-center">
           <span className="float-left pl-3">
             <Link
@@ -167,33 +196,39 @@ class PathologyQuestions extends Component {
               onClick={this.props.previousStep}
               className="text-secondary"
             >
-              ..revenir
+              <i class="fas fa-arrow-left mx-2" />
+              Retour
             </Link>
           </span>
           <span className="text-center mr-4 pr-4">
             Où se situe la douleur ?
           </span>
         </p>
-        {/* <hr className="mb-5" /> */}
-        <Ul pose={isOpen ? "open" : "closed"} className="list-unstyled">
-          {specialtyList.map((oneSpecialty, index) => {
-            return (
-              <Li key={index} className="item">
-                <SpecialtyCard
-                  // card specs
-                  bodyPart={oneSpecialty.bodyPart}
-                  picture={oneSpecialty.image}
-                  neededSpecialist={oneSpecialty.neededSpecialist}
-                  infoText={oneSpecialty.infoText}
-                  index={index}
-                  // update filter and next step in form events
-                  updatePatient={event => this.props.updatePatient(event)}
-                  nextStep={event => this.userChoice(event)}
-                />
-              </Li>
-            );
-          })}
-        </Ul>
+
+        {/* card list */}
+        <Row className="d-flex justify-content-center">
+          <Col xs={12} sm={12} md={9} lg={6}>
+            <Ul pose={isOpen ? "open" : "closed"} className="list-unstyled">
+              {specialtyList.map((oneSpecialty, index) => {
+                return (
+                  <Li key={index} className="item">
+                    <SpecialtyCard
+                      // card specs
+                      bodyPart={oneSpecialty.bodyPart}
+                      picture={oneSpecialty.image}
+                      neededSpecialist={oneSpecialty.neededSpecialist}
+                      infoText={oneSpecialty.infoText}
+                      index={index}
+                      // update filter and next step in form events
+                      updatePatient={event => this.props.updatePatient(event)}
+                      nextStep={event => this.userChoice(event)}
+                    />
+                  </Li>
+                );
+              })}
+            </Ul>
+          </Col>
+        </Row>
       </section>
     );
   }
