@@ -58,6 +58,7 @@ class SingleMap extends Component {
     this.setState({ viewport });
   }
 
+  // renders a single popup
   renderPopup() {
     const { popupInfo } = this.state;
     return (
@@ -70,6 +71,8 @@ class SingleMap extends Component {
   // set user current marker and fly to it
   renderUserMarker(location) {
     if (location) {
+      //      this._goToViewport(location.latitude, location.longitude);
+      // do not remove please (infinite loop line 86)
       return (
         <Marker latitude={location.latitude} longitude={location.longitude}>
           <UserMarker />
@@ -78,7 +81,7 @@ class SingleMap extends Component {
     }
   }
 
-  // change viewport ()
+  // change viewport to given location
   _goToViewport(longitude, latitude) {
     this._onViewportChange({
       viewport: { longitude, latitude },
@@ -100,7 +103,8 @@ class SingleMap extends Component {
         mapboxApiAccessToken="pk.eyJ1IjoicHJvamVjdDNpcm9uaGFjayIsImEiOiJjanNpdzA4aXcxemloNDRueDBkaXlkZDh0In0.bbNCzs-0njORLSHu9bXeDQ"
         mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
         width="100%"
-        height={window.innerHeight - 150}
+        height={window.innerHeight - 56}
+        // 56 to substract navbar height of window size so the map is full height
         onViewportChange={this._onViewportChange}
       >
         {/* user marker  */}

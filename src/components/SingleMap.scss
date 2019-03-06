@@ -1,5 +1,5 @@
 #map-filter {
-  max-height: 90vh;
+  max-height: calc(100vh - 56px);
   overflow: scroll;
 }
 @media (max-width: 1200px) {
