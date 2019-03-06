@@ -24,19 +24,23 @@ const grossesse = "/images/pictos/grossesse.svg";
 
 const Ul = posed.ul({
   open: {
-    transition: { ease: "easeInOut", duration: 300 },
+    transition: { ease: "easeInOut", duration: 400 },
     x: 0,
     delayChildren: 100,
     staggerChildren: 120,
     opacity: 1,
     delay: 300
   },
-  closed: { x: 20, delay: 300, opacity: 0 }
+  closed: {
+    x: 20,
+    delay: 300,
+    opacity: 0
+  }
 });
 
 const Li = posed.li({
   open: {
-    transition: { ease: "easeInOut", duration: 300 },
+    transition: { ease: "easeInOut", duration: 400 },
     y: 0,
     opacity: 1,
     x: 0
@@ -60,14 +64,15 @@ class PathologyQuestions extends Component {
     this.props.nextStep(event);
     this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
   }
-  componentDidMount() {
-    setTimeout(this.toggle, 400);
-  }
-  componentDidUnMount() {
-    setTimeout(this.toggle, 0);
+  componentWillMount() {
+    setTimeout(console.log("coucou pathos mount"), 500);
   }
 
-  toggle = () => this.setState({ isOpen: !this.state.isOpen });
+  componentDidUpdate(oldProps) {
+    if (!oldProps.isActive && this.props.isActive) {
+      this.setState({ isOpen: true });
+    }
+  }
 
   // card list of specialities that helps to filter search results of hospitals and structures with corresponding services
   render() {
@@ -188,7 +193,7 @@ class PathologyQuestions extends Component {
               onClick={this.props.previousStep}
               className="text-secondary"
             >
-              <i class="fas fa-arrow-left mx-2" />
+              <i className="fas fa-arrow-left mx-2" />
               Retour
             </Link>
           </span>

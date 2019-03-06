@@ -35,7 +35,7 @@ class Questions extends Component {
           />
         </section>
 
-        <StepWizard isHashEnabled={true} initialStep={1}>
+        <StepWizard onStepChange={this.handleStep} initialStep={1}>
           <AdultQuestion
             // adding anchor to url
             hashKey={"age"}
