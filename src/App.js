@@ -15,7 +15,6 @@ import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
-// import posed, { PoseGroup } from "react-pose";
 
 require("dotenv").config();
 
@@ -33,9 +32,11 @@ class App extends Component {
       patientGender: "",
       neededSpecialist: "",
       patientAdult: "",
+      beforeChildren: true,
       patientLocation: { latitude: 0, longitude: 0 }
     };
   }
+
   updateUser(newUser) {
     if (newUser) {
       // save the user info in local storage if we are logging IN
@@ -81,8 +82,9 @@ class App extends Component {
         </header>
 
         <Switch>
-          <Route path="/" exact component={IsEmergency} />
+          <Route path="/" exact component={IsEmergency} key="isEmergency" />
           <Route
+            key="3"
             path="/map"
             render={() => {
               return (
@@ -94,8 +96,9 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/geoloc" component={GeolocationPoint} />
+          <Route key="geoloc" path="/geoloc" component={GeolocationPoint} />
           <Route
+            key="form"
             path="/form"
             render={() => {
               return (
@@ -108,7 +111,9 @@ class App extends Component {
               );
             }}
           />
+
           <Route
+            key="signup"
             path="/signup"
             render={() => {
               return (
@@ -120,6 +125,7 @@ class App extends Component {
             }}
           />
           <Route
+            key="login"
             path="/login"
             render={() => {
               return (
@@ -131,7 +137,7 @@ class App extends Component {
             }}
           />
 
-          <Route component={NotFound} />
+          <Route component={NotFound} key="NotFound" />
         </Switch>
       </div>
     );

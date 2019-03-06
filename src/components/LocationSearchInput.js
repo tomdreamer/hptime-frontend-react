@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router";
+import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import "./LocationSearchInput.scss";
@@ -18,10 +19,11 @@ class LocationSearchInput extends React.Component {
       },
       addressInputValue: "",
       isLoadingCoordinates: false,
-      toMapResults: false
+      toMapResults: false,
+      validated: false
     };
 
-    // binds for events
+    // binds for events (needs cleaning)
     this.autocompleteInput = React.createRef();
     this.autocomplete = null;
     this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
@@ -32,10 +34,19 @@ class LocationSearchInput extends React.Component {
 
   // load Google API for autocompletion on mount
   componentDidMount() {
+    // bound the search to ile de france for now
+    var southWest = new google.maps.LatLng(48.1203, 1.4467);
+    var northEast = new google.maps.LatLng(49.2413, 3.5585);
+    var ileDeFrance = new google.maps.LatLngBounds(southWest, northEast);
+
     // monitor form and change result on event
     this.autocomplete = new google.maps.places.Autocomplete(
       this.autocompleteInput.current,
-      { types: ["geocode"] }
+      {
+        bounds: ileDeFrance,
+        types: ["geocode"],
+        componentRestrictions: { country: "fr" }
+      }
     );
 
     this.autocomplete.addListener("place_changed", this.handlePlaceChanged);
@@ -45,7 +56,6 @@ class LocationSearchInput extends React.Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-    console.log(value, name);
 
     this.setState({
       [name]: value
@@ -76,6 +86,15 @@ class LocationSearchInput extends React.Component {
     this.goToResult();
   }
 
+  // input validation
+  handleSubmit(event) {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.setState({ validated: true });
+  }
   // get user coords with HTML5 browser feature on click, redirect when filled
   getUserLocationBrowser() {
     const { currentUserPosition, isLoadingCoordinates } = this.state;
@@ -151,45 +170,60 @@ class LocationSearchInput extends React.Component {
 
   // redirect to map when address found
   goToResult() {
-    // TODO Need UX feedback, Users may need time change the address (may taking them to the map too fast)
-    // intermediate button > submit
     this.setState({ toMapResults: true });
   }
 
   render() {
+    // form validation to prevent submission if empty
+    // see bootstrap react docs
+    const { validated } = this.state;
+
     // redirect to map when address found
     if (this.state.toMapResults === true) {
       return <Redirect to="/map" />;
     }
 
     return (
-      <div className="input-group">
-        <FormControl
-          type="text"
-          placeholder="Où?"
-          onClick={() => {
-            this.getUserLocationBrowser();
-            // this.props.nextStep();
-          }}
-          name="addressInputValue"
-          value={this.state.addressInputValue}
-          onChange={this.handleChange}
-          id="autocomplete"
-          ref={this.autocompleteInput}
-        />
+      <Form
+        noValidate
+        validated={validated}
+        onSubmit={e => this.handleSubmit(e)}
+      >
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <Button
+              variant="primary"
+              onClick={() => {
+                this.getUserLocationBrowser();
+              }}
+            >
+              <i className="fas fa-map-marker-alt" />
+            </Button>
+          </div>
+          <FormControl
+            type="text"
+            placeholder="Où êtes vous?"
+            name="addressInputValue"
+            value={this.state.addressInputValue}
+            onChange={this.handleChange}
+            id="autocomplete"
+            ref={this.autocompleteInput}
+            required
+          />
 
-        <div className="input-group-append">
-          {this.state.isLoadingCoordinates ? (
-            <Button variant="info" onClick={this.goToResult}>
-              <i className="fas fa-circle-notch fa-spin" />
-            </Button>
-          ) : (
-            <Button variant="outline-secondary">
-              <i className="fas fa-search" />
-            </Button>
-          )}
+          <div className="input-group-append">
+            {this.state.isLoadingCoordinates ? (
+              <Button variant="info" onClick={this.goToResult}>
+                <i className="fas fa-circle-notch fa-spin" />
+              </Button>
+            ) : (
+              <Button type="submit" variant="outline-secondary">
+                <i className="fas fa-search" />
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
+      </Form>
     );
   }
 }
