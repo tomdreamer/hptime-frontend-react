@@ -20,11 +20,6 @@ import PathologyQuestions from "./components/PathologyQuestions.js";
 
 require("dotenv").config();
 
-const RoutesContainer = posed.div({
-  enter: { opacity: 1, y: 0, x: 0, delay: 300 },
-  exit: { opacity: 0, y: 0, x: 0 }
-});
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -87,68 +82,65 @@ class App extends Component {
             logoutClick={() => this.logoutClick()}
           />
         </header>
-        <PoseGroup>
-          <RoutesContainer key="RoutesContainer">
-            <Switch>
-              <Route path="/" exact component={IsEmergency} key="isEmergency" />
-              <Route
-                key="3"
-                path="/map"
-                render={() => {
-                  return (
-                    <MapWrapper
-                      neededSpecialist={neededSpecialist}
-                      patientType={patientAdult}
-                      userLocation={patientLocation}
-                    />
-                  );
-                }}
-              />
-              <Route key="geoloc" path="/geoloc" component={GeolocationPoint} />
-              <Route
-                key="form"
-                path="/form"
-                render={() => {
-                  return (
-                    <Questions
-                      updatePatient={event => this.updatePatient(event)}
-                      onGeolocation={(latitude, longitude) =>
-                        this.updatePatientPosition(latitude, longitude)
-                      }
-                    />
-                  );
-                }}
-              />
 
-              <Route
-                key="signup"
-                path="/signup"
-                render={() => {
-                  return (
-                    <SignupPage
-                      currentUser={this.state.currentUser}
-                      signupSuccess={user => this.updateUser(user)}
-                    />
-                  );
-                }}
-              />
-              <Route
-                key="login"
-                path="/login"
-                render={() => {
-                  return (
-                    <LoginPage
-                      currentUser={this.state.currentUser}
-                      loginSuccess={user => this.updateUser(user)}
-                    />
-                  );
-                }}
-              />
+        <Switch>
+          <Route path="/" exact component={IsEmergency} key="isEmergency" />
+          <Route
+            key="3"
+            path="/map"
+            render={() => {
+              return (
+                <MapWrapper
+                  neededSpecialist={neededSpecialist}
+                  patientType={patientAdult}
+                  userLocation={patientLocation}
+                />
+              );
+            }}
+          />
+          <Route key="geoloc" path="/geoloc" component={GeolocationPoint} />
+          <Route
+            key="form"
+            path="/form"
+            render={() => {
+              return (
+                <Questions
+                  updatePatient={event => this.updatePatient(event)}
+                  onGeolocation={(latitude, longitude) =>
+                    this.updatePatientPosition(latitude, longitude)
+                  }
+                />
+              );
+            }}
+          />
 
-              <Route component={NotFound} key="NotFound" />
-            </Switch>
-          </RoutesContainer>
-        </PoseGroup>
+          <Route
+            key="signup"
+            path="/signup"
+            render={() => {
+              return (
+                <SignupPage
+                  currentUser={this.state.currentUser}
+                  signupSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
+          <Route
+            key="login"
+            path="/login"
+            render={() => {
+              return (
+                <LoginPage
+                  currentUser={this.state.currentUser}
+                  loginSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
+
+          <Route component={NotFound} key="NotFound" />
+        </Switch>
       </div>
     );
   }
