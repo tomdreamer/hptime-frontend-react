@@ -87,7 +87,7 @@ class MapWrapper extends Component {
              this.setState({newstructureArray});
             })
             
-            const structureArray = filteredHospiatls.concat(altStructure);
+            const structureArray = hospitalArray.concat(altStructure);
             console.log(structureArray);
 
             this.setState({
