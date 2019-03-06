@@ -70,16 +70,6 @@ class SingleMap extends Component {
   // set user current marker and fly to it
   renderUserMarker(location) {
     if (location) {
-      // change viewport to location
-
-      // try 1
-      //    this._goToViewport(location.latitude, location.longitude);
-
-      // try 2
-      // this.setState({
-      //   viewport: { latitude: location.latitude, longitude: location.longitude }
-      // });
-
       return (
         <Marker latitude={location.latitude} longitude={location.longitude}>
           <UserMarker />
@@ -98,10 +88,12 @@ class SingleMap extends Component {
     });
   }
 
+  /////Master Render//////
   render() {
     const { viewport } = this.state;
     const { userLocation } = this.props;
-    console.log(this.state.structureArray, "coucou");
+    console.log(this.props.structureArray, "coucou");
+
     return (
       <MapGL
         {...viewport}

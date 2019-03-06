@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import SingleMap from "./SingleMap.js";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
@@ -35,8 +34,8 @@ class MapWrapper extends Component {
 
     // get data from our backend Express API (localhost:2999)
     if (userLocation) {
-      console.log(userLocation.latitude);
-      console.log(userLocation.longitude);
+      // console.log(userLocation.latitude);
+      // console.log(userLocation.longitude);
       axios
         .all([
           getHospitalsbyLocation(userLocation.latitude, userLocation.longitude),
@@ -49,7 +48,7 @@ class MapWrapper extends Component {
           axios.spread((responseHos, responseAlt) => {
             // console.log("Structure list", response.data);
             const { neededSpecialist, patientType } = this.props;
-            console.log(neededSpecialist, patientType);
+            // console.log(neededSpecialist, patientType);
             const hospitalArray = responseHos.data || [];
             const altStructure = responseAlt.data || [];
             let i = 0;
