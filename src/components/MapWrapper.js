@@ -15,8 +15,6 @@ import {
   getDistanceDuration
 } from "../api.js";
 
-const MAPBOX_KEY = process.env.REACT_APP_MAPBOX_TOKEN;
-
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
