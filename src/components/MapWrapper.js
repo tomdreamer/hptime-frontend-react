@@ -88,7 +88,6 @@ class MapWrapper extends Component {
               })
             );
             axios.all(mapboxArray).then(() => {
-<<<<<<< HEAD
               newstructureArray.sort(function(a, b) {
                 return a.duration - b.duration;
               });
@@ -96,15 +95,7 @@ class MapWrapper extends Component {
               this.setState({ newstructureArray });
             });
 
-            const structureArray = filteredHospiatls.concat(altStructure);
-=======
-              newstructureArray.sort(function(a, b){return  a.duration - b.duration});
-              console.log(newstructureArray)
-             this.setState({newstructureArray});
-            })
-            
             const structureArray = hospitalArray.concat(altStructure);
->>>>>>> e259f711b69e41d919fba42713cc4fa9a1085a9a
             console.log(structureArray);
 
             this.setState({
