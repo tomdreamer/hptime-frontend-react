@@ -196,7 +196,7 @@ class PathologyQuestions extends Component {
               onClick={this.props.previousStep}
               className="text-secondary"
             >
-              <i class="fas fa-arrow-left mx-2" />
+              <i className="fas fa-arrow-left mx-2" />
               Retour
             </Link>
           </span>
