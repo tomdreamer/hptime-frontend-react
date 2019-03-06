@@ -28,7 +28,7 @@ export function getAltStructureList() {
 }
 
 export function getDistanceDuration(userLong, userLatt, long, latt){
-  return backendApi
+  return axios
   .get(`https://api.mapbox.com/directions/v5/mapbox/cycling/${userLong},${userLatt};${long},${latt}?access_token=pk.eyJ1IjoiYmFsMSIsImEiOiJjanI5ZXJpb2MwZmM5M3lxazFqbWkzZG81In0.XoYsD5Eyl2RqCFphhICBLQ`)
   .catch(errorHandler);
 }
