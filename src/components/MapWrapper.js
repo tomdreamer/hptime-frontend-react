@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import {
   getHospitalList,
   getAltStructureList,
@@ -15,6 +16,9 @@ import {
   getDistanceDuration
 } from "../api.js";
 
+function getStructureDetails(oneStructure) {
+  return `/structure-details/${oneStructure}`;
+}
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +32,7 @@ class MapWrapper extends Component {
       newstructureArray: [],
       // structureArray renders all hospitals and alt structures in existance (full array)
       structureArray: [],
-      isSubmitSuccessful: false
+      redirect: false
     };
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
@@ -130,7 +134,7 @@ class MapWrapper extends Component {
   }
   render() {
     const { newstructureArray, open } = this.state;
-    return this.state.isSubmitSuccessful ? (
+    return this.state.redirect ? (
       // returning the <Redirect /> ONLY works inside RENDER
       <Redirect to="/" />
     ) : (
@@ -210,15 +214,9 @@ class MapWrapper extends Component {
                               </ul>
                             </td>
                             <td className="cel  colDeux">
-                              {oneStructure.AppelPrealable ? (
-                                <span className="badge badge-success badge-pill">
-                                  Oui
-                                </span>
-                              ) : (
-                                <span className="badge badge-danger badge-pill">
-                                  Non
-                                </span>
-                              )}
+                             <Link to={getStructureDetails(oneStructure._id)}>
+                               Details
+                             </Link>
                             </td>
                             <td className="cel colDeux">
                               <ul className="list-group list-unstyled resultTb">
