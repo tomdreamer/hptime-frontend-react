@@ -15,6 +15,7 @@ import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import { getLogout } from "./api";
+import Dashboard from "./Dashboard.js";
 
 require("dotenv").config();
 
@@ -83,6 +84,7 @@ class App extends Component {
 
         <Switch>
           <Route path="/" exact component={IsEmergency} key="isEmergency" />
+          <Route path="/dashboard" component={Dashboard} />
           <Route
             key="3"
             path="/map"
