@@ -108,7 +108,12 @@ class SingleMap extends Component {
         mapboxApiAccessToken={MAPBOX_KEY}
         mapStyle="mapbox://styles/project3ironhack/cjsk4xibk5rjh1fmqo9k31hym"
         width="100%"
-        height={window.innerHeight - 56}
+        //height={window.innerHeight - 56}
+        height={
+          window.innerWidth < 767
+            ? window.innerHeight - 400
+            : window.innerHeight - 56
+        }
         // 56 to substract navbar height of window size so the map is full height
         onViewportChange={this._onViewportChange}
       >

@@ -225,12 +225,12 @@ class MapWrapper extends Component {
                         <th className="text-center font-weight-normal">
                           <span>
                             Distance
-                            <i class="fas fa-walking fa-sm ml-2" />
+                            <i className="fas fa-walking fa-sm ml-2" />
                           </span>
                         </th>
                         <th className="text-center font-weight-normal">
                           Details
-                          <i class="fas fa-info fa-sm ml-2" />
+                          <i className="fas fa-info fa-sm ml-2" />
                         </th>
                       </tr>
                     </thead>

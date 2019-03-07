@@ -16,13 +16,13 @@
 .table {
   margin-bottom: none !important;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .dimension {
     height: 300px;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   tbody {
     overflow-y: scroll;
     height: calc(100vh - 56px); //  <-- Select the height of the body
