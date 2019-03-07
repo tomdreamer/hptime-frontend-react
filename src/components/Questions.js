@@ -28,12 +28,12 @@ class Questions extends Component {
     const { numberOfSteps, currentStep } = this.state;
     return (
       <>
-        <section className="d-flex justify-content-center">
+        {/* <section className="d-flex justify-content-center">
           <QuestionsIndicator
             numberOfSteps={numberOfSteps}
             currentStep={currentStep}
           />
-        </section>
+        </section> */}
 
         <StepWizard onStepChange={this.handleStep} initialStep={1}>
           <AdultQuestion
