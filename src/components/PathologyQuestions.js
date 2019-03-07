@@ -15,12 +15,12 @@ const oeil = "/images/pictos/ophtalmologie.svg";
 const orl = "/images/pictos/ORL2.png";
 const anus = "/images/pictos/anus.svg";
 const psychiatrie = "/images/pictos/psychiatrie.svg";
-const ventre = "/images/pictos/ventre.svg";
-const torso = "/images/pictos/torso.svg";
-const brulure = "/images/pictos/brulure.svg";
-const fracture = "/images/pictos/fracture.svg";
-const gorge = "/images/pictos/gorge.svg";
-const grossesse = "/images/pictos/grossesse.svg";
+//const ventre = "/images/pictos/ventre.svg";
+//const torso = "/images/pictos/torso.svg";
+//const brulure = "/images/pictos/brulure.svg";
+//const fracture = "/images/pictos/fracture.svg";
+//const gorge = "/images/pictos/gorge.svg";
+//const grossesse = "/images/pictos/grossesse.svg";
 
 const Ul = posed.ul({
   open: {
