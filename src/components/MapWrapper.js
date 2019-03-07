@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SingleMap from "./SingleMap.js";
+import "./MapWrapper.scss";
+import { Link } from "react-router-dom";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+
 import {
-  getHospitalList,
-  getAltStructureList,
+  // getHospitalList,
+  // getAltStructureList,
   getHospitalsbyLocation,
   getAtlStructuresbyLocation,
   getDistanceDuration
@@ -19,6 +21,39 @@ import {
 function getStructureDetails(oneStructure) {
   return `/structure-details/${oneStructure}`;
 }
+function waitingTimeAccordingToHour(el) {
+  let hourOfDay = new Date().getHours();
+  let waitingTimePerHour = {
+    1: 45,
+    2: 40,
+    3: 35,
+    4: 30,
+    5: 25,
+    6: 20,
+    7: 30,
+    8: 40,
+    9: 40,
+    10: 45,
+    11: 45,
+    12: 35,
+    13: 35,
+    14: 30,
+    15: 25,
+    16: 30,
+    17: 40,
+    18: 45,
+    19: 50,
+    20: 60,
+    21: 50,
+    22: 50,
+    23: 50
+  };
+  if (el.isHospital) {
+    return waitingTimePerHour[hourOfDay] + 30;
+  }
+  return waitingTimePerHour[hourOfDay];
+}
+
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
@@ -74,6 +109,7 @@ class MapWrapper extends Component {
             // console.log(newstructureArray);
 
             const filteredHospiatls = hospitalArray.filter(el => {
+              el.isHospital = true;
               if (el.availablePoles) {
                 //filtered is the object that allow us to know if the hospital is or not in the proposition list
                 el.filtered = el.availablePoles.some(
@@ -85,6 +121,7 @@ class MapWrapper extends Component {
 
                 return el.filtered;
               }
+              return "";
             });
 
             const newstructureArray = tenFirstaltStructure
@@ -98,7 +135,10 @@ class MapWrapper extends Component {
                 el.longitude,
                 el.latitude
               ).then(response => {
-                el.duration = Math.round(response.data.durations[0][0] / 60);
+                el.duration = Math.round(
+                  response.data.durations[0][0] / 60 +
+                    waitingTimeAccordingToHour(el)
+                );
               })
             );
             axios.all(mapboxArray).then(() => {
@@ -110,7 +150,7 @@ class MapWrapper extends Component {
             });
 
             const structureArray = hospitalArray.concat(altStructure);
-            console.log(structureArray);
+            // console.log(structureArray);
 
             this.setState({
               structureArray,
@@ -124,9 +164,10 @@ class MapWrapper extends Component {
           Swal.fire({
             position: "center",
             type: "info",
-            title: "Etes-vous sûr d avoir suivi le questionnaire?",
-            showConfirmButton: false,
-            timer: 2000
+            title:
+              "Merci de remplir le questionnaire pour afficher des résultats pertinents.",
+            showConfirmButton: true,
+            timer: 4500
           });
           this.setState({ isSubmitSuccessful: true });
         });
@@ -176,56 +217,86 @@ class MapWrapper extends Component {
               </div>
               <Collapse
                 in={this.state.open}
-                className=" dimension"
+                className="dimension"
                 id="example-collapse-text"
               >
+                {/* this table display the structure propostions into the collaps button list */}
                 <div aria-labelledby="headingOne" data-parent="#accordion">
-                  {/* ---------------------------------------------------------- */}
-                  {/* this table display the structure propostions into the collaps button list */}
-                  {/* ---------------------------------------------------------- */}
-                  <table className="table scrolling">
-                    <thead className="thead-light">
+                  <table className="table table-sm table-fixed">
+                    <thead>
                       <tr>
-                        <th className="title1Col" scope="col">
-                          Tri/Pertinence
+                        <th className="font-weight-normal w-50">Pertinence</th>
+                        <th className="text-center font-weight-normal">
+                          <span>
+                            Distance
+                            <i className="fas fa-walking fa-sm ml-2" />
+                          </span>
                         </th>
-                        <th className="text-center colDeux" scope="col">
-                          Ouverte
-                        </th>
-                        <th className="text-center colDeux" scope="col">
-                          Attente
+                        <th className="text-center font-weight-normal">
+                          Details
+                          <i className="fas fa-info fa-sm ml-2" />
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="filtered-results">
                       {newstructureArray.map((oneStructure, index) => {
                         return (
-                          <tr key={index}>
+                          <tr
+                            key={index}
+                            className="border border-black border-bottom"
+                          >
                             <td>
-                              <ul className="list-group list-group-flush resultTb FCol">
-                                <li className="list-group-item namePolice small">
-                                  <b>{oneStructure.name}</b>
-                                </li>
-                                <li className="list-group-item typePolice">
-                                  <a href="tel:+33{popupInfo.phoneNumber}">
-                                    {oneStructure.phoneNumber}
-                                  </a>{" "}
+                              {/* icon and name and number */}
+                              <ul className="list-group list-group-flush">
+                                <li className="list-group-item border-0">
+                                  <div className="row d-flex align-items-center">
+                                    <div className="col-lg-2">
+                                      {!oneStructure.shortname ? (
+                                        <span className="fa-stack fa-2x small">
+                                          <i className="fas fa-square fa-stack-2x text-danger" />
+                                          <i className="fas fa-stack-1x text-structure text-white">
+                                            H
+                                          </i>
+                                        </span>
+                                      ) : (
+                                        <span className="fa-stack fa-2x small mr-2">
+                                          <i className="fas fa-circle fa-stack-2x text-primary" />
+                                          <i className="fas fa-stack-1x text-white text-structure">
+                                            C
+                                          </i>
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div className="col-lg-9">
+                                      <span className="text-muted">
+                                        {oneStructure.name} <br />
+                                        <a
+                                          href="tel:+33{popupInfo.phoneNumber}"
+                                          className="small text-muted"
+                                        >
+                                          {oneStructure.phoneNumber}
+                                        </a>
+                                      </span>
+                                    </div>
+                                  </div>
                                 </li>
                               </ul>
                             </td>
-                            <td className="cel  colDeux">
-                             <Link to={getStructureDetails(oneStructure._id)}>
-                               Details
-                             </Link>
-                            </td>
-                            <td className="cel colDeux">
-                              <ul className="list-group list-unstyled resultTb">
-                                <li className="list-list-unstyled">
-                                  <span className="badge badge-primary">
+                            {/* ETA by walking */}
+                            <td className="text-center align-middle">
+                              <ul className="list-group list-unstyled">
+                                <li>
+                                  <span className="badge badge-light">
                                     {oneStructure.duration} min
                                   </span>
                                 </li>
                               </ul>
+                            </td>
+                            {/* See details link */}
+                            <td className="text-center align-middle">
+                              <Link to={getStructureDetails(oneStructure._id)} className="text-muted">
+                                voir
+                              </Link>
                             </td>
                           </tr>
                         );
@@ -254,3 +325,18 @@ class MapWrapper extends Component {
 }
 
 export default MapWrapper;
+
+
+{/* is it possible to take an appointment ? */}
+                            {/* <td className="text-center align-middle">
+                              {oneStructure.AppelPrealable ? (
+                                <span className="badge badge-success badge-pill">
+                                  Oui
+                                </span>
+                              ) : (
+                                <span className="badge badge-secondary badge-pill">
+                                  Non
+                                </span>
+                              )}
+                            </td>
+                          */}

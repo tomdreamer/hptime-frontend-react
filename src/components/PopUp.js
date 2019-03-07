@@ -7,26 +7,18 @@ class PopUp extends Component {
     const { popupInfo } = this.props;
 
     return (
-      <Popup
-        className="PopUp"
-        // info passed
-        longitude={popupInfo.longitude}
-        latitude={popupInfo.latitude}
-        // functionality
-        closeOnClick={false}
-        anchor="top"
-        onClose={this.props.onCloseClick}
-      >
-        {/* <p>
-          <b> {popupInfo.name}</b>
-          <br />
-          <a href="tel:+33{popupInfo.phoneNumber}">
-            {popupInfo.phoneNumber}
-          </a>
-        </p> */}
-
-        <div className="card">
-          <div className="card-body">
+      <div className="card">
+        <div className="card-body">
+          <Popup
+            className="PopUp"
+            // info passed
+            longitude={popupInfo.longitude}
+            latitude={popupInfo.latitude}
+            // functionality
+            closeOnClick={false}
+            anchor="top"
+            onClose={this.props.onCloseClick}
+          >
             <p className="card-text small">
               {" "}
               <b>{popupInfo.name}</b>
@@ -42,18 +34,22 @@ class PopUp extends Component {
               <br />
               {popupInfo.zipCode} {popupInfo.city}
             </p>
+
             <a
-              href="http://maps.google.com/?q=<{popupInfo.latitude}>,<{popupInfo.longitude}>"
+              href={`http://maps.google.com/?q=${popupInfo.latitude},${
+                popupInfo.longitude
+              }`}
               className="card-link small"
             >
               Route Me
             </a>
-            <a href={popupInfo.urlToPlan} className="card-link small">
-              Access Plan
+
+            <a href={`${popupInfo.urlToPlan}`} className="card-link small">
+              Access Plan{" "}
             </a>
-          </div>
+          </Popup>
         </div>
-      </Popup>
+      </div>
     );
   }
 }

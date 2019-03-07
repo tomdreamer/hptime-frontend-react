@@ -1,0 +1,42 @@
+@import "../Colors.scss";
+
+#map-filter {
+  max-height: calc(100vh - 56px);
+  overflow: scroll;
+}
+
+.text-structure {
+  font-family: "Open Sans", Arial, sans-serif !important;
+}
+
+.text-alternative-structure {
+  color: $primary;
+}
+
+.table {
+  margin-bottom: none !important;
+}
+@media (max-width: 767px) {
+  .dimension {
+    height: 300px;
+  }
+}
+
+@media (max-width: 1199px) {
+  tbody {
+    overflow-y: scroll;
+    height: calc(100vh - 56px); //  <-- Select the height of the body
+    width: 100%;
+  }
+}
+
+.ResultMap {
+  margin: 10px;
+}
+
+.list-group-item {
+  padding: 0.3rem 0.25rem !important;
+}
+.colDeux {
+  width: 80px !important;
+}
