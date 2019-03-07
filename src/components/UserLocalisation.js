@@ -75,7 +75,10 @@ class UserLocalisation extends Component {
   render() {
     const { isOpen } = this.state;
     return (
-      <Section pose={isOpen ? "open" : "closed"} className="text-center ">
+      <Section
+        pose={isOpen ? "open" : "closed"}
+        className="text-center container-fluid"
+      >
         <Div className="bg-directions m-4" />
         <P className="lead my-4">Trouvez des soins proches de vous.</P>
         <Row>
@@ -96,7 +99,7 @@ class UserLocalisation extends Component {
         <Row>
           <Col sm={{ span: 12 }} className="d-flex justify-content-center">
             {/* prescription checkbox */}
-            <Form className="p-2 small w-50 mx-auto text-left">
+            <Form className="p-2 small text-left">
               <div key="hint-checkbox" className="hint-checkbox m-2 px-2">
                 <Label>
                   <Form.Check
