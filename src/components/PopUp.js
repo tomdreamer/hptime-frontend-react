@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./PopUp.css";
+import "./PopUp.scss";
 import { Popup } from "react-map-gl";
 
 class PopUp extends Component {
@@ -42,14 +42,18 @@ class PopUp extends Component {
               <br />
               {popupInfo.zipCode} {popupInfo.city}
             </p>
+
             <a
-              href="http://maps.google.com/?q=<{popupInfo.latitude}>,<{popupInfo.longitude}>"
+              href={`http://maps.google.com/?q=${popupInfo.latitude},${
+                popupInfo.longitude
+              }`}
               className="card-link small"
             >
               Route Me
             </a>
-            <a href={popupInfo.urlToPlan} className="card-link small">
-              Access Plan
+
+            <a href={`${popupInfo.urlToPlan}`} className="card-link small">
+              Access Plan{" "}
             </a>
           </div>
         </div>

@@ -6,10 +6,10 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 const hospitalUnfiltered = {
   cursor: "pointer",
-  fill: "#74b6f9",
+  fill: "##7c8389",
   stroke: "none",
   opacity: 0.5,
-  size: 25
+  size: 35
 };
 
 const hospitalFiltered = {
@@ -17,28 +17,28 @@ const hospitalFiltered = {
   fill: "#ef6c60",
   stroke: "none",
   opacity: 1,
-  size: 25
+  size: 35
 };
 
 const structureUnfiltered = {
   cursor: "pointer",
-  fill: "#74b6f9",
+  fill: "#7c8389",
   stroke: "none",
   opacity: 0.5,
-  size: 25
+  size: 35
 };
 
 const structureFiltered = {
   cursor: "pointer",
-  fill: "#74b6f9",
+  fill: "#65b4c1",
   stroke: "none",
   opacity: 1,
-  size: 25
+  size: 35
 };
 
 class MapMarker extends PureComponent {
   render() {
-    const { size = 20, onClick } = this.props;
+    const { onClick } = this.props;
     const isHospital = this.props.oneItem.group;
     //  if false then not a hospital
     const isFiltered = this.props.oneItem.filtered;
@@ -55,10 +55,11 @@ class MapMarker extends PureComponent {
             y="0px"
             viewBox="0 0 384 512"
             enable-background="new 0 0 384 512"
-            height={size}
+            height={hospitalFiltered.size}
             style={{
               ...hospitalFiltered,
-              transform: `translate(${-size / 2}px,${-size}px)`
+              transform: `translate(${-hospitalFiltered.size /
+                2}px,${-hospitalFiltered.size}px)`
             }}
             onClick={onClick}
           >
@@ -67,18 +68,6 @@ class MapMarker extends PureComponent {
 	C384,86,298,0,192,0z M264,286h-39.8v-68.9h-64.3V286H120V121.1h39.8v62.4h64.3v-62.4H264V286z"
             />
           </svg>
-
-          {/* <svg
-            height={size}
-            viewBox="0 0 24 24"
-            style={{
-              ...hospitalFiltered,
-              transform: `translate(${-size / 2}px,${-size}px)`
-            }}
-            onClick={onClick}
-          >
-            <path d={ICON} />
-          </svg> */}
         </div>
       );
     } else {
@@ -86,11 +75,12 @@ class MapMarker extends PureComponent {
         return (
           <div>
             <svg
-              height={size}
+              height={hospitalUnfiltered.size}
               viewBox="0 0 24 24"
               style={{
                 ...hospitalUnfiltered,
-                transform: `translate(${-size / 2}px,${-size}px)`
+                transform: `translate(${-hospitalUnfiltered.size /
+                  2}px,${-hospitalUnfiltered.size}px)`
               }}
               onClick={onClick}
             >
@@ -109,10 +99,11 @@ class MapMarker extends PureComponent {
                 y="0px"
                 viewBox="0 0 384 512"
                 enable-background="new 0 0 384 512"
-                height={size}
+                height={structureFiltered.size}
                 style={{
                   ...structureFiltered,
-                  transform: `translate(${-size / 2}px,${-size}px)`
+                  transform: `translate(${-structureFiltered.size /
+                    2}px,${-structureFiltered.size}px)`
                 }}
                 onClick={onClick}
               >
@@ -132,11 +123,12 @@ class MapMarker extends PureComponent {
           return (
             <div>
               <svg
-                height={size}
+                height={structureUnfiltered.size}
                 viewBox="0 0 24 24"
                 style={{
                   ...structureUnfiltered,
-                  transform: `translate(${-size / 2}px,${-size}px)`
+                  transform: `translate(${-structureUnfiltered.size /
+                    2}px,${-structureUnfiltered.size}px)`
                 }}
                 onClick={onClick}
               >
