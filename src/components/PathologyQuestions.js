@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -63,9 +63,6 @@ class PathologyQuestions extends Component {
   userChoice(event) {
     this.props.nextStep(event);
     this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
-  }
-  componentWillMount() {
-    setTimeout(console.log("coucou pathos mount"), 500);
   }
 
   componentDidUpdate(oldProps) {
