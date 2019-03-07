@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router";
+
 import {
   // getHospitalList,
   // getAltStructureList,
@@ -17,6 +18,9 @@ import {
   getDistanceDuration
 } from "../api.js";
 
+function getStructureDetails(oneStructure) {
+  return `/structure-details/${oneStructure}`;
+}
 function waitingTimeAccordingToHour(el) {
   let hourOfDay = new Date().getHours();
   let waitingTimePerHour = {
@@ -63,7 +67,7 @@ class MapWrapper extends Component {
       newstructureArray: [],
       // structureArray renders all hospitals and alt structures in existance (full array)
       structureArray: [],
-      isSubmitSuccessful: false
+      redirect: false
     };
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
@@ -171,7 +175,7 @@ class MapWrapper extends Component {
   }
   render() {
     const { newstructureArray, open } = this.state;
-    return this.state.isSubmitSuccessful ? (
+    return this.state.redirect ? (
       // returning the <Redirect /> ONLY works inside RENDER
       <Redirect to="/" />
     ) : (
@@ -288,24 +292,9 @@ class MapWrapper extends Component {
                                 </li>
                               </ul>
                             </td>
-
-                            {/* is it possible to take an appointment ? */}
-                            {/* <td className="text-center align-middle">
-                              {oneStructure.AppelPrealable ? (
-                                <span className="badge badge-success badge-pill">
-                                  Oui
-                                </span>
-                              ) : (
-                                <span className="badge badge-secondary badge-pill">
-                                  Non
-                                </span>
-                              )}
-                            </td>
-                          */}
-
                             {/* See details link */}
                             <td className="text-center align-middle">
-                              <Link to="#0" className="text-muted">
+                              <Link to={getStructureDetails(oneStructure._id)} className="text-muted">
                                 voir
                               </Link>
                             </td>
@@ -336,3 +325,18 @@ class MapWrapper extends Component {
 }
 
 export default MapWrapper;
+
+
+{/* is it possible to take an appointment ? */}
+                            {/* <td className="text-center align-middle">
+                              {oneStructure.AppelPrealable ? (
+                                <span className="badge badge-success badge-pill">
+                                  Oui
+                                </span>
+                              ) : (
+                                <span className="badge badge-secondary badge-pill">
+                                  Non
+                                </span>
+                              )}
+                            </td>
+                          */}

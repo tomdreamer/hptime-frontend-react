@@ -35,9 +35,16 @@ export function getDistanceDuration(userLong, userLatt, long, latt) {
     )
     .catch(errorHandler);
 }
+
 export function postSignUp(userSubmission) {
   return backendApi
     .post("/api/process-signup", userSubmission)
+    .catch(errorHandler);
+}
+
+export function getStructureDetails(oneStructure) {
+  return backendApi
+    .get(`/api/structure-details/${oneStructure}`)
     .catch(errorHandler);
 }
 
