@@ -7,11 +7,11 @@ class Dashboard extends Component {
   render() {
     return (
       <section className="Dashboard">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-              <div class="vertical-menu">
-                <a href="#" class="active">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-3 col-md-2 sidebar">
+              <div className="vertical-menu">
+                <a href="#" className="active">
                   Home
                 </a>
                 <a href="#">Link 1</a>
@@ -20,14 +20,14 @@ class Dashboard extends Component {
                 <a href="#">Link 4</a>
               </div>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-              <h1 class="page-header">Dashboard</h1>
+            <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+              <h1 className="page-header">Dashboard</h1>
 
-              <div class="row map" />
+              <div className="row map" />
 
-              <h2 class="sub-header">Section title</h2>
-              <div class="table-responsive">
-                <table class="table table-striped">
+              <h2 className="sub-header">Section title</h2>
+              <div className="table-responsive">
+                <table className="table table-striped">
                   <thead>
                     <tr>
                       <th>#</th>

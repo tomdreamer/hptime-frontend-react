@@ -6,34 +6,31 @@ class FilterBar extends Component {
     this.props.updatePatient(event);
   }
 
-  state = {};
   render() {
     return (
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label />
-          <Form.Control
-            name="neededSpecialist"
-            onChange={event => this.clickHandler(event)}
-            as="select"
-          >
-            <option>J'ai un autre souci.</option>
-            <option value="Ophtalmologiques">Ophtalmologiques</option>
-            <option value="Oto-rhino-laryngologiques">
-              Oto-rhino-laryngologiques
-            </option>
-            <option value="Dentaires">Dentaires</option>
-            <option value="Oto-rhino-laryngologiques">
-              Oto-rhino-laryngologiques
-            </option>
-            <option value="Plaies de la main">Plaies de la main</option>
-            <option value="Générales">Générales</option>
-            <option value="Gynéco-obstétricales">Gynéco-obstétricales</option>
-            <option value="Proctology">Proctology</option>
-            <option value="Psychiatriques">Psychiatriques</option>
-          </Form.Control>
-        </Form.Group>
-      </Form>
+      <div className="px-2 bg-light">
+        <Form.Control
+          name="neededSpecialist"
+          onChange={event => this.clickHandler(event)}
+          as="select"
+        >
+          <option>Sélectionnez une spécialité.</option>
+          <option value="Ophtalmologiques">Ophtalmologiques</option>
+          <option value="Oto-rhino-laryngologiques">
+            Oto-rhino-laryngologiques
+          </option>
+          <option value="Dentaires">Dentaires</option>
+          <option value="Oto-rhino-laryngologiques">
+            Oto-rhino-laryngologiques
+          </option>
+          <option value="Plaies de la main">Plaies de la main</option>
+          <option value="Générales">Générales</option>
+          <option value="Gynéco-obstétricales">Gynéco-obstétricales</option>
+          <option value="Proctology">Proctology</option>
+          <option value="Psychiatriques">Psychiatriques</option>
+        </Form.Control>
+        <div className="card-header" />
+      </div>
     );
   }
 }
