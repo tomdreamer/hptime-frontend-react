@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
+import Collapse from 'react-bootstrap/Collapse'
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
 
@@ -9,7 +9,8 @@ class IsEmergency extends PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      show: false
+      show: false,
+      open: false,
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -25,6 +26,7 @@ class IsEmergency extends PureComponent {
   }
 
   render() {
+    const open= this.state
     return (
       <>
         <section className="bg-light">
@@ -76,13 +78,29 @@ class IsEmergency extends PureComponent {
         >
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
-              Est-ce une urgence vitale?
+             
+            
+            <a href="#demo" class="font-weight-bold" data-toggle="collapse"> Urgence vitale? <i class="fas fa-info-circle"></i></a>
+              <div id="demo" class="collapse">
+              <ul>
+                  <li className="font-weight-normal h6">Une perte de connaissance</li>
+                  <li className="font-weight-normal h6">Des troubles neurologiques (paralysie d’un membre, ou soudaine faiblesse musculaire, troubles de la parole ou de la vision)</li>
+                  <li className="font-weight-normal h6">Des douleurs thoraciques ou violentes douleurs d’apparition brutale</li>
+                  <li className="font-weight-normal h6">Des difficultés respiratoires (étouffe, suffoque) : respiration rapide, bruyante</li>
+                  <li className="font-weight-normal h6">Un saignement important</li>
+                  <li className="font-weight-normal h6">Un violent traumatisme (accident, plaie)</li>
+                  <li className="font-weight-normal h6">Une brûlure de la face ou étendue</li>
+                </ul>
+                
+              </div>
+            
+
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
             <p>
-              Si vous pensez que votre vie ou celle d'un proche est en danger,
+              Si vous pensez ne pas être dans une urgence vitale,
               appellez le SAMU, sinon merci de <b>cliquer sur Continuer.</b>
             </p>
           </Modal.Body>
