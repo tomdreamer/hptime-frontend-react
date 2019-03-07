@@ -305,10 +305,7 @@ class MapWrapper extends Component {
 
                             {/* See details link */}
                             <td className="text-center align-middle">
-                              <Link
-                                to={oneStructure.duration}
-                                className="text-muted"
-                              >
+                              <Link to="#0" className="text-muted">
                                 voir
                               </Link>
                             </td>
