@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./PopUp.scss";
+import "./PopUp.css";
 import { Popup } from "react-map-gl";
 
 class PopUp extends Component {
@@ -7,26 +7,18 @@ class PopUp extends Component {
     const { popupInfo } = this.props;
 
     return (
-      <Popup
-        className="PopUp"
-        // info passed
-        longitude={popupInfo.longitude}
-        latitude={popupInfo.latitude}
-        // functionality
-        closeOnClick={false}
-        anchor="top"
-        onClose={this.props.onCloseClick}
-      >
-        {/* <p>
-          <b> {popupInfo.name}</b>
-          <br />
-          <a href="tel:+33{popupInfo.phoneNumber}">
-            {popupInfo.phoneNumber}
-          </a>
-        </p> */}
-
-        <div className="card">
-          <div className="card-body">
+      <div className="card">
+        <div className="card-body">
+          <Popup
+            className="PopUp"
+            // info passed
+            longitude={popupInfo.longitude}
+            latitude={popupInfo.latitude}
+            // functionality
+            closeOnClick={false}
+            anchor="top"
+            onClose={this.props.onCloseClick}
+          >
             <p className="card-text small">
               {" "}
               <b>{popupInfo.name}</b>
@@ -55,9 +47,9 @@ class PopUp extends Component {
             <a href={`${popupInfo.urlToPlan}`} className="card-link small">
               Access Plan{" "}
             </a>
-          </div>
+          </Popup>
         </div>
-      </Popup>
+      </div>
     );
   }
 }

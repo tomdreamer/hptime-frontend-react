@@ -9,7 +9,7 @@ const hospitalUnfiltered = {
   fill: "##7c8389",
   stroke: "none",
   opacity: 0.5,
-  size: 35
+  size: 20
 };
 
 const hospitalFiltered = {
@@ -25,7 +25,7 @@ const structureUnfiltered = {
   fill: "#7c8389",
   stroke: "none",
   opacity: 0.5,
-  size: 35
+  size: 20
 };
 
 const structureFiltered = {
