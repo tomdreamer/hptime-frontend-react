@@ -53,37 +53,41 @@ class LoginPage extends Component {
               <div className="col-lg-4 py-4 pr-0">
                 <form
                   onSubmit={event => this.handleSubmit(event)}
-                  class="text-center border border-light p-5"
+                  className="text-center border border-light p-5"
                 >
-                  <p class="h4 mb-4">Portal Log In</p>
+                  <p classame="h4 mb-4">Portal Log In</p>
 
                   <input
-                    type="email"
-                    class="form-control mb-4"
+                    type="username"
+                    name="username"
+                    className="form-control mb-4"
                     aria-describedby="emailHelp"
                     onChange={event => {
                       this.genericOnChange(event);
                     }}
-                    value={this.state.email}
+                    value={this.state.username || ""}
                     placeholder="E-mail "
                   />
                   <input
                     type="password"
-                    class="form-control mb-4"
-                    aria-describedby="emailHelp"
+                    name="password"
+                    className="form-control mb-4"
+                    aria-describedby="passwordHelp"
                     onChange={event => {
                       this.genericOnChange(event);
                     }}
-                    value={this.state.password}
+                    value={this.state.password || ""}
                     placeholder="Password "
                   />
-                  <div class="d-flex justify-content-around">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" />
-                      <label class="custom-control-label">Remember me</label>
+                  <div className="d-flex justify-content-around">
+                    <div className="custom-control custom-checkbox">
+                      <input type="checkbox" className="custom-control-input" />
+                      <label className="custom-control-label">
+                        Remember me
+                      </label>
                     </div>
                   </div>
-                  <button class="btn btn-info btn-block my-4" type="submit">
+                  <button className="btn btn-info btn-block my-4" type="submit">
                     Sign in
                   </button>
 
