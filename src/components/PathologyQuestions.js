@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

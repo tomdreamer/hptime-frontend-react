@@ -193,7 +193,7 @@ class MapWrapper extends Component {
                         return (
                           <tr
                             key={index}
-                            className="border-black border-bottom"
+                            className="border border-black border-bottom"
                           >
                             <td>
                               <ul className="list-group list-group-flush">
@@ -221,7 +221,7 @@ class MapWrapper extends Component {
                             <td className="text-center align-middle">
                               <ul className="list-group list-unstyled resultTb">
                                 <li className="list-list-unstyled">
-                                  <span className="badge badge-primary">
+                                  <span className="badge badge-warning">
                                     {oneStructure.duration} min
                                   </span>
                                 </li>
