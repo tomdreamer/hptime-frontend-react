@@ -3,6 +3,18 @@
   overflow: scroll;
 }
 
+.text-structure {
+  margin-top: -1px;
+  font-family: "Open Sans", Arial, sans-serif !important;
+}
+
+.text-alternative-structure {
+  color: #74b6f9;
+}
+
+.table {
+  margin-bottom: none !important;
+}
 @media (max-width: 768px) {
   .dimension {
     height: 300px;
