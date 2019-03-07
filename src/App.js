@@ -82,7 +82,25 @@ class App extends Component {
         </header>
 
         <Switch>
-          <Route path="/" exact component={IsEmergency} key="isEmergency" />
+          <Route
+            path="/"
+            exact
+            render={() => {
+              return (
+                <IsEmergency
+                  updatePatient={event => this.updatePatient(event)}
+                />
+              );
+            }}
+          />
+
+          {/* <Route
+            updatePatient={event => this.updatePatient(event)}
+            path="/"
+            exact
+            component={IsEmergency}
+            key="isEmergency"
+          /> */}
           <Route
             key="3"
             path="/map"
