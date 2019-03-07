@@ -6,10 +6,11 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 const hospitalUnfiltered = {
   cursor: "pointer",
+  // fill: "#ef6c60",
   fill: "##7c8389",
   stroke: "none",
   opacity: 0.5,
-  size: 35
+  size: 20
 };
 
 const hospitalFiltered = {
@@ -22,14 +23,16 @@ const hospitalFiltered = {
 
 const structureUnfiltered = {
   cursor: "pointer",
+  // fill: "#183d62",
   fill: "#7c8389",
   stroke: "none",
   opacity: 0.5,
-  size: 35
+  size: 20
 };
 
 const structureFiltered = {
   cursor: "pointer",
+  // fill: "#183d62",
   fill: "#65b4c1",
   stroke: "none",
   opacity: 1,
@@ -54,7 +57,7 @@ class MapMarker extends PureComponent {
             x="0px"
             y="0px"
             viewBox="0 0 384 512"
-            enable-background="new 0 0 384 512"
+            enableBackground="new 0 0 384 512"
             height={hospitalFiltered.size}
             style={{
               ...hospitalFiltered,
@@ -98,7 +101,7 @@ class MapMarker extends PureComponent {
                 x="0px"
                 y="0px"
                 viewBox="0 0 384 512"
-                enable-background="new 0 0 384 512"
+                enableBackground="new 0 0 384 512"
                 height={structureFiltered.size}
                 style={{
                   ...structureFiltered,

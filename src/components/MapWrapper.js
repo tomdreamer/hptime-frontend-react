@@ -3,12 +3,14 @@ import axios from "axios";
 import SingleMap from "./SingleMap.js";
 import FilterBar from "./FilterBar.js";
 import "./MapWrapper.scss";
+import { Link } from "react-router-dom";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router";
+
 import {
   // getHospitalList,
   // getAltStructureList,
@@ -18,6 +20,9 @@ import {
   errorHandler
 } from "../api.js";
 
+function getStructureDetails(oneStructure) {
+  return `/structure-details/${oneStructure}`;
+}
 function waitingTimeAccordingToHour(el) {
   let hourOfDay = new Date().getHours();
   let waitingTimePerHour = {
@@ -64,7 +69,7 @@ class MapWrapper extends Component {
       newstructureArray: [],
       // structureArray renders all hospitals and alt structures in existance (full array)
       structureArray: [],
-      isSubmitSuccessful: false
+      redirect: false
     };
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
@@ -190,7 +195,7 @@ class MapWrapper extends Component {
 
   render() {
     const { newstructureArray, open } = this.state;
-    return this.state.isSubmitSuccessful ? (
+    return this.state.redirect ? (
       // returning the <Redirect /> ONLY works inside RENDER
       <Redirect to="/" />
     ) : (
@@ -240,15 +245,23 @@ class MapWrapper extends Component {
               >
                 {/* this table display the structure propostions into the collaps button list */}
                 <div aria-labelledby="headingOne" data-parent="#accordion">
-                  <table className="table">
+                  <table className="table table-sm table-fixed">
                     <thead>
                       <tr>
-                        <th>Tri/Pertinence</th>
-                        <th className="text-center colDeux">Ouverte</th>
-                        <th className="text-center colDeux">Attente</th>
+                        <th className="font-weight-normal w-50">Pertinence</th>
+                        <th className="text-center font-weight-normal">
+                          <span>
+                            Distance
+                            <i className="fas fa-walking fa-sm ml-2" />
+                          </span>
+                        </th>
+                        <th className="text-center font-weight-normal">
+                          Details
+                          <i className="fas fa-info fa-sm ml-2" />
+                        </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="filtered-results">
                       {newstructureArray.map((oneStructure, index) => {
                         return (
                           <tr
@@ -256,36 +269,57 @@ class MapWrapper extends Component {
                             className="border border-black border-bottom"
                           >
                             <td>
+                              {/* icon and name and number */}
                               <ul className="list-group list-group-flush">
-                                <li className="list-group-item small">
-                                  <b>{oneStructure.name}</b>
-                                </li>
-                                <li className="list-group-item">
-                                  <a href="tel:+33{popupInfo.phoneNumber}">
-                                    {oneStructure.phoneNumber}
-                                  </a>
+                                <li className="list-group-item border-0">
+                                  <div className="row d-flex align-items-center">
+                                    <div className="col-lg-2">
+                                      {!oneStructure.shortname ? (
+                                        <span className="fa-stack fa-2x small">
+                                          <i className="fas fa-square fa-stack-2x text-danger" />
+                                          <i className="fas fa-stack-1x text-structure text-white">
+                                            H
+                                          </i>
+                                        </span>
+                                      ) : (
+                                        <span className="fa-stack fa-2x small mr-2">
+                                          <i className="fas fa-circle fa-stack-2x text-primary" />
+                                          <i className="fas fa-stack-1x text-white text-structure">
+                                            C
+                                          </i>
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div className="col-lg-9">
+                                      <span className="text-muted">
+                                        {oneStructure.name} <br />
+                                        <a
+                                          href="tel:+33{popupInfo.phoneNumber}"
+                                          className="small text-muted"
+                                        >
+                                          {oneStructure.phoneNumber}
+                                        </a>
+                                      </span>
+                                    </div>
+                                  </div>
                                 </li>
                               </ul>
                             </td>
+                            {/* ETA by walking */}
                             <td className="text-center align-middle">
-                              {oneStructure.AppelPrealable ? (
-                                <span className="badge badge-success badge-pill">
-                                  Oui
-                                </span>
-                              ) : (
-                                <span className="badge badge-danger badge-pill">
-                                  Non
-                                </span>
-                              )}
-                            </td>
-                            <td className="text-center align-middle">
-                              <ul className="list-group list-unstyled resultTb">
-                                <li className="list-list-unstyled">
-                                  <span className="badge badge-warning">
+                              <ul className="list-group list-unstyled">
+                                <li>
+                                  <span className="badge badge-light">
                                     {oneStructure.duration} min
                                   </span>
                                 </li>
                               </ul>
+                            </td>
+                            {/* See details link */}
+                            <td className="text-center align-middle">
+                              <Link to={getStructureDetails(oneStructure._id)} className="text-muted">
+                                voir
+                              </Link>
                             </td>
                           </tr>
                         );
@@ -314,3 +348,18 @@ class MapWrapper extends Component {
 }
 
 export default MapWrapper;
+
+
+{/* is it possible to take an appointment ? */}
+                            {/* <td className="text-center align-middle">
+                              {oneStructure.AppelPrealable ? (
+                                <span className="badge badge-success badge-pill">
+                                  Oui
+                                </span>
+                              ) : (
+                                <span className="badge badge-secondary badge-pill">
+                                  Non
+                                </span>
+                              )}
+                            </td>
+                          */}

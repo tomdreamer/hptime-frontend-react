@@ -1,0 +1,13 @@
+.back{
+    width: 50%;
+}
+@media (max-width: 1200px) {
+    .dim {
+      height: 270px !important;
+    }
+  }
+  @media (max-width: 768px) {
+    .dim {
+      height: 270px;
+    }
+  }

@@ -14,6 +14,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
+import Structuredetails from "./components/Structuredetails.js"
 import { getLogout } from "./api";
 
 require("dotenv").config();
@@ -155,7 +156,7 @@ class App extends Component {
               );
             }}
           />
-
+         <Route path="/structure-details/:structureId" component={Structuredetails} />
           <Route component={NotFound} key="NotFound" />
         </Switch>
       </div>

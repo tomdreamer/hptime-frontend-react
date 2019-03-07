@@ -33,9 +33,16 @@ export function getDistanceDuration(userLong, userLatt, long, latt) {
     `https://api.mapbox.com/directions-matrix/v1/mapbox/walking/${userLong},${userLatt};${long},${latt}?sources=1&annotations=distance,duration&access_token=${MAPBOX_KEY}`
   );
 }
+
 export function postSignUp(userSubmission) {
   return backendApi
     .post("/api/process-signup", userSubmission)
+    .catch(errorHandler);
+}
+
+export function getStructureDetails(oneStructure) {
+  return backendApi
+    .get(`/api/structure-details/${oneStructure}`)
     .catch(errorHandler);
 }
 

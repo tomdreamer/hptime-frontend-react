@@ -88,7 +88,7 @@ class IsEmergency extends PureComponent {
           </Modal.Body>
 
           <Modal.Footer>
-            <a href="tel:+3315">
+            <a href="tel:15">
               <Button variant="danger">
                 <i className="fas fa-phone" /> Appeller le SAMU (15)
               </Button>
