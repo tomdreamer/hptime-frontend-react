@@ -14,7 +14,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
-import Structuredetails from "./components/Structuredetails.js"
+import Structuredetails from "./components/Structuredetails.js";
 import { getLogout } from "./api";
 import Dashboard from "./Dashboard.js";
 
@@ -84,8 +84,26 @@ class App extends Component {
         </header>
 
         <Switch>
-          <Route path="/" exact component={IsEmergency} key="isEmergency" />
           <Route path="/dashboard" component={Dashboard} />
+          <Route
+            path="/"
+            exact
+            render={() => {
+              return (
+                <IsEmergency
+                  updatePatient={event => this.updatePatient(event)}
+                />
+              );
+            }}
+          />
+
+          {/* <Route
+            updatePatient={event => this.updatePatient(event)}
+            path="/"
+            exact
+            component={IsEmergency}
+            key="isEmergency"
+          /> */}
           <Route
             key="3"
             path="/map"
@@ -95,6 +113,7 @@ class App extends Component {
                   neededSpecialist={neededSpecialist}
                   patientType={patientAdult}
                   userLocation={patientLocation}
+                  updatePatient={event => this.updatePatient(event)}
                 />
               );
             }}
@@ -139,7 +158,10 @@ class App extends Component {
               );
             }}
           />
-         <Route path="/structure-details/:structureId" component={Structuredetails} />
+          <Route
+            path="/structure-details/:structureId"
+            component={Structuredetails}
+          />
           <Route component={NotFound} key="NotFound" />
         </Switch>
       </div>

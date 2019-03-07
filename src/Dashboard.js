@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MapWrapper from "./components/MapWrapper";
 import SingleMap from "./components/SingleMap";
+import "./Dashboard.css";
 
 class Dashboard extends Component {
   render() {
