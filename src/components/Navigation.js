@@ -34,7 +34,7 @@ class Navigation extends Component {
               </LinkContainer>
               {this.props.currentUser ? (
                 <>
-                  <LinkContainer to="/map">
+                  <LinkContainer to="/signup">
                     <Nav.Link onClick={() => this.props.logoutClick()}>
                       Log Out
                     </Nav.Link>

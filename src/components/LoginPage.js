@@ -28,7 +28,7 @@ class LoginPage extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <Redirect to="/form" />
+      <Redirect to="/dashboard" />
     ) : (
       <section className="LoginPage">
         <section className="bg-light">
