@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SingleMap from "./SingleMap.js";
+import "./MapWrapper.scss";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,8 +9,8 @@ import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router";
 import {
-  getHospitalList,
-  getAltStructureList,
+  // getHospitalList,
+  // getAltStructureList,
   getHospitalsbyLocation,
   getAtlStructuresbyLocation,
   getDistanceDuration
@@ -81,6 +82,7 @@ class MapWrapper extends Component {
 
                 return el.filtered;
               }
+              return "";
             });
 
             const newstructureArray = tenFirstaltStructure
@@ -106,7 +108,7 @@ class MapWrapper extends Component {
             });
 
             const structureArray = hospitalArray.concat(altStructure);
-            console.log(structureArray);
+            // console.log(structureArray);
 
             this.setState({
               structureArray,
@@ -120,9 +122,10 @@ class MapWrapper extends Component {
           Swal.fire({
             position: "center",
             type: "info",
-            title: "Etes-vous sûr d avoir suivi le questionnaire?",
-            showConfirmButton: false,
-            timer: 2000
+            title:
+              "Merci de remplir le questionnaire pour afficher des résultats pertinents.",
+            showConfirmButton: true,
+            timer: 4500
           });
           this.setState({ isSubmitSuccessful: true });
         });
@@ -172,44 +175,39 @@ class MapWrapper extends Component {
               </div>
               <Collapse
                 in={this.state.open}
-                className=" dimension"
+                className="dimension"
                 id="example-collapse-text"
               >
+                {/* this table display the structure propostions into the collaps button list */}
                 <div aria-labelledby="headingOne" data-parent="#accordion">
-                  {/* ---------------------------------------------------------- */}
-                  {/* this table display the structure propostions into the collaps button list */}
-                  {/* ---------------------------------------------------------- */}
-                  <table className="table scrolling">
-                    <thead className="thead-light">
+                  <table className="table">
+                    <thead>
                       <tr>
-                        <th className="title1Col" scope="col">
-                          Tri/Pertinence
-                        </th>
-                        <th className="text-center colDeux" scope="col">
-                          Ouverte
-                        </th>
-                        <th className="text-center colDeux" scope="col">
-                          Attente
-                        </th>
+                        <th>Tri/Pertinence</th>
+                        <th className="text-center colDeux">Ouverte</th>
+                        <th className="text-center colDeux">Attente</th>
                       </tr>
                     </thead>
                     <tbody>
                       {newstructureArray.map((oneStructure, index) => {
                         return (
-                          <tr key={index}>
+                          <tr
+                            key={index}
+                            className="border-black border-bottom"
+                          >
                             <td>
-                              <ul className="list-group list-group-flush resultTb FCol">
-                                <li className="list-group-item namePolice small">
+                              <ul className="list-group list-group-flush">
+                                <li className="list-group-item small">
                                   <b>{oneStructure.name}</b>
                                 </li>
-                                <li className="list-group-item typePolice">
+                                <li className="list-group-item">
                                   <a href="tel:+33{popupInfo.phoneNumber}">
                                     {oneStructure.phoneNumber}
-                                  </a>{" "}
+                                  </a>
                                 </li>
                               </ul>
                             </td>
-                            <td className="cel  colDeux">
+                            <td className="text-center align-middle">
                               {oneStructure.AppelPrealable ? (
                                 <span className="badge badge-success badge-pill">
                                   Oui
@@ -220,7 +218,7 @@ class MapWrapper extends Component {
                                 </span>
                               )}
                             </td>
-                            <td className="cel colDeux">
+                            <td className="text-center align-middle">
                               <ul className="list-group list-unstyled resultTb">
                                 <li className="list-list-unstyled">
                                   <span className="badge badge-primary">

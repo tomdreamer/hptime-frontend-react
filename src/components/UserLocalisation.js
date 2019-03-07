@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import LocationSearchInput from "./LocationSearchInput.js";
 import "./UserLocalisation.scss";
-import posed, { PoseGroup } from "react-pose";
+import posed from "react-pose";
 
 const Section = posed.section({
   open: {
