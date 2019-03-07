@@ -16,6 +16,39 @@ import {
   getDistanceDuration
 } from "../api.js";
 
+function waitingTimeAccordingToHour(el) {
+  let hourOfDay = new Date().getHours();
+  let waitingTimePerHour = {
+    1: 45,
+    2: 40,
+    3: 35,
+    4: 30,
+    5: 25,
+    6: 20,
+    7: 30,
+    8: 40,
+    9: 40,
+    10: 45,
+    11: 45,
+    12: 35,
+    13: 35,
+    14: 30,
+    15: 25,
+    16: 30,
+    17: 40,
+    18: 45,
+    19: 50,
+    20: 60,
+    21: 50,
+    22: 50,
+    23: 50
+  };
+  if (el.isHospital) {
+    return waitingTimePerHour[hourOfDay] + 30;
+  }
+  return waitingTimePerHour[hourOfDay];
+}
+
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +104,7 @@ class MapWrapper extends Component {
             // console.log(newstructureArray);
 
             const filteredHospiatls = hospitalArray.filter(el => {
+              el.isHospital = true;
               if (el.availablePoles) {
                 //filtered is the object that allow us to know if the hospital is or not in the proposition list
                 el.filtered = el.availablePoles.some(
@@ -96,7 +130,10 @@ class MapWrapper extends Component {
                 el.longitude,
                 el.latitude
               ).then(response => {
-                el.duration = Math.round(response.data.durations[0][0] / 60);
+                el.duration = Math.round(
+                  response.data.durations[0][0] / 60 +
+                    waitingTimeAccordingToHour(el)
+                );
               })
             );
             axios.all(mapboxArray).then(() => {
