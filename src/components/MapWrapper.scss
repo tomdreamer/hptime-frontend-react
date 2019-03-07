@@ -1,15 +1,16 @@
+@import "../Colors.scss";
+
 #map-filter {
   max-height: calc(100vh - 56px);
   overflow: scroll;
 }
 
 .text-structure {
-  margin-top: -1px;
   font-family: "Open Sans", Arial, sans-serif !important;
 }
 
 .text-alternative-structure {
-  color: #74b6f9;
+  color: $primary;
 }
 
 .table {

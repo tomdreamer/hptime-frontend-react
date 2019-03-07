@@ -218,7 +218,7 @@ class MapWrapper extends Component {
               >
                 {/* this table display the structure propostions into the collaps button list */}
                 <div aria-labelledby="headingOne" data-parent="#accordion">
-                  <table className="table table-sm">
+                  <table className="table table-sm table-fixed">
                     <thead>
                       <tr>
                         <th className="font-weight-normal w-50">Pertinence</th>
@@ -230,10 +230,11 @@ class MapWrapper extends Component {
                         </th>
                         <th className="text-center font-weight-normal">
                           Details
+                          <i class="fas fa-info fa-sm ml-2" />
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="filtered-results">
                       {newstructureArray.map((oneStructure, index) => {
                         return (
                           <tr
@@ -255,7 +256,7 @@ class MapWrapper extends Component {
                                         </span>
                                       ) : (
                                         <span className="fa-stack fa-2x small mr-2">
-                                          <i className="fas fa-circle fa-stack-2x text-secondary" />
+                                          <i className="fas fa-circle fa-stack-2x text-primary" />
                                           <i className="fas fa-stack-1x text-white text-structure">
                                             C
                                           </i>
@@ -304,7 +305,10 @@ class MapWrapper extends Component {
 
                             {/* See details link */}
                             <td className="text-center align-middle">
-                              <Link to="#0" className="text-muted">
+                              <Link
+                                to={oneStructure.duration}
+                                className="text-muted"
+                              >
                                 voir
                               </Link>
                             </td>
