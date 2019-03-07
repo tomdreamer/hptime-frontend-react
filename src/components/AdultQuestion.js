@@ -70,7 +70,7 @@ class AdultQuestion extends Component {
     return (
       <Section pose={isOpen ? "open" : "closed"} className="text-center">
         <Div className="bg-toy" />
-        <P className="lead my-4">Le patient a-t-il plus de 16 ans ?</P>
+        <P className="lead my-4">S’agit-il d’un enfant ou d’un adulte?</P>
 
         <ButtonWrap>
           <Button
