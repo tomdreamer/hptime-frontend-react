@@ -89,7 +89,8 @@ class PathologyQuestions extends Component {
         neededSpecialist: "Oto-rhino-laryngologiques",
         image: orl,
         infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+        infoText:
+          "Il s'agit d'un problème à l'oreille, au nez, ou dans la gorge."
       },
       {
         bodyPart: "Dents",
@@ -106,7 +107,7 @@ class PathologyQuestions extends Component {
         image: main,
         infoTitle: "",
         infoText:
-          "Il s'agit d'une plaie à la main ou sur un ou plusieurs doigt."
+          "Il s'agit d'une plaie à la main ou sur un ou plusieurs doigts."
       },
 
       {
@@ -119,7 +120,7 @@ class PathologyQuestions extends Component {
       },
 
       {
-        bodyPart: "Côlon",
+        bodyPart: "Rectum",
         neededSpecialist: "Proctology",
         image: anus,
         infoTitle: "",
@@ -146,7 +147,7 @@ class PathologyQuestions extends Component {
     return (
       <section id="PathologyCards">
         {/* quuestion */}
-        <p className="lead text-center">
+        <Row>
           <span className="float-left pl-3">
             <Link
               to="#0"
@@ -157,7 +158,9 @@ class PathologyQuestions extends Component {
               Retour
             </Link>
           </span>
-          <span className="text-center mr-4 pr-4">
+        </Row>
+        <p className="lead text-center">
+          <span className="text-center mr-4 pr-4 small">
             Certains problêmes necessitent une attention particulière, si le
             vôtre n'en fait pas partie, veuillez choisir médecine générale.
           </span>
