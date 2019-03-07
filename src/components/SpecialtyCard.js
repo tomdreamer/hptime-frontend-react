@@ -29,30 +29,33 @@ class SpecialtyCard extends Component {
               alt={this.props.bodyPart}
               className="picto d-block mx-auto"
             />
+            <Button
+              variant="primary"
+              className="mt-2 btn-sm w-100"
+              onClick={event => this.clickHandler(event)}
+              name="neededSpecialist"
+              value={this.props.neededSpecialist}
+            >
+              Valider
+            </Button>
           </div>
-          <div className="w-100 px-2">
-            <div className="card-title p-2 text-dark font-weight-light">
-              <h4 className="font-weight-light">{this.props.bodyPart}</h4>
+          <div className="w-100 px-2 d-flex flex-column justify-content-center">
+            <div className="card-titlepx-2 pt-2 pb-0 mb-0 text-dark font-weight-light">
+              <h5 className="font-weight-light m-0">{this.props.bodyPart}</h5>
+            </div>
+            <div className=" pt-1 pb-0 mb-0 text-dark font-weight-light">
+              <p className="small font-weight-light">{this.props.infoText}</p>
             </div>
 
-            <div className="card-block p-2 pl-2 d-flex justify-content-end">
-              {/* <p className="card-text">{this.props.infoText}</p> */}
-              <Button
+            {/* <div className="card-block p-2 pl-2 d-flex justify-content-end"> */}
+            {/* <p className="card-text">{this.props.infoText}</p> */}
+            {/* <Button
                 variant="outline-dark mr-2"
                 // onClick={event => this.clickHandler(event)}
               >
                 <i className="far fa-question-circle" />
-              </Button>
-              <Button
-                variant="primary"
-                className="w-50"
-                onClick={event => this.clickHandler(event)}
-                name="neededSpecialist"
-                value={this.props.neededSpecialist}
-              >
-                Valider
-              </Button>
-            </div>
+              </Button> */}
+            {/* </div> */}
           </div>
         </div>
       </Col>

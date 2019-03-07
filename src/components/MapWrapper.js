@@ -78,6 +78,7 @@ class MapWrapper extends Component {
       redirect: true
     });
   };
+
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to="/" />;
@@ -208,7 +209,7 @@ class MapWrapper extends Component {
         >
           <div id="accordion">
             <div className="card border-bottom-0">
-              <div className="card-header" id="headingOne">
+              <div className="card-header border-bottom-0" id="headingOne">
                 {open ? (
                   <Button
                     variant="primary"
@@ -257,7 +258,7 @@ class MapWrapper extends Component {
                         </th>
                         <th className="text-center font-weight-normal">
                           Details
-                          <i className="fas fa-info fa-sm ml-2" />
+                          <i className="fas fa-info fa-xs mb-1 ml-2" />
                         </th>
                       </tr>
                     </thead>
@@ -317,7 +318,10 @@ class MapWrapper extends Component {
                             </td>
                             {/* See details link */}
                             <td className="text-center align-middle">
-                              <Link to={getStructureDetails(oneStructure._id)} className="text-muted">
+                              <Link
+                                to={getStructureDetails(oneStructure._id)}
+                                className="text-muted"
+                              >
                                 voir
                               </Link>
                             </td>
@@ -348,18 +352,3 @@ class MapWrapper extends Component {
 }
 
 export default MapWrapper;
-
-
-{/* is it possible to take an appointment ? */}
-                            {/* <td className="text-center align-middle">
-                              {oneStructure.AppelPrealable ? (
-                                <span className="badge badge-success badge-pill">
-                                  Oui
-                                </span>
-                              ) : (
-                                <span className="badge badge-secondary badge-pill">
-                                  Non
-                                </span>
-                              )}
-                            </td>
-                          */}

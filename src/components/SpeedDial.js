@@ -1,25 +1,14 @@
-import React, { PureComponent } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React, { Component } from "react";
+import "./SpeedDial.css";
 
-class SpeedDial extends PureComponent {
+class SpeedDial extends Component {
   render() {
     return (
-      <section className="SpeedDial">
-        <Row>
-          <Col>
-            <a
-              variant="danger"
-              className="btn btn-danger btn-block rounded-0"
-              href="tel:15"
-            >
-              <i className="fas fa-phone" /> Appeler le SAMU (15)
-            </a>
-          </Col>
-        </Row>
-      </section>
+      <a href="tel:15" className="float bg-danger text-white rounded-circle">
+        <i className="fa fa-phone my-float fa-sm" aria-hidden="true" />{" "}
+        <span className="dial-text">15</span>
+      </a>
     );
   }
 }
-
 export default SpeedDial;

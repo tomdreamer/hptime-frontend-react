@@ -82,14 +82,15 @@ class PathologyQuestions extends Component {
         image: oeil,
         infoTitle: "",
         infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
+          "Il s'agit d'un trouble de la vision ou d'un autre problème à l'oeil ou à la paupiere."
       },
       {
-        bodyPart: "ORL",
+        bodyPart: "Oto-rhino-laryngologiques",
         neededSpecialist: "Oto-rhino-laryngologiques",
         image: orl,
         infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+        infoText:
+          "Il s'agit d'un problème à l'oreille, au nez, ou dans la gorge."
       },
       {
         bodyPart: "Dents",
@@ -99,79 +100,42 @@ class PathologyQuestions extends Component {
         infoText:
           "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
       },
-      {
-        bodyPart: "Problème à la gorge",
-        neededSpecialist: "Oto-rhino-laryngologiques",
-        image: gorge,
-        infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
-      },
+
       {
         bodyPart: "Main (plaie ouverte)",
         neededSpecialist: "Plaies de la main",
         image: main,
         infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
-      },
-      {
-        bodyPart: "Poitrine",
-        neededSpecialist: "Générales",
-        image: torso,
-        infoTitle: "",
         infoText:
-          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
+          "Il s'agit d'une plaie à la main ou sur un ou plusieurs doigts."
       },
+
       {
-        bodyPart: "Ventre",
-        neededSpecialist: "Générales",
-        image: ventre,
-        infoTitle: "",
-        infoText:
-          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
-      },
-      {
-        bodyPart: "Gynécologie",
+        bodyPart: "Gynécologie-Obstetrie",
         neededSpecialist: "Gynéco-obstétricales",
         image: uterus,
         infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+        infoText:
+          "Il s'agit d'un problème gynécologique ou lié à une grossesse en cours ou suspectée."
       },
+
       {
-        bodyPart: "Grossesse",
-        neededSpecialist: "Gynéco-obstétricales",
-        image: grossesse,
-        infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
-      },
-      {
-        bodyPart: "Côlon",
+        bodyPart: "Rectum",
         neededSpecialist: "Proctology",
         image: anus,
         infoTitle: "",
         infoText:
-          "La proctologie. Lorem Ipsum est simplement du faux texte employé dans la composition"
+          "Il s'agit d'un problème identifié au niveau de l'anus ou du rectum."
       },
       {
         bodyPart: "Psychiatrie",
         neededSpecialist: "Psychiatriques",
         image: psychiatrie,
         infoTitle: "",
-        infoText: "Le Lorem Ipsum est simplement du faux texte employé dans."
+        infoText:
+          "Il s'agit d'un probleme d'ordre psychologique ou psychiatrique."
       },
-      {
-        bodyPart: "Brulure (medecine générale)",
-        neededSpecialist: "Générales",
-        image: brulure,
-        infoTitle: "",
-        infoText: "Pour tout autre type d'urgence."
-      },
-      {
-        bodyPart: "Fracture (medecine générale)",
-        neededSpecialist: "Générales",
-        image: fracture,
-        infoTitle: "",
-        infoText: "Pour tout autre type d'urgence."
-      },
+
       {
         bodyPart: "Medecine générale",
         neededSpecialist: "Générales",
@@ -183,7 +147,7 @@ class PathologyQuestions extends Component {
     return (
       <section id="PathologyCards">
         {/* quuestion */}
-        <p className="lead text-center">
+        <Row>
           <span className="float-left pl-3">
             <Link
               to="#0"
@@ -194,8 +158,11 @@ class PathologyQuestions extends Component {
               Retour
             </Link>
           </span>
-          <span className="text-center mr-4 pr-4">
-            Où se situe la douleur ?
+        </Row>
+        <p className="lead text-center">
+          <span className="text-center mr-4 pr-4 small">
+            Certains problêmes necessitent une attention particulière, si le
+            vôtre n'en fait pas partie, veuillez choisir médecine générale.
           </span>
         </p>
 

@@ -14,8 +14,10 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import SignupPage from "./components/SignUpPage.js";
 import LoginPage from "./components/LoginPage.js";
 import GeolocationPoint from "./components/GeolocationCoodinates.js";
-import Structuredetails from "./components/Structuredetails.js"
+import Structuredetails from "./components/Structuredetails.js";
 import { getLogout } from "./api";
+import Dashboard from "./Dashboard.js";
+import SpeedDial from "./components/SpeedDial";
 
 require("dotenv").config();
 
@@ -83,6 +85,7 @@ class App extends Component {
         </header>
 
         <Switch>
+          <Route path="/dashboard" component={Dashboard} />
           <Route
             path="/"
             exact
@@ -156,9 +159,13 @@ class App extends Component {
               );
             }}
           />
-         <Route path="/structure-details/:structureId" component={Structuredetails} />
+          <Route
+            path="/structure-details/:structureId"
+            component={Structuredetails}
+          />
           <Route component={NotFound} key="NotFound" />
         </Switch>
+        <Route component={SpeedDial} key="speeddial" />
       </div>
     );
   }

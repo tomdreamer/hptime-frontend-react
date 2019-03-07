@@ -3,6 +3,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
 
 class Navigation extends Component {
   // state = { }
@@ -26,15 +27,9 @@ class Navigation extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <LinkContainer to="/form">
-                <Nav.Link>Form Component</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/map">
-                <Nav.Link>Map Component</Nav.Link>
-              </LinkContainer>
               {this.props.currentUser ? (
                 <>
-                  <LinkContainer to="/map">
+                  <LinkContainer to="/signup">
                     <Nav.Link onClick={() => this.props.logoutClick()}>
                       Log Out
                     </Nav.Link>
