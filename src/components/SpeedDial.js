@@ -11,7 +11,7 @@ class SpeedDial extends PureComponent {
             <a
               variant="danger"
               className="btn btn-danger btn-block rounded-0"
-              href="tel:+3315"
+              href="tel:15"
             >
               <i className="fas fa-phone" /> Appeler le SAMU (15)
             </a>

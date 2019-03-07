@@ -64,9 +64,6 @@ class PathologyQuestions extends Component {
     this.props.nextStep(event);
     this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
   }
-  componentWillMount() {
-    setTimeout(console.log("coucou pathos mount"), 500);
-  }
 
   componentDidUpdate(oldProps) {
     if (!oldProps.isActive && this.props.isActive) {

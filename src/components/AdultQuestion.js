@@ -54,16 +54,9 @@ class AdultQuestion extends Component {
     super(props);
     this.state = { isOpen: false };
   }
-  // componentDidUpdate(oldProps) {
-  //   if (!oldProps.isActive && this.props.isActive) {
-  //     this.setState({ isOpen: true });
-  //     console.log("updateAdult");
-  //   }
-  // }
 
   componentDidMount() {
     this.setState({ isOpen: true });
-    console.log("mountAdult");
   }
 
   clickHandler(event) {
