@@ -110,6 +110,7 @@ class App extends Component {
                   neededSpecialist={neededSpecialist}
                   patientType={patientAdult}
                   userLocation={patientLocation}
+                  updatePatient={event => this.updatePatient(event)}
                 />
               );
             }}

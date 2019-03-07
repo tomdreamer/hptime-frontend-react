@@ -23,7 +23,6 @@ class Questions extends Component {
       currentStep
     });
   }
-
   render() {
     const { numberOfSteps, currentStep } = this.state;
     return (

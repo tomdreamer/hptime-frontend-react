@@ -8,7 +8,6 @@ class FilterBar extends Component {
 
   state = {};
   render() {
-    console.log(this.props);
     return (
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
@@ -18,7 +17,7 @@ class FilterBar extends Component {
             onChange={event => this.clickHandler(event)}
             as="select"
           >
-            <option disabled>J'ai un autre souci.</option>
+            <option>J'ai un autre souci.</option>
             <option value="Ophtalmologiques">Ophtalmologiques</option>
             <option value="Oto-rhino-laryngologiques">
               Oto-rhino-laryngologiques

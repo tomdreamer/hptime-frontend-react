@@ -7,7 +7,7 @@ const backendApi = axios.create({
   withCredentials: true
 });
 
-function errorHandler(err) {
+export function errorHandler(err) {
   if (err.response && err.response.data) {
     console.log("API Error", err.response.data);
   } else {
@@ -29,11 +29,9 @@ export function getAltStructureList() {
 }
 
 export function getDistanceDuration(userLong, userLatt, long, latt) {
-  return axios
-    .get(
-      `https://api.mapbox.com/directions-matrix/v1/mapbox/walking/${userLong},${userLatt};${long},${latt}?sources=1&annotations=distance,duration&access_token=${MAPBOX_KEY}`
-    )
-    .catch(errorHandler);
+  return axios.get(
+    `https://api.mapbox.com/directions-matrix/v1/mapbox/walking/${userLong},${userLatt};${long},${latt}?sources=1&annotations=distance,duration&access_token=${MAPBOX_KEY}`
+  );
 }
 export function postSignUp(userSubmission) {
   return backendApi

@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import FilterBar from "./FilterBar";
 
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
@@ -29,7 +28,6 @@ class IsEmergency extends PureComponent {
     return (
       <>
         <section className="bg-light">
-          <FilterBar updatePatient={event => this.props.updatePatient(event)} />
           <div className="container">
             <div className="row">
               <div className="col-lg-12 pt-4">

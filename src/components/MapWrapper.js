@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SingleMap from "./SingleMap.js";
+import FilterBar from "./FilterBar.js";
 import "./MapWrapper.scss";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
@@ -13,7 +14,8 @@ import {
   // getAltStructureList,
   getHospitalsbyLocation,
   getAtlStructuresbyLocation,
-  getDistanceDuration
+  getDistanceDuration,
+  errorHandler
 } from "../api.js";
 
 function waitingTimeAccordingToHour(el) {
@@ -76,7 +78,18 @@ class MapWrapper extends Component {
       return <Redirect to="/" />;
     }
   };
+
   componentDidMount() {
+    this.updateStructure();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.neededSpecialist !== this.props.neededSpecialist) {
+      this.updateStructure();
+    }
+  }
+
+  updateStructure() {
     const userLocation = this.props.userLocation;
 
     // get data from our backend Express API (localhost:2999)
@@ -122,8 +135,11 @@ class MapWrapper extends Component {
             const newstructureArray = tenFirstaltStructure
               .concat(filteredHospiatls)
               .slice(0, 20);
-            console.log(newstructureArray);
-            const mapboxArray = newstructureArray.map(el =>
+
+            const noDurationList = newstructureArray.filter(oneStructure => {
+              return !oneStructure.duration;
+            });
+            const mapboxArray = noDurationList.map(el =>
               getDistanceDuration(
                 userLocation.longitude,
                 userLocation.latitude,
@@ -136,13 +152,16 @@ class MapWrapper extends Component {
                 );
               })
             );
-            axios.all(mapboxArray).then(() => {
-              newstructureArray.sort(function(a, b) {
-                return a.duration - b.duration;
-              });
-              console.log(newstructureArray);
-              this.setState({ newstructureArray });
-            });
+            axios
+              .all(mapboxArray)
+              .then(() => {
+                newstructureArray.sort(function(a, b) {
+                  return a.duration - b.duration;
+                });
+                console.log(newstructureArray);
+                this.setState({ newstructureArray });
+              })
+              .catch(errorHandler);
 
             const structureArray = hospitalArray.concat(altStructure);
             // console.log(structureArray);
@@ -168,6 +187,7 @@ class MapWrapper extends Component {
         });
     }
   }
+
   render() {
     const { newstructureArray, open } = this.state;
     return this.state.isSubmitSuccessful ? (
@@ -210,6 +230,9 @@ class MapWrapper extends Component {
                   </Button>
                 )}
               </div>
+              <FilterBar
+                updatePatient={event => this.props.updatePatient(event)}
+              />
               <Collapse
                 in={this.state.open}
                 className="dimension"
