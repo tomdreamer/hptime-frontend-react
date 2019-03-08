@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
 import posed from "react-pose";
 import SpeedDial from "./SpeedDial";
-import { Route } from "react-router-dom";
+//import { Route } from "react-router-dom";
 
 const Section = posed.section({
   open: {

@@ -7,7 +7,7 @@ import AdultQuestion from "./AdultQuestion";
 import QuestionsIndicator from "./QuestionsIndicator";
 import UserLocalisation from "./UserLocalisation.js";
 import SpeedDial from "./SpeedDial";
-import { Route } from "react-router-dom";
+//import { Route } from "react-router-dom";
 
 class Questions extends Component {
   constructor(props) {

@@ -88,7 +88,7 @@ class MapWrapper extends Component {
 
   componentDidMount() {
     this.updateStructure();
-    let { oneStructureDetail } = this.state;
+    //    let { oneStructureDetail } = this.state;
     // if (oneStructureDetail) {
     //   // use the ID in path params to get the details from the backend API
     //   getStructureDetails(oneStructureDetail._id).then(response => {
