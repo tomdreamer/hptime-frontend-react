@@ -9,7 +9,7 @@ class IsEmergency extends PureComponent {
     super(props, context);
     this.state = {
       show: false,
-      open: false,
+      open: false
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -30,14 +30,8 @@ class IsEmergency extends PureComponent {
         <section className="bg-light">
           <div className="container">
             <div className="row">
-              <div className="col-lg-12 pt-4">
-                <h1 className="display-3 pt-4">
-                  <span className="text-primary">Med</span>
-                  <span className="text-muted">Direct</span>
-                </h1>
-              </div>
               {/* illustration */}
-              <div className="col-lg-8  order-first order-md-1">
+              <div className="col-lg-8  order-first text-center order-md-1">
                 <img
                   src="/images/illustrations/medicine.svg"
                   alt="Illustration calme et apaisante de deux docteurs dans un hopital"
@@ -46,6 +40,10 @@ class IsEmergency extends PureComponent {
               </div>
               {/* speech and CTA */}
               <div className="col-lg-4 py-4 pr-0">
+                <h1 className="display-3 pt-4">
+                  <span className="text-primary font-weight-bold">Med</span>
+                  <span className="text-muted font-weight-light">Direct</span>
+                </h1>
                 <p className="lead mb-3">
                   MedDirect vous aide a trouver les meilleurs soins d'urgence
                   adaptés à vos besoins.
@@ -67,37 +65,53 @@ class IsEmergency extends PureComponent {
           </div>
         </section>
 
-        <Modal
-          centered
-          show={this.state.show}
-          onHide={this.handleClose}
-        >
+        <Modal centered show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
-             
-            
-            <a href="#collapse"   className="font-weight-bold" data-toggle="collapse"> Urgence vitale? <i className="fas fa-info-circle"></i></a>
-              <div id="collapse"  className="collapse">
-              <ul>
-                  <li className="font-weight-normal h6">Une perte de connaissance</li>
-                  <li className="font-weight-normal h6">Des troubles neurologiques (paralysie d’un membre, ou soudaine faiblesse musculaire, troubles de la parole ou de la vision)</li>
-                  <li className="font-weight-normal h6">Des douleurs thoraciques ou violentes douleurs d’apparition brutale</li>
-                  <li className="font-weight-normal h6">Des difficultés respiratoires (étouffe, suffoque) : respiration rapide, bruyante</li>
-                  <li className="font-weight-normal h6">Un saignement important</li>
-                  <li className="font-weight-normal h6">Un violent traumatisme (accident, plaie)</li>
-                  <li className="font-weight-normal h6">Une brûlure de la face ou étendue</li>
+              <a
+                href="#collapse"
+                className="font-weight-bold"
+                data-toggle="collapse"
+              >
+                {" "}
+                Urgence vitale? <i className="fas fa-info-circle" />
+              </a>
+              <div id="collapse" className="collapse">
+                <ul>
+                  <li className="font-weight-normal h6">
+                    Une perte de connaissance
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Des troubles neurologiques (paralysie d’un membre, ou
+                    soudaine faiblesse musculaire, troubles de la parole ou de
+                    la vision)
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Des douleurs thoraciques ou violentes douleurs d’apparition
+                    brutale
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Des difficultés respiratoires (étouffe, suffoque) :
+                    respiration rapide, bruyante
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Un saignement important
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Un violent traumatisme (accident, plaie)
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Une brûlure de la face ou étendue
+                  </li>
                 </ul>
-                
               </div>
-            
-
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
             <p>
-              Si vous pensez ne pas être dans une urgence vitale,
-              appellez le SAMU, sinon merci de <b>cliquer sur Continuer.</b>
+              Si vous pensez ne pas être dans une urgence vitale, appellez le
+              SAMU, sinon merci de <b>cliquer sur Continuer.</b>
             </p>
           </Modal.Body>
 
