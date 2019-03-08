@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import LocationSearchInput from "./LocationSearchInput.js";
 import "./UserLocalisation.scss";
 import posed from "react-pose";
+import { Link } from "react-router-dom";
 
 const Section = posed.section({
   open: {
@@ -79,6 +80,18 @@ class UserLocalisation extends Component {
         pose={isOpen ? "open" : "closed"}
         className="text-center container-fluid"
       >
+        <Row>
+          <span className="float-left pl-3">
+            <Link
+              to="#0"
+              onClick={this.props.previousStep}
+              className="text-secondary"
+            >
+              <i className="fas fa-arrow-left mx-2" />
+              Retour
+            </Link>
+          </span>
+        </Row>
         <Div className="bg-directions m-4" />
         <P className="lead my-4">Trouvez des soins proches de vous.</P>
         <Row>
