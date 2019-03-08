@@ -19,6 +19,7 @@ import {
   getDistanceDuration,
   errorHandler
 } from "../api.js";
+import SpeedDial from "./SpeedDial.js";
 
 function getStructureDetails(oneStructure) {
   return `/structure-details/${oneStructure}`;
@@ -346,6 +347,7 @@ class MapWrapper extends Component {
             userLocation={this.props.userLocation}
           />
         </Col>
+        <SpeedDial />
       </Row>
     );
   }
