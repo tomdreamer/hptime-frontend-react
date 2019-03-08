@@ -27,6 +27,16 @@ class Navigation extends Component {
             <Nav className="mr-auto">
               {this.props.currentUser ? (
                 <>
+                <LinkContainer to="/map">
+                    <Nav.Link >
+                      Map 
+                    </Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/#">
+                    <Nav.Link>
+                     Dashboard                    
+                    </Nav.Link>
+                  </LinkContainer>
                   <LinkContainer to="/signup">
                     <Nav.Link onClick={() => this.props.logoutClick()}>
                       Log Out
