@@ -113,8 +113,13 @@ class IsEmergency extends PureComponent {
                 </Div>
               </div>
               {/* speech and CTA */}
-              <div className="col-lg-4 py-4 pr-0">
-                <H1 className="display-3 pt-4">
+              <div className="col-lg-4 py-4 pr-0 pb-0">
+                <H1 className="display-3 pt-4 text-muted d-none d-sm-block d-sm-none">
+                  <span className="text-primary font-weight-bold">Med</span>
+                  <span className="text-muted font-weight-light">Direct</span>
+                </H1>
+
+                <H1 className="h1 pt-4 text-left">
                   <span className="text-primary font-weight-bold">Med</span>
                   <span className="text-muted font-weight-light">Direct</span>
                 </H1>
@@ -122,7 +127,7 @@ class IsEmergency extends PureComponent {
                   MedDirect vous aide a trouver les meilleurs soins d'urgence
                   adaptés à vos besoins.
                 </P>
-                <P className="text-muted">
+                <P className="text-muted d-none d-sm-block d-sm-none">
                   Estimez les temps d'attente dans les centres de soins à
                   proximité et trouvez des alternatives sans attendre!
                 </P>
@@ -142,9 +147,9 @@ class IsEmergency extends PureComponent {
           <Footer className="bg-light">
             <div className="container">
               <div className="row">
-                <p className="small text-muted p-5">
-                  Done with love by Christina Bailey, Christophe Begue, Thomas
-                  Lesage, Samuel Bouaroua, and Raphael Veil.
+                <p className="small text-muted pl-3 pb-5">
+                  Fait avec amour par C. Bailey, C. Begue, T., S. Bouaroua, et
+                  R. Veil.
                 </p>
               </div>
             </div>
