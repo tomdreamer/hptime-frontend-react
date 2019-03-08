@@ -119,7 +119,7 @@ class IsEmergency extends PureComponent {
                   <span className="text-muted font-weight-light">Direct</span>
                 </H1>
 
-                <H1 className="h1 pt-4 text-left d-md-none d-lg-block d-lg-none d-xl-block">
+                <H1 className="h1 pt-4 text-left d-md-none  d-lg-none d-xl-none d-lg-block">
                   <span className="text-primary font-weight-bold">Med</span>
                   <span className="text-muted font-weight-light">Direct</span>
                 </H1>
@@ -146,8 +146,8 @@ class IsEmergency extends PureComponent {
           </div>
           <Footer className="bg-light">
             <div className="container">
-              <div className="row">
-                <p className="small text-muted pl-3 pb-5">
+              <div className="row p-5">
+                <p className="small text-muted pl-3 pb-5 pt-5 mt-4">
                   Fait avec amour par C. Bailey, C. Begue, T. Lesage, S.
                   Bouaroua, et R. Veil.
                 </p>
