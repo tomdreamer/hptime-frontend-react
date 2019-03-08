@@ -3,6 +3,7 @@ import posed from "react-pose";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 // child card component
 import SpecialtyCard from "./SpecialtyCard";
@@ -15,21 +16,21 @@ const oeil = "/images/pictos/ophtalmologie.svg";
 const orl = "/images/pictos/ORL2.png";
 const anus = "/images/pictos/anus.svg";
 const psychiatrie = "/images/pictos/psychiatrie.svg";
-const ventre = "/images/pictos/ventre.svg";
-const torso = "/images/pictos/torso.svg";
-const brulure = "/images/pictos/brulure.svg";
-const fracture = "/images/pictos/fracture.svg";
-const gorge = "/images/pictos/gorge.svg";
-const grossesse = "/images/pictos/grossesse.svg";
+//const ventre = "/images/pictos/ventre.svg";
+//const torso = "/images/pictos/torso.svg";
+//const brulure = "/images/pictos/brulure.svg";
+//const fracture = "/images/pictos/fracture.svg";
+//const gorge = "/images/pictos/gorge.svg";
+//const grossesse = "/images/pictos/grossesse.svg";
 
 const Ul = posed.ul({
   open: {
-    transition: { ease: "easeInOut", duration: 400 },
+    transition: { ease: "easeOut", duration: 1400 },
     x: 0,
-    delayChildren: 100,
-    staggerChildren: 120,
+    delayChildren: 0,
+    staggerChildren: 300,
     opacity: 1,
-    delay: 300
+    delay: 100
   },
   closed: {
     x: 20,
@@ -40,12 +41,12 @@ const Ul = posed.ul({
 
 const Li = posed.li({
   open: {
-    transition: { ease: "easeInOut", duration: 400 },
+    transition: { ease: "easeOut", duration: 1000 },
     y: 0,
     opacity: 1,
     x: 0
   },
-  closed: { y: 0, opacity: 0, x: 300 }
+  closed: { y: 0, opacity: 0, x: 400 }
 });
 
 class PathologyQuestions extends Component {
@@ -145,7 +146,7 @@ class PathologyQuestions extends Component {
       }
     ];
     return (
-      <section id="PathologyCards">
+      <Container id="PathologyCards">
         {/* quuestion */}
         <Row>
           <span className="float-left pl-3">
@@ -159,17 +160,25 @@ class PathologyQuestions extends Component {
             </Link>
           </span>
         </Row>
-        <p className="lead text-center">
-          <span className="text-center mr-4 pr-4 small">
-            Certains problêmes necessitent une attention particulière, si le
-            vôtre n'en fait pas partie, veuillez choisir médecine générale.
-          </span>
-        </p>
 
         {/* card list */}
         <Row className="d-flex justify-content-center">
           <Col xs={12} sm={12} md={9} lg={6}>
             <Ul pose={isOpen ? "open" : "closed"} className="list-unstyled">
+              <div>
+                <Row>
+                  <p className="lead text-center w-100 mb-1">
+                    Quel est le problême?
+                  </p>
+                </Row>
+                <Row>
+                  <span className="text-center px-4 small">
+                    Certains problêmes necessitent une attention particulière,
+                    si le vôtre n'en fait pas partie, veuillez choisir médecine
+                    générale.
+                  </span>
+                </Row>
+              </div>
               {specialtyList.map((oneSpecialty, index) => {
                 return (
                   <Li key={index} className="item">
@@ -190,7 +199,7 @@ class PathologyQuestions extends Component {
             </Ul>
           </Col>
         </Row>
-      </section>
+      </Container>
     );
   }
 }

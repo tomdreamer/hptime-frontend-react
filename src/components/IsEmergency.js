@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Collapse from 'react-bootstrap/Collapse'
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
 
@@ -26,7 +25,6 @@ class IsEmergency extends PureComponent {
   }
 
   render() {
-    const open= this.state
     return (
       <>
         <section className="bg-light">
@@ -70,8 +68,6 @@ class IsEmergency extends PureComponent {
         </section>
 
         <Modal
-          {...this.props}
-          aria-labelledby="contained-modal-title-vcenter"
           centered
           show={this.state.show}
           onHide={this.handleClose}
@@ -80,8 +76,8 @@ class IsEmergency extends PureComponent {
             <Modal.Title id="contained-modal-title-vcenter">
              
             
-            <a href="#demo" class="font-weight-bold" data-toggle="collapse"> Urgence vitale? <i class="fas fa-info-circle"></i></a>
-              <div id="demo" class="collapse">
+            <a href="#collapse"   className="font-weight-bold" data-toggle="collapse"> Urgence vitale? <i className="fas fa-info-circle"></i></a>
+              <div id="collapse"  className="collapse">
               <ul>
                   <li className="font-weight-normal h6">Une perte de connaissance</li>
                   <li className="font-weight-normal h6">Des troubles neurologiques (paralysie d’un membre, ou soudaine faiblesse musculaire, troubles de la parole ou de la vision)</li>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import MapWrapper from "./components/MapWrapper";
-import SingleMap from "./components/SingleMap";
+//import MapWrapper from "./components/MapWrapper";
+//import SingleMap from "./components/SingleMap";
 import "./Dashboard.css";
 
 class Dashboard extends Component {
@@ -11,13 +11,13 @@ class Dashboard extends Component {
           <div className="row">
             <div className="col-sm-3 col-md-2 sidebar">
               <div className="vertical-menu">
-                <a href="#" className="active">
+                <a href="#0" className="active">
                   Home
                 </a>
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-                <a href="#">Link 4</a>
+                <a href="#0">Link 1</a>
+                <a href="#0">Link 2</a>
+                <a href="#0">Link 3</a>
+                <a href="#0">Link 4</a>
               </div>
             </div>
             <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
