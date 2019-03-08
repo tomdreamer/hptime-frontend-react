@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+//import Col from "react-bootstrap/Col";
+//import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import "./SpecialtyCard.scss";
-import Container from "react-bootstrap/Container";
+//import Container from "react-bootstrap/Container";
 
 class SpecialtyCard extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class SpecialtyCard extends Component {
           </div>
           <div className="w-100 d-flex justify-content-between">
             <a
-              class="btn"
+              className="btn"
               data-toggle="collapse"
               href={"#B" + this.props.index}
               role="button"
@@ -58,8 +58,8 @@ class SpecialtyCard extends Component {
             </Button>
           </div>
           <div className="w-100">
-            <div class="collapse" id={"B" + this.props.index}>
-              <div class="small py-2">{this.props.infoText}</div>
+            <div className="collapse" id={"B" + this.props.index}>
+              <div className="small py-2">{this.props.infoText}</div>
             </div>
           </div>
         </div>

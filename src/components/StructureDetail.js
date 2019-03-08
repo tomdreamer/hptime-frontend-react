@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { LinkContainer } from "react-router-bootstrap";
+//import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
-import Collapse from "react-bootstrap/Collapse";
+//import Collapse from "react-bootstrap/Collapse";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 class StructureDetail extends Component {
   render() {
@@ -12,7 +13,15 @@ class StructureDetail extends Component {
     console.log(this.props.emptyOneStructure);
     return (
       <Col sm={{ span: 12 }}>
-        <LinkContainer to="/map">
+        <Link
+          to="#retour"
+          className="text-secondary"
+          onClick={this.props.emptyOneStructure}
+        >
+          <i className="fas fa-arrow-left mx-2" />
+          Retour
+        </Link>
+        {/* <LinkContainer to="/map">
           <Button
             variant="secondary"
             size="sm"
@@ -22,7 +31,7 @@ class StructureDetail extends Component {
           >
             <i className="fas fa-arrow-left" /> Retour
           </Button>
-        </LinkContainer>
+        </LinkContainer> */}
 
         <Card>
           <Card.Body>

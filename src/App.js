@@ -17,7 +17,7 @@ import GeolocationPoint from "./components/GeolocationCoodinates.js";
 import Structuredetails from "./components/Structuredetails.js";
 import { getLogout } from "./api";
 import Dashboard from "./components/Dashboard.js";
-import SpeedDial from "./components/SpeedDial";
+//import SpeedDial from "./components/SpeedDial";
 
 require("dotenv").config();
 
