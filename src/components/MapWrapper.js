@@ -20,6 +20,7 @@ import {
   getDistanceDuration,
   errorHandler
 } from "../api.js";
+import SpeedDial from "./SpeedDial.js";
 
 function waitingTimeAccordingToHour(el) {
   let hourOfDay = new Date().getHours();
@@ -444,6 +445,7 @@ class MapWrapper extends Component {
             userLocation={this.props.userLocation}
           />
         </Col>
+        <SpeedDial />
       </Row>
     );
   }

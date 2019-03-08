@@ -3,6 +3,7 @@ import posed from "react-pose";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 // child card component
 import SpecialtyCard from "./SpecialtyCard";
@@ -24,12 +25,12 @@ const psychiatrie = "/images/pictos/psychiatrie.svg";
 
 const Ul = posed.ul({
   open: {
-    transition: { ease: "easeInOut", duration: 400 },
+    transition: { ease: "easeOut", duration: 1400 },
     x: 0,
-    delayChildren: 100,
-    staggerChildren: 120,
+    delayChildren: 0,
+    staggerChildren: 300,
     opacity: 1,
-    delay: 300
+    delay: 100
   },
   closed: {
     x: 20,
@@ -40,12 +41,12 @@ const Ul = posed.ul({
 
 const Li = posed.li({
   open: {
-    transition: { ease: "easeInOut", duration: 400 },
+    transition: { ease: "easeOut", duration: 1000 },
     y: 0,
     opacity: 1,
     x: 0
   },
-  closed: { y: 0, opacity: 0, x: 300 }
+  closed: { y: 0, opacity: 0, x: 400 }
 });
 
 class PathologyQuestions extends Component {
@@ -77,7 +78,14 @@ class PathologyQuestions extends Component {
 
     const specialtyList = [
       {
-        bodyPart: "Oeil",
+        bodyPart: "Medecine générale",
+        neededSpecialist: "Générales",
+        image: generale,
+        infoTitle: "",
+        infoText: "Pour tout besoin médical."
+      },
+      {
+        bodyPart: "Problême à l'oeil",
         neededSpecialist: "Ophtalmologiques",
         image: oeil,
         infoTitle: "",
@@ -85,7 +93,7 @@ class PathologyQuestions extends Component {
           "Il s'agit d'un trouble de la vision ou d'un autre problème à l'oeil ou à la paupiere."
       },
       {
-        bodyPart: "Oto-rhino-laryngologiques",
+        bodyPart: "Trouble oto-rhino-laryngologique",
         neededSpecialist: "Oto-rhino-laryngologiques",
         image: orl,
         infoTitle: "",
@@ -93,16 +101,15 @@ class PathologyQuestions extends Component {
           "Il s'agit d'un problème à l'oreille, au nez, ou dans la gorge."
       },
       {
-        bodyPart: "Dents",
+        bodyPart: "Problême dentaire",
         neededSpecialist: "Dentaires",
         image: dent,
         infoTitle: "",
-        infoText:
-          "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. "
+        infoText: "Pour toute douleur à la dent ou aux gencives. "
       },
 
       {
-        bodyPart: "Main (plaie ouverte)",
+        bodyPart: "Plaie à la main ",
         neededSpecialist: "Plaies de la main",
         image: main,
         infoTitle: "",
@@ -111,7 +118,7 @@ class PathologyQuestions extends Component {
       },
 
       {
-        bodyPart: "Gynécologie-Obstetrie",
+        bodyPart: "Gynécologie-obstetrie",
         neededSpecialist: "Gynéco-obstétricales",
         image: uterus,
         infoTitle: "",
@@ -120,7 +127,7 @@ class PathologyQuestions extends Component {
       },
 
       {
-        bodyPart: "Rectum",
+        bodyPart: "Problême au rectum",
         neededSpecialist: "Proctology",
         image: anus,
         infoTitle: "",
@@ -134,18 +141,10 @@ class PathologyQuestions extends Component {
         infoTitle: "",
         infoText:
           "Il s'agit d'un probleme d'ordre psychologique ou psychiatrique."
-      },
-
-      {
-        bodyPart: "Medecine générale",
-        neededSpecialist: "Générales",
-        image: generale,
-        infoTitle: "",
-        infoText: "Pour tout autre type d'urgence."
       }
     ];
     return (
-      <section id="PathologyCards">
+      <Container id="PathologyCards">
         {/* quuestion */}
         <Row>
           <span className="float-left pl-3">
@@ -159,17 +158,25 @@ class PathologyQuestions extends Component {
             </Link>
           </span>
         </Row>
-        <p className="lead text-center">
-          <span className="text-center mr-4 pr-4 small">
-            Certains problêmes necessitent une attention particulière, si le
-            vôtre n'en fait pas partie, veuillez choisir médecine générale.
-          </span>
-        </p>
 
         {/* card list */}
         <Row className="d-flex justify-content-center">
           <Col xs={12} sm={12} md={9} lg={6}>
             <Ul pose={isOpen ? "open" : "closed"} className="list-unstyled">
+              <div>
+                <Row>
+                  <p className="lead text-center w-100 mb-1">
+                    Quel est le problême?
+                  </p>
+                </Row>
+                <Row>
+                  <span className="text-center px-4 small">
+                    Certains problêmes necessitent une attention particulière,
+                    si le vôtre n'en fait pas partie, veuillez choisir médecine
+                    générale.
+                  </span>
+                </Row>
+              </div>
               {specialtyList.map((oneSpecialty, index) => {
                 return (
                   <Li key={index} className="item">
@@ -190,7 +197,7 @@ class PathologyQuestions extends Component {
             </Ul>
           </Col>
         </Row>
-      </section>
+      </Container>
     );
   }
 }

@@ -3,13 +3,82 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
 import "./IsEmergency.scss";
+import posed from "react-pose";
+import SpeedDial from "./SpeedDial";
+import { Route } from "react-router-dom";
+
+const Section = posed.section({
+  open: {
+    transition: { ease: "easeInOut", duration: 1400 },
+    x: 0,
+    delayChildren: 0,
+    staggerChildren: 200,
+    opacity: 1,
+    delay: 0
+  },
+  closed: {
+    x: 10,
+    delay: 0,
+    opacity: 0
+  }
+});
+
+const Div = posed.div({
+  open: {
+    transition: { ease: "easeOut", duration: 1400 },
+    y: 0,
+    opacity: 1,
+    x: 0
+  },
+  closed: { y: 0, opacity: 0, x: 20 }
+});
+
+const H1 = posed.h1({
+  open: {
+    transition: { ease: "easeOut", duration: 2000 },
+    y: 0,
+    opacity: 1,
+    x: 0
+  },
+  closed: { y: 0, opacity: 0, x: 30 }
+});
+
+const P = posed.p({
+  open: {
+    transition: { ease: "easeOut", duration: 2000 },
+    y: 0,
+    opacity: 1,
+    x: 0
+  },
+  closed: { y: 0, opacity: 0, x: 0 }
+});
+
+const Footer = posed.footer({
+  open: {
+    transition: { ease: "easeOut", duration: 1000 },
+    y: 0,
+    opacity: 1,
+    x: 0
+  },
+  closed: { y: 0, opacity: 0, x: 40 }
+});
+
+const ButtonWrap = posed.div({
+  open: {
+    transition: { ease: "easeOut", duration: 1500 },
+    y: 0,
+    opacity: 1,
+    x: 0
+  },
+  closed: { y: 0, opacity: 0, x: 400 }
+});
 
 class IsEmergency extends PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
       show: false,
-      open: false,
+      open: false
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -23,81 +92,113 @@ class IsEmergency extends PureComponent {
   handleShow() {
     this.setState({ show: true });
   }
-
+  componentDidMount() {
+    this.setState({ isOpen: true });
+  }
   render() {
+    const { isOpen } = this.state;
     return (
       <>
-        <section className="bg-light">
+        <Section pose={isOpen ? "open" : "closed"} className="bg-light">
           <div className="container">
             <div className="row">
-              <div className="col-lg-12 pt-4">
-                <h1 className="display-3 pt-4">
-                  <span className="text-primary">Med</span>
-                  <span className="text-muted">Direct</span>
-                </h1>
-              </div>
               {/* illustration */}
-              <div className="col-lg-8  order-first order-md-1">
-                <img
-                  src="/images/illustrations/medicine.svg"
-                  alt="Illustration calme et apaisante de deux docteurs dans un hopital"
-                  className="img-fluid"
-                />
+              <div className="col-lg-8  order-first text-center order-md-1">
+                <Div>
+                  <img
+                    src="/images/illustrations/medicine.svg"
+                    alt="Illustration calme et apaisante de deux docteurs dans un hopital"
+                    className="img-fluid"
+                  />
+                </Div>
               </div>
               {/* speech and CTA */}
               <div className="col-lg-4 py-4 pr-0">
-                <p className="lead mb-3">
+                <H1 className="display-3 pt-4">
+                  <span className="text-primary font-weight-bold">Med</span>
+                  <span className="text-muted font-weight-light">Direct</span>
+                </H1>
+                <P className="lead mb-3">
                   MedDirect vous aide a trouver les meilleurs soins d'urgence
                   adaptés à vos besoins.
-                </p>
-                <p className="text-muted">
+                </P>
+                <P className="text-muted">
                   Estimez les temps d'attente dans les centres de soins à
                   proximité et trouvez des alternatives sans attendre!
-                </p>
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="mt-3"
-                  onClick={this.handleShow}
-                >
-                  Commencer
-                </Button>
+                </P>
+                <ButtonWrap>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="mt-3"
+                    onClick={this.handleShow}
+                  >
+                    Commencer
+                  </Button>
+                </ButtonWrap>
               </div>
             </div>
           </div>
-        </section>
+          <Footer className="bg-light">
+            <div className="container">
+              <div className="row">
+                <p className="small text-muted p-5">
+                  Done with love by Christina Bailey, Christophe Begue, Thomas
+                  Lesage, Samuel Bouaroua, and Raphael Veil.
+                </p>
+              </div>
+            </div>
+          </Footer>
+        </Section>
+        <SpeedDial />
 
-        <Modal
-          centered
-          show={this.state.show}
-          onHide={this.handleClose}
-        >
+        <Modal centered show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
-             
-            
-            <a href="#collapse"   className="font-weight-bold" data-toggle="collapse"> Urgence vitale? <i className="fas fa-info-circle"></i></a>
-              <div id="collapse"  className="collapse">
-              <ul>
-                  <li className="font-weight-normal h6">Une perte de connaissance</li>
-                  <li className="font-weight-normal h6">Des troubles neurologiques (paralysie d’un membre, ou soudaine faiblesse musculaire, troubles de la parole ou de la vision)</li>
-                  <li className="font-weight-normal h6">Des douleurs thoraciques ou violentes douleurs d’apparition brutale</li>
-                  <li className="font-weight-normal h6">Des difficultés respiratoires (étouffe, suffoque) : respiration rapide, bruyante</li>
-                  <li className="font-weight-normal h6">Un saignement important</li>
-                  <li className="font-weight-normal h6">Un violent traumatisme (accident, plaie)</li>
-                  <li className="font-weight-normal h6">Une brûlure de la face ou étendue</li>
+              <a
+                href="#collapse"
+                className="font-weight-bold"
+                data-toggle="collapse"
+              >
+                {" "}
+                Urgence vitale? <i className="fas fa-info-circle" />
+              </a>
+              <div id="collapse" className="collapse">
+                <ul>
+                  <li className="font-weight-normal h6">
+                    Une perte de connaissance
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Des troubles neurologiques (paralysie d’un membre, ou
+                    soudaine faiblesse musculaire, troubles de la parole ou de
+                    la vision)
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Des douleurs thoraciques ou violentes douleurs d’apparition
+                    brutale
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Des difficultés respiratoires (étouffe, suffoque) :
+                    respiration rapide, bruyante
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Un saignement important
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Un violent traumatisme (accident, plaie)
+                  </li>
+                  <li className="font-weight-normal h6">
+                    Une brûlure de la face ou étendue
+                  </li>
                 </ul>
-                
               </div>
-            
-
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
             <p>
-              Si vous pensez ne pas être dans une urgence vitale,
-              appellez le SAMU, sinon merci de <b>cliquer sur Continuer.</b>
+              Si vous pensez ne pas être dans une urgence vitale, appellez le
+              SAMU, sinon merci de <b>cliquer sur Continuer.</b>
             </p>
           </Modal.Body>
 
@@ -115,17 +216,6 @@ class IsEmergency extends PureComponent {
             </LinkContainer>
           </Modal.Footer>
         </Modal>
-
-        <footer className="bg-light">
-          <div className="container">
-            <div className="row">
-              <p className="small text-muted p-5">
-                Done with love by Christina Bailey, Christophe Begue, Thomas
-                Lesage, Samuel Bouaroua, and Raphael Veil.
-              </p>
-            </div>
-          </div>
-        </footer>
       </>
     );
   }

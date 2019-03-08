@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import "./SpecialtyCard.scss";
+import Container from "react-bootstrap/Container";
 
 class SpecialtyCard extends Component {
   constructor(props) {
@@ -20,18 +22,34 @@ class SpecialtyCard extends Component {
     this.props.nextStep();
   }
   render() {
+    console.log(this.props.index);
     return (
-      <Col>
-        <div className="card flex-row m-3 bg-white" key={this.props.index}>
-          <div className="card-header bg-light p-2">
-            <img
-              src={this.props.picture}
-              alt={this.props.bodyPart}
-              className="picto d-block mx-auto"
-            />
+      <div className="card flex-row m-3 bg-white" key={this.props.index}>
+        <div className="col-4 card-header bg-light p-2">
+          <img
+            src={this.props.picture}
+            alt={this.props.bodyPart}
+            className="picto d-block mx-auto"
+          />
+        </div>
+        <div className=" col-8 w-100 px-2 d-flex flex-column justify-content-between">
+          <div className="w-100 card-titlepx-2 pt-2 pb-0 mb-0 text-dark font-weight-light">
+            <h5 className="font-weight-light m-0">{this.props.bodyPart}</h5>
+          </div>
+          <div className="w-100 d-flex justify-content-between">
+            <a
+              class="btn"
+              data-toggle="collapse"
+              href={"#B" + this.props.index}
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <i className="far fa-question-circle" />
+            </a>
             <Button
               variant="primary"
-              className="mt-2 btn-sm w-100"
+              className="mt-2 btn-sm w-50 "
               onClick={event => this.clickHandler(event)}
               name="neededSpecialist"
               value={this.props.neededSpecialist}
@@ -39,26 +57,13 @@ class SpecialtyCard extends Component {
               Valider
             </Button>
           </div>
-          <div className="w-100 px-2 d-flex flex-column justify-content-center">
-            <div className="card-titlepx-2 pt-2 pb-0 mb-0 text-dark font-weight-light">
-              <h5 className="font-weight-light m-0">{this.props.bodyPart}</h5>
+          <div className="w-100">
+            <div class="collapse" id={"B" + this.props.index}>
+              <div class="small py-2">{this.props.infoText}</div>
             </div>
-            <div className=" pt-1 pb-0 mb-0 text-dark font-weight-light">
-              <p className="small font-weight-light">{this.props.infoText}</p>
-            </div>
-
-            {/* <div className="card-block p-2 pl-2 d-flex justify-content-end"> */}
-            {/* <p className="card-text">{this.props.infoText}</p> */}
-            {/* <Button
-                variant="outline-dark mr-2"
-                // onClick={event => this.clickHandler(event)}
-              >
-                <i className="far fa-question-circle" />
-              </Button> */}
-            {/* </div> */}
           </div>
         </div>
-      </Col>
+      </div>
     );
   }
 }
