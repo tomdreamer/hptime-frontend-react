@@ -165,7 +165,6 @@ class App extends Component {
           />
           <Route component={NotFound} key="NotFound" />
         </Switch>
-        <Route component={SpeedDial} key="speeddial" />
       </div>
     );
   }

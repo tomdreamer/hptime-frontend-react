@@ -20,7 +20,7 @@ class SpecialtyCard extends Component {
     this.props.nextStep();
   }
   render() {
-   console.log(this.props.index)
+    console.log(this.props.index);
     return (
       <Col>
         <div className="card flex-row m-3 bg-white" key={this.props.index}>
@@ -44,21 +44,22 @@ class SpecialtyCard extends Component {
             <div className="card-titlepx-2 pt-2 pb-0 mb-0 text-dark font-weight-light">
               <h5 className="font-weight-light m-0">{this.props.bodyPart}</h5>
             </div>
-            <div className=" pt-1 pb-0 mb-0 text-dark font-weight-light">
-              <p className="small font-weight-light">{this.props.infoText}</p>
-            </div>
-            
-            <a class="btn" data-toggle="collapse" href={"#B" +  this.props.index} role="button" aria-expanded="false" aria-controls="collapseExample">
-                <i className="far fa-question-circle" />
+
+            <a
+              class="btn"
+              data-toggle="collapse"
+              href={"#B" + this.props.index}
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <i className="far fa-question-circle" />
             </a>
             <div class="collapse" id={"B" + this.props.index}>
-              <div class="card card-body">
-                {this.props.infoText}
-              </div>
+              <div class="card card-body">{this.props.infoText}</div>
             </div>
           </div>
         </div>
-       
       </Col>
     );
   }
