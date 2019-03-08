@@ -20,6 +20,7 @@ class SpecialtyCard extends Component {
     this.props.nextStep();
   }
   render() {
+   console.log(this.props.index)
     return (
       <Col>
         <div className="card flex-row m-3 bg-white" key={this.props.index}>
@@ -46,18 +47,18 @@ class SpecialtyCard extends Component {
             <div className=" pt-1 pb-0 mb-0 text-dark font-weight-light">
               <p className="small font-weight-light">{this.props.infoText}</p>
             </div>
-
-            {/* <div className="card-block p-2 pl-2 d-flex justify-content-end"> */}
-            {/* <p className="card-text">{this.props.infoText}</p> */}
-            {/* <Button
-                variant="outline-dark mr-2"
-                // onClick={event => this.clickHandler(event)}
-              >
+            
+            <a class="btn" data-toggle="collapse" href={"#B" +  this.props.index} role="button" aria-expanded="false" aria-controls="collapseExample">
                 <i className="far fa-question-circle" />
-              </Button> */}
-            {/* </div> */}
+            </a>
+            <div class="collapse" id={"B" + this.props.index}>
+              <div class="card card-body">
+                {this.props.infoText}
+              </div>
+            </div>
           </div>
         </div>
+       
       </Col>
     );
   }
