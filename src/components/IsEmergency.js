@@ -119,7 +119,7 @@ class IsEmergency extends PureComponent {
                   <span className="text-muted font-weight-light">Direct</span>
                 </H1>
 
-                <H1 className="h1 pt-4 text-left">
+                <H1 className="h1 pt-4 text-left d-md-none d-lg-block d-lg-none d-xl-block">
                   <span className="text-primary font-weight-bold">Med</span>
                   <span className="text-muted font-weight-light">Direct</span>
                 </H1>
