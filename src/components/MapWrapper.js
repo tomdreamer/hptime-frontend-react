@@ -331,7 +331,7 @@ class MapWrapper extends Component {
                           </th>
                           <th className="text-center font-weight-normal">
                             <span>
-                              Distance
+                              Délai
                               <i className="fas fa-walking fa-sm ml-2" />
                             </span>
                           </th>

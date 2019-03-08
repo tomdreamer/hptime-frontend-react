@@ -148,8 +148,8 @@ class IsEmergency extends PureComponent {
             <div className="container">
               <div className="row">
                 <p className="small text-muted pl-3 pb-5">
-                  Fait avec amour par C. Bailey, C. Begue, T., S. Bouaroua, et
-                  R. Veil.
+                  Fait avec amour par C. Bailey, C. Begue, T. Lesage, S.
+                  Bouaroua, et R. Veil.
                 </p>
               </div>
             </div>

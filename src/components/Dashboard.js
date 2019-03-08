@@ -71,12 +71,14 @@ class Dashboard extends Component {
                     {oneHospital.city}, {oneHospital.zipCode}
                   </td>
                   <td>
-                    <a href={oneHospital.urlToPlan}>Link</a>
+                    <a href={oneHospital.urlToPlan} className="text-info">
+                      Link
+                    </a>
                   </td>
                   <td>{oneHospital.managerEntity}</td>
                   <td>
                     <a className="btn btn-primary btn-xs">
-                      <i className="fa fa-pencil" aria-hidden="true" />
+                      <i className="far fa-edit text-white" />
                     </a>
                   </td>
 
