@@ -10,19 +10,18 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import { Redirect } from "react-router";
-
+import StructureDetail from "./StructureDetail";
 import {
   // getHospitalList,
   // getAltStructureList,
+  //  getStructureDetails,
   getHospitalsbyLocation,
   getAtlStructuresbyLocation,
   getDistanceDuration,
   errorHandler
 } from "../api.js";
+import SpeedDial from "./SpeedDial.js";
 
-function getStructureDetails(oneStructure) {
-  return `/structure-details/${oneStructure}`;
-}
 function waitingTimeAccordingToHour(el) {
   let hourOfDay = new Date().getHours();
   let waitingTimePerHour = {
@@ -55,7 +54,6 @@ function waitingTimeAccordingToHour(el) {
   }
   return waitingTimePerHour[hourOfDay];
 }
-
 class MapWrapper extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +67,10 @@ class MapWrapper extends Component {
       newstructureArray: [],
       // structureArray renders all hospitals and alt structures in existance (full array)
       structureArray: [],
-      redirect: false
+      redirect: false,
+      oneStructureDetail: null,
+      isStructureOpen: true,
+      openingHours: ""
     };
   }
   // Allow us to filter data coming fro the back end to render only some kind of hospitals
@@ -87,6 +88,65 @@ class MapWrapper extends Component {
 
   componentDidMount() {
     this.updateStructure();
+    //    let { oneStructureDetail } = this.state;
+    // if (oneStructureDetail) {
+    //   // use the ID in path params to get the details from the backend API
+    //   getStructureDetails(oneStructureDetail._id).then(response => {
+    //     // ALWAYS console.log() response.data to see what the API gave you
+    //     console.log("Structure details", response.data);
+    //     // save the JSON data from the API into the state
+    //     const structureItem = response.data;
+
+    //     let d = new Date();
+    //     let n = d.getDay();
+    //     console.log(n);
+    //     console.log(structureItem.sunday);
+    //     let times = "";
+    //     if (
+    //       structureItem.monday ||
+    //       structureItem.tuesday ||
+    //       structureItem.wednesday ||
+    //       structureItem.thursday ||
+    //       structureItem.friday ||
+    //       structureItem.saturday ||
+    //       structureItem.sunday
+    //     ) {
+    //       switch (n) {
+    //         case 1:
+    //           times = structureItem.monday;
+    //           break;
+    //         case 2:
+    //           times = structureItem.tuesday;
+    //           break;
+    //         case 3:
+    //           times = structureItem.wednesday;
+    //           break;
+    //         case 4:
+    //           times = structureItem.thursday;
+    //           break;
+    //         case 5:
+    //           times = structureItem.friday;
+    //           break;
+    //         case 6:
+    //           times = structureItem.saturday;
+    //           break;
+    //         case 7:
+    //           times = structureItem.sunday;
+    //           break;
+    //         default:
+    //           console.log("Sorry, we did not find time");
+    //       }
+    //       if (times === "") {
+    //         times = "fermé";
+    //       }
+    //     } else {
+    //       times = "Ouvert 24h/24 - 7j/7";
+    //     }
+    //     console.log(times);
+
+    //     this.setState({ structureItem, times });
+    //   });
+    // }
   }
 
   componentDidUpdate(prevProps) {
@@ -166,6 +226,7 @@ class MapWrapper extends Component {
                 });
                 console.log(newstructureArray);
                 this.setState({ newstructureArray });
+                //    this.setState({ oneStructureDetail: newstructureArray[0] });
               })
               .catch(errorHandler);
 
@@ -193,10 +254,25 @@ class MapWrapper extends Component {
         });
     }
   }
+  showStructureDetail = oneStructureDetail => {
+    // https://www.freecodecamp.org/forum/t/react-why-onclick-property-function-triggers-without-click/114180
+    console.log(oneStructureDetail);
+    this.setState({ oneStructureDetail });
+  };
+
+  emptyOneStructure = () => {
+    this.setState({ oneStructureDetail: null });
+  };
 
   render() {
-    const { newstructureArray, open } = this.state;
-    return this.state.redirect ? (
+    console.log(this.state);
+    const {
+      newstructureArray,
+      open,
+      redirect,
+      oneStructureDetail
+    } = this.state;
+    return redirect ? (
       // returning the <Redirect /> ONLY works inside RENDER
       <Redirect to="/" />
     ) : (
@@ -207,133 +283,156 @@ class MapWrapper extends Component {
           md={{ span: 4, order: 2 }}
           id="map-filter"
         >
-          <div id="accordion">
-            <div className="card border-bottom-0">
-              <div className="card-header border-bottom-0" id="headingOne">
-                {open ? (
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    block
-                    className="d-md-none"
-                    onClick={() => this.setState({ open: !open })}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={open}
-                  >
-                    <p className="clollapsBtnText">Carte seulement</p>
-                  </Button>
-                ) : (
-                  <Button
-                    variant="outline-primary"
-                    size="lg"
-                    block
-                    className="d-md-none"
-                    onClick={() => this.setState({ open: !open })}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={open}
-                  >
-                    <p className="clollapsBtnText">Carte et propositions</p>
-                  </Button>
-                )}
-              </div>
-              <FilterBar
-                updatePatient={event => this.props.updatePatient(event)}
-              />
-              <Collapse
-                in={this.state.open}
-                className="dimension"
-                id="example-collapse-text"
-              >
-                {/* this table display the structure propostions into the collaps button list */}
-                <div aria-labelledby="headingOne" data-parent="#accordion">
-                  <table className="table table-sm table-fixed">
-                    <thead>
-                      <tr>
-                        <th className="font-weight-normal w-50">Pertinence</th>
-                        <th className="text-center font-weight-normal">
-                          <span>
-                            Distance
-                            <i className="fas fa-walking fa-sm ml-2" />
-                          </span>
-                        </th>
-                        <th className="text-center font-weight-normal">
-                          Details
-                          <i className="fas fa-info fa-xs mb-1 ml-2" />
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody id="filtered-results">
-                      {newstructureArray.map((oneStructure, index) => {
-                        return (
-                          <tr
-                            key={index}
-                            className="border border-black border-bottom"
-                          >
-                            <td>
-                              {/* icon and name and number */}
-                              <ul className="list-group list-group-flush">
-                                <li className="list-group-item border-0">
-                                  <div className="row d-flex align-items-center">
-                                    <div className="col-lg-2">
-                                      {!oneStructure.shortname ? (
-                                        <span className="fa-stack fa-2x small">
-                                          <i className="fas fa-square fa-stack-2x text-danger" />
-                                          <i className="fas fa-stack-1x text-structure text-white">
-                                            H
-                                          </i>
-                                        </span>
-                                      ) : (
-                                        <span className="fa-stack fa-2x small mr-2">
-                                          <i className="fas fa-circle fa-stack-2x text-primary" />
-                                          <i className="fas fa-stack-1x text-white text-structure">
-                                            C
-                                          </i>
-                                        </span>
-                                      )}
-                                    </div>
-                                    <div className="col-lg-9">
-                                      <span className="text-muted">
-                                        {oneStructure.name} <br />
-                                        <a
-                                          href="tel:+33{popupInfo.phoneNumber}"
-                                          className="small text-muted"
-                                        >
-                                          {oneStructure.phoneNumber}
-                                        </a>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </li>
-                              </ul>
-                            </td>
-                            {/* ETA by walking */}
-                            <td className="text-center align-middle">
-                              <ul className="list-group list-unstyled">
-                                <li>
-                                  <span className="badge badge-light">
-                                    {oneStructure.duration} min
-                                  </span>
-                                </li>
-                              </ul>
-                            </td>
-                            {/* See details link */}
-                            <td className="text-center align-middle">
-                              <Link
-                                to={getStructureDetails(oneStructure._id)}
-                                className="text-muted"
-                              >
-                                voir
-                              </Link>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+          {!oneStructureDetail ? (
+            <div id="accordion">
+              <div className="card border-bottom-0">
+                <div className="card-header border-bottom-0" id="headingOne">
+                  {open ? (
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      block
+                      className="d-md-none"
+                      onClick={() => this.setState({ open: !open })}
+                      aria-controls="example-collapse-text"
+                      aria-expanded={open}
+                    >
+                      <p className="clollapsBtnText">Carte seulement</p>
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline-primary"
+                      size="lg"
+                      block
+                      className="d-md-none"
+                      onClick={() => this.setState({ open: !open })}
+                      aria-controls="example-collapse-text"
+                      aria-expanded={open}
+                    >
+                      <p className="clollapsBtnText">Carte et propositions</p>
+                    </Button>
+                  )}
                 </div>
-              </Collapse>
+                <FilterBar
+                  updatePatient={event => this.props.updatePatient(event)}
+                />
+                <Collapse
+                  in={this.state.open}
+                  className="dimension"
+                  id="example-collapse-text"
+                >
+                  {/* this table display the structure propostions into the collaps button list */}
+                  <div aria-labelledby="headingOne" data-parent="#accordion">
+                    <table className="table table-sm table-fixed">
+                      <thead>
+                        <tr>
+                          <th className="font-weight-normal w-50">
+                            Pertinence
+                          </th>
+                          <th className="text-center font-weight-normal">
+                            <span>
+                              Délai
+                              <i className="fas fa-walking fa-sm ml-2" />
+                            </span>
+                          </th>
+                          <th className="text-center font-weight-normal">
+                            Details
+                            <i className="fas fa-info fa-xs mb-1 ml-2" />
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="filtered-results">
+                        {newstructureArray.map((oneStructure, index) => {
+                          return (
+                            <tr
+                              key={index}
+                              className="border border-black border-bottom"
+                            >
+                              <td>
+                                {/* icon and name and number */}
+                                <ul className="list-group list-group-flush">
+                                  <li className="list-group-item border-0">
+                                    <div className="row d-flex align-items-center">
+                                      <div className="col-lg-2">
+                                        {!oneStructure.shortname ? (
+                                          <span className="fa-stack fa-2x small">
+                                            <i className="fas fa-square fa-stack-2x text-danger" />
+                                            <i className="fas fa-stack-1x text-structure text-white">
+                                              H
+                                            </i>
+                                          </span>
+                                        ) : (
+                                          <span className="fa-stack fa-2x small mr-2">
+                                            <i className="fas fa-circle fa-stack-2x text-primary" />
+                                            <i className="fas fa-stack-1x text-white text-structure">
+                                              C
+                                            </i>
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div className="col-lg-9">
+                                        <span className="text-muted">
+                                          {oneStructure.name} <br />
+                                          <a
+                                            href="tel:+33{popupInfo.phoneNumber}"
+                                            className="small text-muted"
+                                          >
+                                            {oneStructure.phoneNumber}
+                                          </a>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                              {/* ETA by walking */}
+                              <td className="text-center align-middle">
+                                <ul className="list-group list-unstyled">
+                                  <li>
+                                    <span className="badge badge-light">
+                                      {oneStructure.duration} min
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              {/* See details link */}
+                              <td className="text-center align-middle">
+                                <Link
+                                  to="#0"
+                                  onClick={this.showStructureDetail.bind(
+                                    this,
+                                    oneStructure
+                                  )}
+                                  className="text-muted"
+                                >
+                                  voir
+                                </Link>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </Collapse>
+              </div>
             </div>
-          </div>
+          ) : (
+            <>
+              <div id="accordion">
+                <div className="card border-bottom-0">
+                  <div
+                    className="card-header border-bottom-0"
+                    id="headingOne"
+                  />
+                </div>
+              </div>
+              <StructureDetail
+                structureItem={this.state.oneStructureDetail}
+                emptyOneStructure={this.emptyOneStructure}
+              />
+            </>
+          )}
         </Col>
 
         {/* map container receiving data and user location as props */}
@@ -346,6 +445,7 @@ class MapWrapper extends Component {
             userLocation={this.props.userLocation}
           />
         </Col>
+        <SpeedDial />
       </Row>
     );
   }

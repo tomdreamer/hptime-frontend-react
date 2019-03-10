@@ -40,27 +40,27 @@ class Dashboard extends Component {
         <h2>Hospital Dashboard</h2>
         <table
           id="example"
-          class="table table-striped table-bordered "
-          cellspacing="0"
+          className="table table-striped table-bordered "
+          cellSpacing="0"
           width="100%"
         >
           <thead>
             <tr>
-              <th class="th-sm">Hospital Name</th>
-              <th class="th-sm">Group Name</th>
-              <th class="th-sm">Phone Number</th>
-              <th class="th-sm">Street Address</th>
-              <th class="th-sm">City, Zipcode</th>
-              <th class="th-sm">Access Map</th>
-              <th class="th-sm">Management Entity</th>
-              <th class="th-sm">Edit</th>
-              <th class="th-sm">Delete</th>
+              <th className="th-sm">Hospital Name</th>
+              <th className="th-sm">Group Name</th>
+              <th className="th-sm">Phone Number</th>
+              <th className="th-sm">Street Address</th>
+              <th className="th-sm">City, Zipcode</th>
+              <th className="th-sm">Access Map</th>
+              <th className="th-sm">Management Entity</th>
+              <th className="th-sm">Edit</th>
+              <th className="th-sm">Delete</th>
             </tr>
           </thead>
           <tbody id="myTable">
             {hospitalItems.map((oneHospital, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{oneHospital.name}</td>
                   <td>{oneHospital.group}</td>
                   <td>{oneHospital.phoneNumber}</td>
@@ -72,12 +72,19 @@ class Dashboard extends Component {
                     {oneHospital.city}, {oneHospital.zipCode}
                   </td>
                   <td>
-                    <a href={oneHospital.urlToPlan}>Link</a>
+                    <a href={oneHospital.urlToPlan} className="text-info">
+                      Link
+                    </a>
                   </td>
                   <td>{oneHospital.managerEntity}</td>
                   <td>
+<<<<<<< HEAD
                     <a class="btn btn-primary btn-xs">
                       <i class="far fa-edit" />
+=======
+                    <a className="btn btn-primary btn-xs">
+                      <i className="far fa-edit text-white" />
+>>>>>>> 2764005b8950d538ddc9320534b124e31053d9d6
                     </a>
                   </td>
 
@@ -88,12 +95,12 @@ class Dashboard extends Component {
                       title="Delete"
                     >
                       <button
-                        class="btn btn-danger btn-xs"
+                        className="btn btn-danger btn-xs"
                         data-title="Delete"
                         data-toggle="modal"
                         data-target="#delete"
                       >
-                        <i class="fa fa-trash" aria-hidden="true" />
+                        <i className="fa fa-trash" aria-hidden="true" />
                       </button>
                     </p>
                   </td>
