@@ -5,7 +5,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
 class Navigation extends Component {
-
   render() {
     return (
       <Container>
@@ -27,15 +26,11 @@ class Navigation extends Component {
             <Nav className="mr-auto">
               {this.props.currentUser ? (
                 <>
-                <LinkContainer to="/map">
-                    <Nav.Link >
-                      Map 
-                    </Nav.Link>
+                  <LinkContainer to="/map">
+                    <Nav.Link>Map</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/#">
-                    <Nav.Link>
-                     Dashboard                    
-                    </Nav.Link>
+                  <LinkContainer to="/dashboard">
+                    <Nav.Link>Dashboard</Nav.Link>
                   </LinkContainer>
                   <LinkContainer to="/signup">
                     <Nav.Link onClick={() => this.props.logoutClick()}>

@@ -37,6 +37,7 @@ class Dashboard extends Component {
     const { hospitalItems } = this.state;
     return (
       <section className="Dashboard">
+        <h2>Hospital Dashboard</h2>
         <table
           id="example"
           class="table table-striped table-bordered "
@@ -76,7 +77,7 @@ class Dashboard extends Component {
                   <td>{oneHospital.managerEntity}</td>
                   <td>
                     <a class="btn btn-primary btn-xs">
-                      <i class="fa fa-pencil" aria-hidden="true" />
+                      <i class="far fa-edit" />
                     </a>
                   </td>
 
