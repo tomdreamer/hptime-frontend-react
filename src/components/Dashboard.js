@@ -78,13 +78,8 @@ class Dashboard extends Component {
                   </td>
                   <td>{oneHospital.managerEntity}</td>
                   <td>
-<<<<<<< HEAD
-                    <a class="btn btn-primary btn-xs">
-                      <i class="far fa-edit" />
-=======
                     <a className="btn btn-primary btn-xs">
                       <i className="far fa-edit text-white" />
->>>>>>> 2764005b8950d538ddc9320534b124e31053d9d6
                     </a>
                   </td>
 
