@@ -85,7 +85,7 @@ class PathologyQuestions extends Component {
         infoText: "Pour tout besoin médical."
       },
       {
-        bodyPart: "Problême à l'oeil",
+        bodyPart: "Problème à l'oeil",
         neededSpecialist: "Ophtalmologiques",
         image: oeil,
         infoTitle: "",
@@ -101,7 +101,7 @@ class PathologyQuestions extends Component {
           "Il s'agit d'un problème à l'oreille, au nez, ou dans la gorge."
       },
       {
-        bodyPart: "Problême dentaire",
+        bodyPart: "Problème dentaire",
         neededSpecialist: "Dentaires",
         image: dent,
         infoTitle: "",
@@ -118,7 +118,7 @@ class PathologyQuestions extends Component {
       },
 
       {
-        bodyPart: "Gynécologie-obstetrie",
+        bodyPart: "Gynécologie-obstetrique",
         neededSpecialist: "Gynéco-obstétricales",
         image: uterus,
         infoTitle: "",
@@ -127,7 +127,7 @@ class PathologyQuestions extends Component {
       },
 
       {
-        bodyPart: "Problême au rectum",
+        bodyPart: "Problème au rectum",
         neededSpecialist: "Proctology",
         image: anus,
         infoTitle: "",
@@ -166,12 +166,12 @@ class PathologyQuestions extends Component {
               <div>
                 <Row>
                   <p className="lead text-center w-100 mb-1">
-                    Quel est le problême?
+                    Quel est le problème?
                   </p>
                 </Row>
                 <Row>
                   <span className="text-center px-4 small">
-                    Certains problêmes necessitent une attention particulière,
+                    Certains problèmes necessitent une attention particulière,
                     si le vôtre n'en fait pas partie, veuillez choisir médecine
                     générale.
                   </span>

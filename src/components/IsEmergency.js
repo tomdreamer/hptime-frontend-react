@@ -160,13 +160,14 @@ class IsEmergency extends PureComponent {
         <Modal centered show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
+              {" "}
+              Urgence vitale?{" "}
               <a
                 href="#collapse"
                 className="font-weight-bold"
                 data-toggle="collapse"
               >
-                {" "}
-                Urgence vitale? <i className="fas fa-info-circle" />
+                <i className="fas fa-info-circle" />
               </a>
               <div id="collapse" className="collapse">
                 <ul>
@@ -202,8 +203,16 @@ class IsEmergency extends PureComponent {
 
           <Modal.Body>
             <p>
-              Si vous pensez ne pas être dans une urgence vitale, appellez le
-              SAMU, sinon merci de <b>cliquer sur Continuer.</b>
+              Si vous pensez être dans une
+              <a
+                href="#collapse"
+                className="font-weight-bold"
+                data-toggle="collapse"
+              >
+                {" "}
+                urgence vitale{" "}
+              </a>
+              , appellez le SAMU, sinon merci de <b>cliquer sur Continuer.</b>
             </p>
           </Modal.Body>
 
