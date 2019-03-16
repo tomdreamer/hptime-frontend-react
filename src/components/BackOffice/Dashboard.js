@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-// import MapWrapper from "./components/MapWrapper";
-// import SingleMap from "./components/SingleMap";
-import "./Dashboard.css";
-import {
-  getHospitalList
-  //  getHospitalsbyLocation,
-  // getAtlStructuresbyLocation,
-  // getDistanceDuration,
-  // errorHandler
-} from "../api.js";
+import { Link } from "react-router-dom";
+
+// API requests and functions
+import { getHospitalList } from "../../api.js";
+
+// Styling
+import "./Dashboard.scss";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,21 +14,15 @@ class Dashboard extends Component {
       hospitalItems: []
     };
   }
+
+  // load data on cdm
   componentDidMount() {
     getHospitalList().then(response => {
       const hospitalItems = response.data;
-      console.log(hospitalItems, "coucouuuuu");
       this.setState({ hospitalItems });
+      console.log(hospitalItems, "Dashboard.js did mount");
     });
   }
-
-  // dataTable() {
-  //   $(document).ready(function() {
-  //     $("#example").DataTable({
-  //       searching: true
-  //     });
-  //   });
-  // }
 
   render() {
     const { hospitalItems } = this.state;
@@ -72,13 +63,21 @@ class Dashboard extends Component {
                     {oneHospital.city}, {oneHospital.zipCode}
                   </td>
                   <td>
-                    <a href={oneHospital.urlToPlan} className="text-info">
+                    <Link
+                      to={oneHospital.urlToPlan}
+                      className="text-info"
+                      target="_blank"
+                      onClick={event => {
+                        event.preventDefault();
+                        window.open(this.makeHref("route"));
+                      }}
+                    >
                       Link
-                    </a>
+                    </Link>
                   </td>
                   <td>{oneHospital.managerEntity}</td>
                   <td>
-                    <a className="btn btn-primary btn-xs">
+                    <a className="btn btn-primary btn-xs" href="#0">
                       <i className="far fa-edit text-white" />
                     </a>
                   </td>

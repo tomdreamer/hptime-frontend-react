@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./SignUpPage.css";
-import { postSignUp } from "../api.js";
+import { postSignUp } from "../../api.js";
 
 class SignupPage extends Component {
   constructor(props) {
@@ -29,28 +29,28 @@ class SignupPage extends Component {
     return (
       <section className="SignupPage">
         {currentUser ? (
-          <div class="card bg-light">
-            <article class="card-body mx-auto">
-              <h4 class="card-title mt-3 text-center">
+          <div className="card bg-light">
+            <article className="card-body mx-auto">
+              <h4 className="card-title mt-3 text-center">
                 Your account has been created
               </h4>
             </article>
           </div>
         ) : (
-          <div class="card bg-light">
-            <article class="card-body mx-auto">
-              <h4 class="card-title mt-3 text-center">Create Account</h4>
-              <p class="text-center">Get started with your pro account </p>
+          <div className="card bg-light">
+            <article className="card-body mx-auto">
+              <h4 className="card-title mt-3 text-center">Create Account</h4>
+              <p className="text-center">Get started with your pro account </p>
               <br />
               <form onSubmit={event => this.handleSubmit(event)}>
-                <div class="form-group input-group">
-                  <div class="input-group-prepend" />
+                <div className="form-group input-group">
+                  <div className="input-group-prepend" />
 
-                  <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
                         {" "}
-                        <i class="fa fa-envelope" />{" "}
+                        <i className="fa fa-envelope" />{" "}
                       </span>
                     </div>
                     <input
@@ -59,20 +59,20 @@ class SignupPage extends Component {
                       }}
                       value={this.state.email}
                       name="username"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Email address"
                       type="email"
                     />
                   </div>
 
-                  <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
                         {" "}
-                        <i class="fa fa-building" />{" "}
+                        <i className="fa fa-building" />{" "}
                       </span>
                     </div>
-                    <select class="form-control">
+                    <select className="form-control">
                       <option selected=""> Select role type</option>
                       <option>Fleet Manager</option>
                       <option>Administrative</option>
@@ -80,26 +80,26 @@ class SignupPage extends Component {
                     </select>
                   </div>
 
-                  <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
                         {" "}
-                        <i class="fa fa-lock" />{" "}
+                        <i className="fa fa-lock" />{" "}
                       </span>
                     </div>
                     <input
-                      class="form-control"
+                      className="form-control"
                       placeholder="Create password"
                       type="password"
                       name="password"
                     />
                   </div>
 
-                  <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">
                         {" "}
-                        <i class="fa fa-lock" />{" "}
+                        <i className="fa fa-lock" />{" "}
                       </span>
                     </div>
                     <input
@@ -108,22 +108,22 @@ class SignupPage extends Component {
                       }}
                       value={this.state.password}
                       s
-                      class="form-control"
+                      className="form-control"
                       placeholder="Repeat password"
                       type="password"
                       name="password"
                     />
                   </div>
 
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">
+                  <div className="form-group">
+                    <button type="submit" className="btn btn-primary btn-block">
                       {" "}
                       Create Account{" "}
                     </button>
                   </div>
                 </div>
 
-                <p class="text-center">
+                <p className="text-center">
                   Have an account? <a href="/login">Log In</a>{" "}
                 </p>
               </form>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-import "./LoginPage.css";
-import { postLogin } from "../api";
+import "./LoginPage.scss";
+import { postLogin } from "../../api";
 
 class LoginPage extends Component {
   constructor(props) {

@@ -1,11 +1,15 @@
 import React, { PureComponent } from "react";
+
+// Components
+import { LinkContainer } from "react-router-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { LinkContainer } from "react-router-bootstrap";
-import "./IsEmergency.scss";
 import posed from "react-pose";
-import SpeedDial from "./SpeedDial";
-//import { Route } from "react-router-dom";
+import SpeedDial from "../SpeedDial";
+
+// Styling
+import "./LandingPage.scss";
+// dig https://codeburst.io/when-to-use-component-or-purecomponent-a60cfad01a81
 
 const Section = posed.section({
   open: {
@@ -23,6 +27,7 @@ const Section = posed.section({
   }
 });
 
+// animations
 const Div = posed.div({
   open: {
     transition: { ease: "easeOut", duration: 1400 },
@@ -73,7 +78,7 @@ const ButtonWrap = posed.div({
   closed: { y: 0, opacity: 0, x: 400 }
 });
 
-class IsEmergency extends PureComponent {
+class LandingPage extends PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -84,7 +89,12 @@ class IsEmergency extends PureComponent {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  // show and hide modal
+  // cdm for animation
+  componentDidMount() {
+    this.setState({ isOpen: true });
+  }
+
+  // show and close modal
   handleClose() {
     this.setState({ show: false });
   }
@@ -92,9 +102,8 @@ class IsEmergency extends PureComponent {
   handleShow() {
     this.setState({ show: true });
   }
-  componentDidMount() {
-    this.setState({ isOpen: true });
-  }
+
+  // render page
   render() {
     const { isOpen } = this.state;
     return (
@@ -124,11 +133,11 @@ class IsEmergency extends PureComponent {
                   <span className="text-muted font-weight-light">Direct</span>
                 </H1>
                 <P className="lead mb-3">
-                  MedDirect vous aide a trouver les meilleurs soins d'urgence
-                  adaptés à vos besoins.
+                  MedDirect vous aide a trouver les meilleurs soins
+                  d&#39;urgence adaptés à vos besoins.
                 </P>
                 <P className="text-muted d-none d-sm-block d-sm-none">
-                  Estimez les temps d'attente dans les centres de soins à
+                  Estimez les temps d&#39;attente dans les centres de soins à
                   proximité et trouvez des alternatives sans attendre!
                 </P>
                 <ButtonWrap>
@@ -159,7 +168,7 @@ class IsEmergency extends PureComponent {
 
         <Modal centered show={this.state.show} onHide={this.handleClose}>
           <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Title>
               {" "}
               Urgence vitale?{" "}
               <a
@@ -235,4 +244,4 @@ class IsEmergency extends PureComponent {
   }
 }
 
-export default IsEmergency;
+export default LandingPage;

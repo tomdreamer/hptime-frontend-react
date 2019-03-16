@@ -3,22 +3,23 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 //Components
 import Navigation from "./components/Navigation.js";
-import IsEmergency from "./components/IsEmergency.js";
+import LandingPage from "./components/Pages/LandingPage.js";
 import Questions from "./components/UserQA/Questions.js";
 import MapWrapper from "./components/MapWrapper.js";
-import SignupPage from "./components/SignUpPage.js";
-import LoginPage from "./components/LoginPage.js";
-import Dashboard from "./components/Dashboard.js";
-import NotFound from "./components/NotFound.js";
-import Structuredetails from "./components/Structuredetails.js";
+import SignupPage from "./components/BackOffice/SignUpPage.js";
+import LoginPage from "./components/BackOffice/LoginPage.js";
+import Dashboard from "./components/BackOffice/Dashboard.js";
+import NotFound from "./components/Pages/NotFound.js";
+//import Structuredetails from "./components/Structuredetails.js";
 
 // Functions
 import { getLogout } from "./api";
 
-//Styling
-import "./App.scss";
+// Styling
 import "mapbox-gl/dist/mapbox-gl.css";
+import "./App.scss";
 
+//
 require("dotenv").config();
 
 class App extends Component {
@@ -91,7 +92,7 @@ class App extends Component {
             exact
             render={() => {
               return (
-                <IsEmergency
+                <LandingPage
                   updatePatient={event => this.updatePatient(event)}
                 />
               );
@@ -151,10 +152,10 @@ class App extends Component {
               );
             }}
           />
-          <Route
+          {/* <Route
             path="/structure-details/:structureId"
             component={Structuredetails}
-          />
+          /> */}
           <Route component={NotFound} key="NotFound" />
         </Switch>
       </div>
