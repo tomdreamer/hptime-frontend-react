@@ -1,28 +1,24 @@
 import React, { Component } from "react";
-import posed from "react-pose";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import posed from "react-pose";
 
-// child card component
-import SpecialtyCard from "./SpecialtyCard";
+// child card component to create a list of cards
+import MedicalSpecialtyCard from "./MedicalSpecialtyCard";
+
 // images
 const generale = "/images/pictos/medical.svg";
-const dent = "/images/pictos/dentaire.svg";
-const uterus = "/images/pictos/gynecologie.svg";
-const main = "/images/pictos/plaie_de_main.svg";
 const oeil = "/images/pictos/ophtalmologie.svg";
 const orl = "/images/pictos/ORL2.png";
+const dent = "/images/pictos/dentaire.svg";
+const main = "/images/pictos/plaie_de_main.svg";
+const uterus = "/images/pictos/gynecologie.svg";
 const anus = "/images/pictos/anus.svg";
 const psychiatrie = "/images/pictos/psychiatrie.svg";
-//const ventre = "/images/pictos/ventre.svg";
-//const torso = "/images/pictos/torso.svg";
-//const brulure = "/images/pictos/brulure.svg";
-//const fracture = "/images/pictos/fracture.svg";
-//const gorge = "/images/pictos/gorge.svg";
-//const grossesse = "/images/pictos/grossesse.svg";
 
+// animations
 const Ul = posed.ul({
   open: {
     transition: { ease: "easeOut", duration: 1400 },
@@ -49,71 +45,68 @@ const Li = posed.li({
   closed: { y: 0, opacity: 0, x: 400 }
 });
 
-class PathologyQuestions extends Component {
+class MedicalSpecialtiesList extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };
   }
 
-  // update user search filters
+  // update user selected speciality filter on click
   clickHandler(event) {
     this.props.updatePatient(event);
   }
 
-  // show next step and lift choice up to form step counter
+  // go to next step and lift current step counter to form step counter
   userChoice(event) {
     this.props.nextStep(event);
     this.props.onFormStep(this.props.totalSteps, this.props.currentStep);
   }
 
+  // check if card information is open to show additional informations on each specialities
   componentDidUpdate(oldProps) {
     if (!oldProps.isActive && this.props.isActive) {
       this.setState({ isOpen: true });
     }
   }
 
-  // card list of specialities that helps to filter search results of hospitals and structures with corresponding services
+  // render a list of cards  for each medical specialities
   render() {
     const { isOpen } = this.state;
 
-    const specialtyList = [
+    // bodypart is the button name, neededSpecialist the filter selector, TODO refactor as API request
+    const specialitiesList = [
       {
         bodyPart: "Medecine générale",
         neededSpecialist: "Générales",
         image: generale,
-        infoTitle: "",
-        infoText: "Pour tout besoin médical."
+        additionalInformation: "Pour tout besoin médical."
       },
       {
         bodyPart: "Problème à l'oeil",
         neededSpecialist: "Ophtalmologiques",
         image: oeil,
-        infoTitle: "",
-        infoText:
+        additionalInformation:
           "Il s'agit d'un trouble de la vision ou d'un autre problème à l'oeil ou à la paupiere."
       },
       {
         bodyPart: "Trouble oto-rhino-laryngologique",
         neededSpecialist: "Oto-rhino-laryngologiques",
         image: orl,
-        infoTitle: "",
-        infoText:
+        additionalInformation:
           "Il s'agit d'un problème à l'oreille, au nez, ou dans la gorge."
       },
       {
         bodyPart: "Problème dentaire",
         neededSpecialist: "Dentaires",
         image: dent,
-        infoTitle: "",
-        infoText: "Pour toute douleur à la dent ou aux gencives. "
+        additionalInformation: "Pour toute douleur à la dent ou aux gencives. "
       },
 
       {
         bodyPart: "Plaie à la main ",
         neededSpecialist: "Plaies de la main",
         image: main,
-        infoTitle: "",
-        infoText:
+        additionalInformation:
           "Il s'agit d'une plaie à la main ou sur un ou plusieurs doigts."
       },
 
@@ -121,8 +114,7 @@ class PathologyQuestions extends Component {
         bodyPart: "Gynécologie-obstetrique",
         neededSpecialist: "Gynéco-obstétricales",
         image: uterus,
-        infoTitle: "",
-        infoText:
+        additionalInformation:
           "Il s'agit d'un problème gynécologique ou lié à une grossesse en cours ou suspectée."
       },
 
@@ -130,22 +122,20 @@ class PathologyQuestions extends Component {
         bodyPart: "Problème au rectum",
         neededSpecialist: "Proctology",
         image: anus,
-        infoTitle: "",
-        infoText:
+        additionalInformation:
           "Il s'agit d'un problème identifié au niveau de l'anus ou du rectum."
       },
       {
         bodyPart: "Psychiatrie",
         neededSpecialist: "Psychiatriques",
         image: psychiatrie,
-        infoTitle: "",
-        infoText:
+        additionalInformation:
           "Il s'agit d'un probleme d'ordre psychologique ou psychiatrique."
       }
     ];
     return (
-      <Container id="PathologyCards">
-        {/* quuestion */}
+      <Container id="medical-specialities-list">
+        {/* question */}
         <Row>
           <span className="float-left pl-3">
             <Link
@@ -165,27 +155,29 @@ class PathologyQuestions extends Component {
             <Ul pose={isOpen ? "open" : "closed"} className="list-unstyled">
               <div>
                 <Row>
-                  <p className="lead text-center w-100 mb-1">
+                  <p className="lead text-center w-100 my-3">
                     Quel est le problème?
                   </p>
                 </Row>
                 <Row>
-                  <span className="text-center px-4 small">
+                  <span className="text-center px-2 my-3 text-muted">
                     Certains problèmes necessitent une attention particulière,
-                    si le vôtre n'en fait pas partie, veuillez choisir médecine
-                    générale.
+                    si le vôtre n&#39;en fait pas partie, merci de choisir la
+                    médecine générale.
                   </span>
                 </Row>
               </div>
-              {specialtyList.map((oneSpecialty, index) => {
+              {specialitiesList.map((specialityItem, index) => {
                 return (
                   <Li key={index} className="item">
-                    <SpecialtyCard
+                    <MedicalSpecialtyCard
                       // card specs
-                      bodyPart={oneSpecialty.bodyPart}
-                      picture={oneSpecialty.image}
-                      neededSpecialist={oneSpecialty.neededSpecialist}
-                      infoText={oneSpecialty.infoText}
+                      bodyPart={specialityItem.bodyPart}
+                      picture={specialityItem.image}
+                      neededSpecialist={specialityItem.neededSpecialist}
+                      additionalInformation={
+                        specialityItem.additionalInformation
+                      }
                       index={index}
                       // update filter and next step in form events
                       updatePatient={event => this.props.updatePatient(event)}
@@ -202,4 +194,4 @@ class PathologyQuestions extends Component {
   }
 }
 
-export default PathologyQuestions;
+export default MedicalSpecialtiesList;

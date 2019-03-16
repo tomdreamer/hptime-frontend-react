@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import "./AdultQuestion.scss";
+import "./Age.scss";
 import posed from "react-pose";
 
 const Section = posed.section({
@@ -49,7 +49,7 @@ const ButtonWrap = posed.div({
   closed: { y: 0, opacity: 0, x: 800 }
 });
 
-class AdultQuestion extends Component {
+class Age extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };
@@ -69,7 +69,7 @@ class AdultQuestion extends Component {
 
     return (
       <Section pose={isOpen ? "open" : "closed"} className="text-center">
-        <Div className="bg-toy" />
+        <Div className="bg-age" />
         <P className="lead my-4">S’agit-il d’un enfant ou d’un adulte?</P>
 
         <ButtonWrap>
@@ -97,4 +97,4 @@ class AdultQuestion extends Component {
   }
 }
 
-export default AdultQuestion;
+export default Age;

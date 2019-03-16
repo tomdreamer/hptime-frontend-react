@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 
-// content
+// importing form wizard, step counter, actual steps and speed dial to reach SAMU
 import StepWizard from "react-step-wizard";
-import PathologyQuestions from "./PathologyQuestions";
-import AdultQuestion from "./AdultQuestion";
 import QuestionsIndicator from "./QuestionsIndicator";
-import UserLocalisation from "./UserLocalisation.js";
-import SpeedDial from "./SpeedDial";
-//import { Route } from "react-router-dom";
+import Age from "./Age";
+import MedicalSpecialtiesList from "./MedicalSpecialtiesList";
+import CurrentLocation from "./CurrentLocation.js";
+import SpeedDial from "../SpeedDial";
 
 class Questions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // works, hardcoded to refactor later
+      // TODO hardcoded to refactor counting steps
       numberOfSteps: 3,
       currentStep: 0
     };
@@ -37,7 +36,7 @@ class Questions extends Component {
         </section>
 
         <StepWizard onStepChange={this.handleStep} initialStep={1}>
-          <AdultQuestion
+          <Age
             // adding anchor to url
             hashKey={"age"}
             // update user search filters and form step counter
@@ -47,7 +46,7 @@ class Questions extends Component {
             }
           />
 
-          <PathologyQuestions
+          <MedicalSpecialtiesList
             hashKey={"service"}
             updatePatient={event => this.props.updatePatient(event)}
             onFormStep={(numberOfSteps, currentStep) =>
@@ -55,7 +54,7 @@ class Questions extends Component {
             }
           />
 
-          <UserLocalisation
+          <CurrentLocation
             hashKey={"position"}
             onGeolocation={this.props.onGeolocation}
           />

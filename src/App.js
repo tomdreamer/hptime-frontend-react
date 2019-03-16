@@ -4,20 +4,20 @@ import { Switch, Route } from "react-router-dom";
 //Components
 import Navigation from "./components/Navigation.js";
 import IsEmergency from "./components/IsEmergency.js";
+import Questions from "./components/UserQA/Questions.js";
 import MapWrapper from "./components/MapWrapper.js";
+import SignupPage from "./components/SignUpPage.js";
+import LoginPage from "./components/LoginPage.js";
+import Dashboard from "./components/Dashboard.js";
 import NotFound from "./components/NotFound.js";
+import Structuredetails from "./components/Structuredetails.js";
+
+// Functions
+import { getLogout } from "./api";
+
 //Styling
 import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Questions from "./components/Questions.js";
-import "mapbox-gl/dist/mapbox-gl.css";
-import SignupPage from "./components/SignUpPage.js";
-import LoginPage from "./components/LoginPage.js";
-import GeolocationPoint from "./components/GeolocationCoodinates.js";
-import Structuredetails from "./components/Structuredetails.js";
-import { getLogout } from "./api";
-import Dashboard from "./components/Dashboard.js";
-//import SpeedDial from "./components/SpeedDial";
 
 require("dotenv").config();
 
@@ -66,7 +66,7 @@ class App extends Component {
   logoutClick() {
     getLogout()
       .then(response => {
-        // console.log("Log Out", response.data);
+        console.log("Log Out", response.data);
         // set the currentUser state to empty
         this.updateUser(null);
       })
@@ -98,13 +98,6 @@ class App extends Component {
             }}
           />
 
-          {/* <Route
-            updatePatient={event => this.updatePatient(event)}
-            path="/"
-            exact
-            component={IsEmergency}
-            key="isEmergency"
-          /> */}
           <Route
             key="3"
             path="/map"
@@ -119,7 +112,6 @@ class App extends Component {
               );
             }}
           />
-          <Route key="geoloc" path="/geoloc" component={GeolocationPoint} />
           <Route
             key="form"
             path="/form"

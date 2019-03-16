@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-//import Col from "react-bootstrap/Col";
-//import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import "./SpecialtyCard.scss";
-//import Container from "react-bootstrap/Container";
+import "./MedicalSpecialtyCard.scss";
 
-class SpecialtyCard extends Component {
+class MedicalSpecialtyCard extends Component {
   constructor(props) {
     super(props);
     this.state = { isVisible: false };
@@ -21,8 +18,8 @@ class SpecialtyCard extends Component {
     this.props.updatePatient(event);
     this.props.nextStep();
   }
+
   render() {
-    console.log(this.props.index);
     return (
       <div className="card flex-row m-3 bg-white" key={this.props.index}>
         <div className="col-4 card-header bg-light p-2">
@@ -68,4 +65,4 @@ class SpecialtyCard extends Component {
   }
 }
 
-export default SpecialtyCard;
+export default MedicalSpecialtyCard;

@@ -1,18 +1,18 @@
-@import "../Colors.scss";
-.dot {
+@import "../../Colors.scss";
+.questions-counter-dot {
   color: $gray-600;
   font-size: 36px;
   line-height: 1;
-  margin: 0 15px;
+  margin: 0 7px;
   opacity: 0.4;
   text-shadow: none;
-  transition: opacity 1s ease, text-shadow 1s ease;
+  transition: opacity 0.5s ease, text-shadow 0.5s ease;
   will-change: opacity, text-shadow;
   //  cursor: pointer;
 }
 
-.dot.active {
+.questions-counter-dot.active {
   color: $primary;
   opacity: 1;
-  text-shadow: 0 0px 4px;
+  text-shadow: 0 0 2px;
 }

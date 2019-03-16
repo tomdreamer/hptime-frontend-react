@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import LocationSearchInput from "./LocationSearchInput.js";
-import "./UserLocalisation.scss";
 import posed from "react-pose";
-import { Link } from "react-router-dom";
+import LocationSearchInput from "./LocationSearchInput.js";
+import "./CurrentLocation.scss";
 
 const Section = posed.section({
   open: {
@@ -63,7 +63,7 @@ const DivSearchInput = posed.div({
   closed: { y: 0, opacity: 0, x: 800 }
 });
 
-class UserLocalisation extends Component {
+class CurrentLocation extends Component {
   constructor(props) {
     super(props);
     this.state = { isOpen: false };
@@ -92,7 +92,7 @@ class UserLocalisation extends Component {
             </Link>
           </span>
         </Row>
-        <Div className="bg-directions m-4" />
+        <Div className="bg-current-location m-4" />
         <P className="lead my-4">Trouvez des soins proches de vous.</P>
         <Row>
           <Col
@@ -121,7 +121,7 @@ class UserLocalisation extends Component {
                     className="d-inline mr-2"
                   />
                   <span className="text-muted">
-                    C'est pour renouveller une ordonnance ?{" "}
+                    C&#39;est pour renouveller une ordonnance ?{" "}
                     <span className="text-secondary">Cliquez ici !</span>
                   </span>
                 </Label>
@@ -134,4 +134,4 @@ class UserLocalisation extends Component {
   }
 }
 
-export default UserLocalisation;
+export default CurrentLocation;
