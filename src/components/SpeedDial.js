@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./SpeedDial.css";
+import "./SpeedDial.scss";
 import posed from "react-pose";
 
 const Section = posed.section({

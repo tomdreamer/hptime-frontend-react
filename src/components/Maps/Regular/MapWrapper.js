@@ -1,26 +1,29 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
 import axios from "axios";
+
+// Components
 import SingleMap from "./SingleMap.js";
 import FilterBar from "./FilterBar.js";
-import "./MapWrapper.scss";
-import { Link } from "react-router-dom";
+import SpeedDial from "../../SpeedDial.js";
+
+// Styling
+import StructureDetail from "./StructureDetail";
 import Collapse from "react-bootstrap/Collapse";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
-import { Redirect } from "react-router";
-import StructureDetail from "./StructureDetail";
+import "./MapWrapper.scss";
+
+// Ajax requests
 import {
-  // getHospitalList,
-  // getAltStructureList,
-  //  getStructureDetails,
   getHospitalsbyLocation,
   getAtlStructuresbyLocation,
   getDistanceDuration,
   errorHandler
-} from "../api.js";
-import SpeedDial from "./SpeedDial.js";
+} from "../../../api.js";
 
 function waitingTimeAccordingToHour(el) {
   let hourOfDay = new Date().getHours();
@@ -254,6 +257,7 @@ class MapWrapper extends Component {
         });
     }
   }
+
   showStructureDetail = oneStructureDetail => {
     // https://www.freecodecamp.org/forum/t/react-why-onclick-property-function-triggers-without-click/114180
     console.log(oneStructureDetail);
@@ -323,7 +327,7 @@ class MapWrapper extends Component {
                 >
                   {/* this table display the structure propostions into the collaps button list */}
                   <div aria-labelledby="headingOne" data-parent="#accordion">
-                    <table className="table table-sm table-fixed">
+                    <table className="table table-sm table-fixed mb-0">
                       <thead>
                         <tr>
                           <th className="font-weight-normal w-50">

@@ -6,6 +6,10 @@ class FilterBar extends Component {
     this.props.updatePatient(event);
   }
 
+  componentDidMount = () => {
+    console.log("TODO load user previous choice to select");
+  };
+
   render() {
     return (
       <div className="px-2 bg-light">

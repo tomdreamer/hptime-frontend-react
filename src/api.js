@@ -67,7 +67,3 @@ export function getAtlStructuresbyLocation(latt, long) {
     `/api/alternatives-structures/near?latitude=${latt}&longitude=${long}&radius=50000`
   );
 }
-// example function
-// export function getLogOut() {
-//   return backendApi.get("/api/logout").catch(errorHandler);
-// }

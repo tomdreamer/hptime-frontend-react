@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Navigation from "./components/Navigation.js";
 import LandingPage from "./components/Pages/LandingPage.js";
 import Questions from "./components/UserQA/Questions.js";
-import MapWrapper from "./components/MapWrapper.js";
+import MapWrapper from "./components/Maps/Regular/MapWrapper.js";
 import SignupPage from "./components/BackOffice/SignUpPage.js";
 import LoginPage from "./components/BackOffice/LoginPage.js";
 import Dashboard from "./components/BackOffice/Dashboard.js";

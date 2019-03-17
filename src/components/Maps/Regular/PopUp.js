@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./PopUp.css";
 import { Popup } from "react-map-gl";
+import "./PopUp.scss";
 
 class PopUp extends Component {
   render() {

@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-//import { LinkContainer } from "react-router-bootstrap";
-import Card from "react-bootstrap/Card";
-//import Collapse from "react-bootstrap/Collapse";
-import Col from "react-bootstrap/Col";
-//import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
 
 class StructureDetail extends Component {
   render() {
     const { structureItem } = this.props;
-    //    const { isStructureOpen, structureItem, openingHours } = this.state;
-    console.log(this.props.emptyOneStructure);
     return (
       <Col sm={{ span: 12 }}>
         <Link
@@ -21,17 +16,6 @@ class StructureDetail extends Component {
           <i className="fas fa-arrow-left mx-2" />
           Retour
         </Link>
-        {/* <LinkContainer to="/map">
-          <Button
-            variant="secondary"
-            size="sm"
-            block
-            className="back"
-            onClick={this.props.emptyOneStructure}
-          >
-            <i className="fas fa-arrow-left" /> Retour
-          </Button>
-        </LinkContainer> */}
 
         <Card>
           <Card.Body>

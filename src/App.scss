@@ -1,12 +1,6 @@
 /*
-NONAME PROJECT THEME 0.1 
-Bootstrap SASS variables list available here :
-https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+MEDIRECT 0.2 Bootstrap SASS variables here : https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
 */
-
-/* * * * * * * * * * * * * */
-/* BS VARIABLES OVERRIDES  */
-/* * * * * * * * * * * * * */
 
 // Google font import
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
@@ -124,10 +118,6 @@ $card-bg: $white !default;
 /* * * * * * * * * * * * * */
 
 @import "../node_modules/bootstrap/scss/bootstrap";
-
-/* * * * * * * * * * * * * */
-/*  GLOBAL THEME STYLING   */
-/* * * * * * * * * * * * * */
 
 .App {
   // Dynamic padding according to navbar height

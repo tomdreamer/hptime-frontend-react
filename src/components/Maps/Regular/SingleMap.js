@@ -25,15 +25,14 @@ class SingleMap extends Component {
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      const { userLocation } = this.props;
-      this._goToViewport(userLocation);
-    }, 2500);
-  }
+  // update map on window size
+  _onViewportChange = viewport => {
+    this.setState({ viewport });
+  };
 
+  // create markers from data
   renderMapAndMarkers = () => {
-    const structureArray = this.props.structureArray;
+    const { structureArray } = this.props;
     let resultArray = structureArray.map((oneItem, index) => {
       return (
         <Marker
@@ -53,16 +52,7 @@ class SingleMap extends Component {
     return resultArray;
   };
 
-  clearPopup = () => {
-    this.setState({ popupInfo: null });
-  };
-
-  // update map on window size
-  _onViewportChange = viewport => {
-    this.setState({ viewport });
-  };
-
-  // renders a single popup
+  // create  a popup
   renderPopup = () => {
     const { popupInfo } = this.state;
     return (
@@ -72,10 +62,14 @@ class SingleMap extends Component {
     );
   };
 
-  // set user current marker and fly to it
+  // destroy a popup
+  clearPopup = () => {
+    this.setState({ popupInfo: null });
+  };
+
+  // set user current location marker if current user location is filled
   renderUserMarker = location => {
     if (location) {
-      // do not remove please (infinite loop line 86)
       return (
         <Marker latitude={location.latitude} longitude={location.longitude}>
           <UserMarker />
@@ -97,7 +91,14 @@ class SingleMap extends Component {
     });
   };
 
-  /////Master Render//////
+  // zoom to user location on cdm
+  componentDidMount() {
+    setTimeout(() => {
+      const { userLocation } = this.props;
+      this._goToViewport(userLocation);
+    }, 2500);
+  }
+
   render() {
     const { viewport } = this.state;
     const { userLocation } = this.props;
@@ -117,11 +118,8 @@ class SingleMap extends Component {
         // 56 to substract navbar height of window size so the map is full height
         onViewportChange={this._onViewportChange}
       >
-        {/* user marker  */}
         {this.renderUserMarker(userLocation)}
-        {/* calling method below with Marker */}
         {this.renderMapAndMarkers()}
-        {/* displaying PopUp */}
         {this.renderPopup()}
       </MapGL>
     );
